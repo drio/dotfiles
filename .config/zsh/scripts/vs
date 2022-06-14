@@ -1,0 +1,10 @@
+#!/bin/bash
+
+f="Session.vim"
+[ ".$1" == "." ] && f=$1
+
+if [ -f $f ];then
+  nvim -S $f
+else
+  echo "$f not found. We are done. 🙅"
+fi

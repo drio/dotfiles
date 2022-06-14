@@ -1,0 +1,16 @@
+.ssh
+./.config/zsh/tufts.sh
+
+*.DS_Store
+*.swp
+*~
+vim/doc
+vim/view
+vim/sessions
+vim/bundle/*
+~vim/bundle/vundle
+.vim/plugged/*
+.vim/plugged
+.config/nvim/plugged
+.vim/plugged/vim-devicons
+.tmux/resurrect

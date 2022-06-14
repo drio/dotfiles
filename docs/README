@@ -1,0 +1,10 @@
+My dotfiles.
+
+To install:
+
+$ cd $HOME && \
+git clone http://github.com/drio/dotfiles.git &&
+ln -s dotfiles/gvimrc .gvimrc && \
+ln -s dotfiles/vimrc .vimrc && \
+ln -s dotfiles/vim .vim && \
+ln -s dotfiles/screenrc .screenrc 

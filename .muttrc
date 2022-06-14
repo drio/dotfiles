@@ -1,0 +1,68 @@
+source ~/.mutt/fastmail.mutt
+
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/fastmail.mutt<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/gmail.mutt<enter><change-folder>!<enter>'
+macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/librato.mutt<enter><change-folder>!<enter>'
+
+#set ascii_chars=yes  
+set date_format="!%a, %d %b %Y at %H:%M:%S %Z"
+set fast_reply=yes                           
+set header_cache=~/.mutt-cache/
+set imap_passive=no 
+set include=yes
+set mail_check=60 
+set metoo=no
+set narrow_tree=yes     
+set pager_format=" -- %s "
+set status_format=" %h: %f (msgs:%?M?%M/?%m %l%?n? new:%n?%?o? old:%o?%?d? del:%d?%?F? flag:%F?%?t? tag:%t?%?p? post:%p?%?b? inc:%b?%?l??) %> %_v "
+set status_on_top=yes  # looks better with sidebar
+set timeout=15      
+#set sidebar_visible=yes    
+#set sidebar_width=21      
+
+set delete=yes
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+set move = no  #Stop asking to "move read messages to mbox"!
+set imap_keepalive = 900
+set markers=no # don't put '+' at the beginning of wrapped lines
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+set editor='vim + -c "set textwidth=80" -c "set wrap" -c "set spell" -c "set runtimepath-=~/.vim/bundle/mru"'
+set envelope_from=yes
+set edit_headers	      # put headers in editor when composing messages
+set include=yes
+set indent_str="> "
+set markers=no	#no + on wrapped lines
+
+auto_view text/html
+
+hdr_order date from subject to cc
+ignore *
+unignore Date:
+unignore From:
+unignore To:
+unignore Subject:
+unignore Cc:
+unignore X-FreeBSD-CVS-Branch:
+unignore X-Mailer:
+unignore User-Agent:
+
+bind index B bounce-message
+bind editor <Tab> complete      # default Mutt setting
+bind editor ^T complete-query   # default Mutt setting
+bind index - collapse-thread
+bind index _ collapse-all
+
+
+#set query_command="cat ~/.mutt/aliases | grep '%s'"
+set alias_file = '~/.mutt/aliases'
+#set sort_alias=alias
+#set reverse_alias=yes
+
+source $alias_file
+source ~/.mutt.colors
+#source ~/.mutt.colors.solarized.16
+
+# vim:set ft=2 sw=2 noet ft=muttrc:

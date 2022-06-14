@@ -1,0 +1,7 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+cd ~/dev/restic-backup
+make
+cd -

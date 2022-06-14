@@ -1,0 +1,44 @@
+# A new client
+
+## In the server
+
+cd /etc/wireguard
+sudo ./new_client.sh littlepi littlepi 8
+
+sudo mkdir -p bak
+sudo cp wg0.conf bak/
+sudo cp new.wg0.conf wg0.conf
+sudo wg-quick down wg0 && sudo wg-quick up wg0
+
+
+## In the client (linux -  ubuntu)
+
+sudo apt-get update
+sudo apt-get upgrade 
+sudo apt-get install raspberrypi-kernel-headers
+echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list
+sudo apt-get install dirmngr 
+wget -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add -
+printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable
+sudo apt-get update
+sudo apt-get install wireguard 
+sudo reboot
+
+sudo cat > /etc/wireguard/wg0.conf
+Interface]
+PrivateKey = xxxxxxxxx
+Address = 192.168.2.8/32
+DNS = 192.168.2.1
+
+[Peer]
+PublicKey = h+PqpfM3WDucnyh1tcoBPQ+WcwcXXbq9Dxx/CvvQkR0=
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = 54.172.73.85:54321
+PersistentKeepalive = 25
+
+sudo ip link add dev wg0 type wireguard
+sudo wg-quick down wg0 && sudo wg-quick up wg0
+ping 192.168.2.1
+
+# Then you can make the configuration of the new interface at boot time:
+sudo systemctl enable wg-quick@wg0

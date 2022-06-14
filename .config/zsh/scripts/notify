@@ -1,0 +1,15 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+msg=$1
+sound=$2
+
+[ ".$sound" = "." ] && sound="Hero"
+
+if [ "$sound" = "list" ];then
+  ls /System/Library/Sounds/*
+  return
+fi
+
+osascript -e "display notification \"$msg\" with title \"drio notification\" sound name \"$sound.aiff\""

@@ -1,0 +1,11 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+if=$1
+
+[ ".$if" == "." ] && echo "No input file provided" && exit 1
+
+fbname=${if%.*}
+out=$fbname.mp4
+ffmpeg -i $if -c copy $out

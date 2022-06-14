@@ -1,0 +1,10 @@
+cdargs
+csvkit
+git
+keychain
+mpv
+nvm
+tmux
+unrar
+vim
+wget

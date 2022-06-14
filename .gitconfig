@@ -1,0 +1,57 @@
+[ghq]
+    root = ~/dev/repos
+
+[alias]
+  # https://raw.githubusercontent.com/adamyonk/dotfiles/master/git/gitconfig.symlink.example
+  co    = checkout
+  lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  sweep = !git branch --merged master | grep -v ' master' | xargs -n 1 -I {} git branch -d {}
+	ci = commit
+  # all branches:
+  #   git branch -a
+  # co remote:
+  #   git fetch
+  #   git co -b feature/reload-spaces origin/feature/reload-spaces
+  #
+  # git reflog
+[color]
+  branch            = auto
+  diff              = auto
+  status            = auto
+  ui                = 1
+
+[core]
+	editor = nvim
+  excludesfile      = ~/.gitignore
+  # quotepath         = false
+
+[fetch]
+  prune             = true
+
+[gh]
+  protocol          = https
+
+[ghi]
+  token             = GHI_TOKEN
+
+[github]
+  user              = drio
+
+[hub]
+  protocol          = https
+
+#[include]
+#  path              = ~/.gitconfig.local
+
+#[init]
+#  templatedir       = ~/.git_template
+
+[user]
+  email             = driodeiros@gmail.com
+  name              = David Rio Deiros
+[push]
+	default = current
+[init]
+	defaultBranch = master
+[credential]
+	helper = store

@@ -1,0 +1,35 @@
+{
+	:templates {:open "open \"%s\""}
+ 	:layers    {}
+ 	:simlayers {:launch-mode {:key :w}}
+ 	:main      [
+		{:des   "launch mode"
+     :rules [
+        [:b [:open "/Applications/Brave Browser.app"] :launch-mode]
+        [:f [:open "/Users/drio"] :launch-mode]
+        [:i [:open "/Applications/iTerm.app"] :launch-mode]
+        [:h [:open "/Applications/WhatsApp.app"] :launch-mode]
+        [:k [:open "/Applications/Slack.app"] :launch-mode]
+        [:s [:open "/Applications/Safari.app"] :launch-mode]
+        [:n [:open "/System/Library/PreferencePanes/Network.prefPane"] :launch-mode]
+        [:m :Or :launch-mode]
+        [:y [:open "/System/Applications/Utilities/Activity Monitor.app"] :launch-mode]
+        [:t [:open "/Applications/Telegram.app"] :launch-mode]
+			]
+		}
+	]
+}
+ 
+;; !  | means mandatory
+;; #  | means optional
+;; C  | left_command
+;; T  | left_control
+;; O  | left_option
+;; S  | left_shift
+;; F  | fn
+;; Q  | right_command
+;; W  | right_control
+;; E  | right_option
+;; R  | right_shift
+;; !! | mandatory command + control + optional + shift (hyper)
+;; ## | optional any

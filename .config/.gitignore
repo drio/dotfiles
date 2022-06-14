@@ -1,0 +1,5 @@
+nvim/plugged
+*node_modules*
+borg/security
+coc/extensions
+nvim/.netrwhist

@@ -1,0 +1,18 @@
+Just some notes on my mutt setup.
+
+You need:
+
+1. mutt (+ patches):
+
+  $ sudo port install mutt-devel +ssl +headercache +smtp
+
+2. msmtp: You tell mutt to use msmtp to send email
+
+3. fetchmail: fetch email from different places
+
+4. Procmail: resent the email to gmail (so everything is in
+one place).
+
+This setup would work just fine if your sysadmins lock 
+(for whatever reason) the gmail servers.
+

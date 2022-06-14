@@ -1,0 +1,12 @@
+.DS_Store
+.svn
+.tissues
+*~
+*.swp
+*.rbc
+
+doc/tags
+tags
+
+.tmux
+script/tmux

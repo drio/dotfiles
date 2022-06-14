@@ -1,0 +1,6 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+brew update 
+brew upgrade

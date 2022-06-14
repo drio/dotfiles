@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cre_file=~drio/.aws/credentials
+conf_file=~drio/.aws/config
+
+id=$(cat $cre_file | head -3 | tail -2 | \
+  head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
+
+secret=$(cat $cre_file | head -3 | tail -1 | \
+  head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
+
+region=$(cat $conf_file | head -2 | tail -1 | \
+ head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
+
+export AWS_ACCESS_KEY_ID=$id
+export AWS_SECRET_ACCESS_KEY=$secret
+export AWS_DEFAULT_REGION=$region
+
+

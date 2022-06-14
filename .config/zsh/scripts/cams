@@ -1,0 +1,6 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+cd ~/dev/github.com/drio/gocv-playground/multiple
+go run main.go
