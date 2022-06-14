@@ -6,7 +6,40 @@
   co    = checkout
   lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
   sweep = !git branch --merged master | grep -v ' master' | xargs -n 1 -I {} git branch -d {}
-	ci = commit
+	ci    = commit
+
+ 	aa = add --intent-to-add .
+  b = branch --sort=-committerdate --format='%(HEAD)%(color:yellow)%(refname:short) | %(color:bold green)%(committerdate:relative) | %(color:blue)%(subject)%(color:reset)' --color=always
+  bs = bisect start --term-new=new --term-old=old
+  c = commit
+  ca = !git add --intent-to-add . && git commit -a
+  cp = cherry-pick
+  create = create -p
+  cs = !"git stash save --keep-index; git commit --verbose; git stash pop"
+  d = diff --color-words --ignore-all-space
+  dlc = diff --cached HEAD^
+  dw = diff --color-words --word-diff -w
+  f = fetch
+  l = log --abbrev-commit --color --graph --pretty=format:"%Cred%h%Creset\\ -%C(yellow)%d%Creset\\ %s\\ %Cgreen(%cr)%C(bold\\ blue)\\ <%an>%Creset"
+  m = merge
+  mypulls = browse -- pulls/adamyonk
+  new = create -p
+  pl = pull
+  ps = push
+  s = status --branch --short
+  sa = stash apply
+  safe = !mkdir -p .git/safe && echo "Repository marked safe!"
+  shove = push --force-with-lease
+  show-files = diff-tree --no-commit-id --name-only -r
+  si = stash save --keep-index
+  sp = stash pop
+  standup = log --author=\"David Rio\" --pretty=oneline --since yesterday
+  sub = submodule
+  suba = submodule add
+  subf = submodule foreach
+  subu = submodule foreach git pull origin master
+  who = blame
+
   # all branches:
   #   git branch -a
   # co remote:
@@ -20,10 +53,25 @@
   status            = auto
   ui                = 1
 
+[diff]
+  algorithm = patience
+  colorMoved = zebra
+
 [core]
 	editor = nvim
   excludesfile      = ~/.gitignore
   # quotepath         = false
+
+[delta]
+  features = line-numbers decorations
+  syntax-theme = base16
+  whitespace-error-style = 22 reverse
+
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
 
 [fetch]
   prune             = true
@@ -55,3 +103,6 @@
 	defaultBranch = master
 [credential]
 	helper = store
+
+[include]
+  path = ~/.gitconfig.local
