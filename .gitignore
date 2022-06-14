@@ -1,3 +1,4 @@
+# These are sensitive so they live in another directory.
 .ssh
 ./.config/zsh/tufts.sh
 
