@@ -75,5 +75,8 @@ source $HOME/.config/zsh/tmux.sh
 # Load aws tufts env vars
 aws-set-env
 
-# Need to install plugin
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_zh=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $_zh ] && $_zh
+_zh=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $_zh ] && $_zh
+
