@@ -76,7 +76,7 @@ source $HOME/.config/zsh/tmux.sh
 aws-set-env
 
 _zh=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $_zh ] && $_zh
+[ -f $_zh ] && source $_zh
 _zh=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $_zh ] && $_zh
+[ -f $_zh ] && source $_zh
 
