@@ -1,7 +1,11 @@
 #!/bin/bash
 
+
 cre_file=~drio/.aws/credentials
 conf_file=~drio/.aws/config
+
+[ ! -f $cre_file ] && exit
+[ ! -f $conf_file ] && exit
 
 id=$(cat $cre_file | head -3 | tail -2 | \
   head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
