@@ -10,3 +10,4 @@ tags
 
 .tmux
 script/tmux
+.config/iterm2

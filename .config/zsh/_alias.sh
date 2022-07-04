@@ -46,4 +46,3 @@ alias vz='cd ~drio/.config/zsh/;v .zshrc'
 
 alias letsgo='make -f ~/dev/gothings/prj-init/Makefile bootstrap'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-alias gh="j /Users/drio/dev/github.com/drio"
