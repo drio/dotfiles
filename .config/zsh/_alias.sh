@@ -35,12 +35,12 @@ alias jr='ssh -t jump /usr/local/bin/tmux attach'
 #alias ls='gls --color=auto --long --git'
 alias ls='ls --color=auto'
 alias ll='ls -l'
-alias vim='nvim'
-alias vi='nvim'
-alias v='nvim'
 
 alias sz='source $HOME/.zshrc'
 
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
 alias vv='cd ~drio/.config/nvim/;v .'
 alias vz='cd ~drio/.config/zsh/;v .zshrc'
 

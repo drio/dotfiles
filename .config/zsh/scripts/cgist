@@ -1,0 +1,19 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+GIST_DIR="$HOME/dev/gist.github.com"
+
+mkdir -p $GIST_DIR
+cd $GIST_DIR
+
+if [ ".$1" == "." ];then
+  echo "Need a repo name as first argument"
+  exit 0
+fi
+repo_name=$1
+
+echo "# Gist away!" | gh gist create -d "$repo_name" -f "README.md" -p -w
+sha=$(gh gist list | head -1 | awk '{print $1}')
+gh gist clone https://gist.github.com/drio/$sha ./$repo_name
+echo "New gist repo at: $GIST_DIR/$repo_name"

@@ -2,6 +2,6 @@
 # vim: ft=sh:
 set -e
 
-cd ~/dev/restic-backup
+cd ~/dev/github.com/drio/restic-backup
 make
 cd -
