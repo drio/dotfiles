@@ -38,7 +38,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>F', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-
  if client.resolved_capabilities.document_formatting then
    vim.api.nvim_command [[augroup Format]]
    vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -69,12 +68,13 @@ local on_attach = function(client, bufnr)
 end
 
 -- :help lspconfig-server-configurations
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'svelte', 'gopls'}
+local servers = { 'pyright', 'tsserver', 'svelte', 'gopls'}
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
   }
 end
+
 
 nvim_lsp.sumneko_lua.setup{
     settings = {
@@ -87,3 +87,4 @@ nvim_lsp.sumneko_lua.setup{
 }
 
 -- vim.lsp.set_log_level("debug")
+-- In the console: tail -f ~/.cache/nvim/lsp.log

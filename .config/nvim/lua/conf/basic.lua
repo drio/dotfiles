@@ -27,8 +27,6 @@ set.showcmd = true
 set.modelines = 3
 set.tabstop = 2
 set.shiftwidth = 2
-set.et = true
-set.expandtab = true
 set.hlsearch = true
 set.incsearch = true
 set.ignorecase = true
@@ -47,6 +45,8 @@ set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
 set.laststatus=3
+-- 
+set.autoindent=smartindent
 
 vim.cmd 'set nofoldenable'
 
