@@ -460,8 +460,8 @@
             "key_code" : "e"
           },
           "to" : [ {
-            "key_code" : "spacebar",
-            "modifiers" : [ "left_command", "left_control", "left_option" ]
+            "key_code" : "q",
+            "modifiers" : [ "fn" ]
           } ],
           "conditions" : [ {
             "name" : "mac-mode",
@@ -480,8 +480,8 @@
               "value" : 1
             }
           }, {
-            "key_code" : "spacebar",
-            "modifiers" : [ "left_command", "left_control", "left_option" ]
+            "key_code" : "q",
+            "modifiers" : [ "fn" ]
           } ],
           "from" : {
             "simultaneous" : [ {

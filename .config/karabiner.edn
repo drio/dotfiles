@@ -62,7 +62,8 @@
      :rules [:mac-mode
            [:b :rewind]
            [:c :mission_control]
-           [:e [:!TOCspacebar]]
+           ;;[:e [:!TOCspacebar]]
+           [:e [:!Fq]]
            [:p :play_or_pause]
            ;;[:n [:open "/System/Library/PreferencePanes/Network.prefPane"] ]
            [:comma :volume_down]
