@@ -55,9 +55,9 @@ app_cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggle
 -- Use: osascript -e 'id of app "SQLDeveloper"' to get app ID
 local hsapp_list = {
     --{key = '1', name = '1Password 7'},
-    {key = 'a', name = 'Obsidian'},
+    --{key = 'a', name = 'Obsidian'},
     {key = 'b', name = 'Brave Browser'},
-    --{key = 'c', name = 'com.apple.systempreferences.Network'},
+    {key = 'c', name = 'Calendar'},
     {key = 'd', name = 'Bitwarden'},
     {key = 'e', name = 'Firefox'},
     {key = 'f', name = 'Finder'},
@@ -68,7 +68,7 @@ local hsapp_list = {
     --{key = 'k', name = 'Slack'},
     --{key = 'l', name = 'Spotlight'},
     {key = 'm', name = 'Mail'},
-    --{key = 'n', name = 'Mail'},
+    {key = 'n', name = 'Notes'},
     --{key = 'o', name = 'Reolink Client'},
     {key = 'p', name = 'mpv'},
     --{key = 'q', name = 'mpv'},
