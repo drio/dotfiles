@@ -4,10 +4,12 @@ local capabilities = require('cmp_nvim_lsp')
   .protocol
   .make_client_capabilities())
 
--- Setup go language server gopls
--- Connect lsp client to the server (gopls)
--- Use :LspInfo to confirm the lsp client is connected to gopls
-require'lspconfig'.gopls.setup {
+-- Setup language servers
+-- Connect lsp client to the server
+-- Use :LspInfo to confirm the lsp client is connected to server
+local servers = { 'pyright', 'tsserver', 'svelte', 'gopls'}
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
 	capabilities = capabilities,
 	completeUnimported = true,
 	analyses = {unusedparams = true},
@@ -31,7 +33,8 @@ require'lspconfig'.gopls.setup {
 			vim.keymap.set("n", "en", vim.diagnostic.goto_next, {buffer = 0})
 			vim.keymap.set("n", "ep", vim.diagnostic.goto_prev, {buffer = 0})
 	end
-}
+  }
+end
 
 -- LSP autocomplete
 vim.opt.completeopt = {"menu", "menuone", "noselect"} -- setting vim values
