@@ -457,7 +457,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "e"
+            "key_code" : "1"
           },
           "to" : [ {
             "key_code" : "q",
@@ -487,7 +487,7 @@
             "simultaneous" : [ {
               "key_code" : "m"
             }, {
-              "key_code" : "e"
+              "key_code" : "1"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,

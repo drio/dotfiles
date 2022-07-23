@@ -63,7 +63,7 @@
            [:b :rewind]
            [:c :mission_control]
            ;;[:e [:!TOCspacebar]]
-           [:e [:!Fq]]
+           [:1 [:!Fq]]
            [:p :play_or_pause]
            ;;[:n [:open "/System/Library/PreferencePanes/Network.prefPane"] ]
            [:comma :volume_down]
