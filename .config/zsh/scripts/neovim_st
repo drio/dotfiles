@@ -2,7 +2,15 @@
 # vim: ft=sh:
 set -e
 
+
 tmp=$(mktemp) 
 nvim --startuptime $tmp -c exit 
 tail -1 $tmp
-rm -f $tmp
+echo ""
+if [ "$1" == "details" ];then
+  mv $tmp /tmp/neovim_start_time.log
+  echo "Details at: /tmp/neovim_start_time.log"
+else
+  rm -f $tmp
+  echo "Use '$(basename $0) details' to get full log"
+fi
