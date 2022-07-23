@@ -1,0 +1,8 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+tmp=$(mktemp) 
+nvim --startuptime $tmp -c exit 
+tail -1 $tmp
+rm -f $tmp
