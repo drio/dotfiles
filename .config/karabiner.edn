@@ -63,7 +63,6 @@
            [:b :rewind]
            [:c :mission_control]
            ;;[:e [:!TOCspacebar]]
-           [:1 [:!Fq]]
            [:p :play_or_pause]
            ;;[:n [:open "/System/Library/PreferencePanes/Network.prefPane"] ]
            [:comma :volume_down]
@@ -73,8 +72,9 @@
            ;;[:v :launchpad]
            [:t :mute]
            [:w [:!Cm]]
-           [:x :display_brightness_increment]
-           [:z :display_brightness_decrement]
+           [:1 [:!Fq]]
+           [:2 :display_brightness_decrement]
+           [:3 :display_brightness_increment]
       ]
      }
 
