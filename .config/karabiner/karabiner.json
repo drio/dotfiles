@@ -457,53 +457,6 @@
           }
         }, {
           "from" : {
-            "key_code" : "1"
-          },
-          "to" : [ {
-            "key_code" : "q",
-            "modifiers" : [ "fn" ]
-          } ],
-          "conditions" : [ {
-            "name" : "mac-mode",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "type" : "basic",
-          "parameters" : {
-            "basic.simultaneous_threshold_milliseconds" : 200
-          },
-          "to" : [ {
-            "set_variable" : {
-              "name" : "mac-mode",
-              "value" : 1
-            }
-          }, {
-            "key_code" : "q",
-            "modifiers" : [ "fn" ]
-          } ],
-          "from" : {
-            "simultaneous" : [ {
-              "key_code" : "m"
-            }, {
-              "key_code" : "1"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : true,
-              "key_down_order" : "strict",
-              "key_up_order" : "strict_inverse",
-              "key_up_when" : "any",
-              "to_after_key_up" : [ {
-                "set_variable" : {
-                  "name" : "mac-mode",
-                  "value" : 0
-                }
-              } ]
-            }
-          }
-        }, {
-          "from" : {
             "key_code" : "p"
           },
           "to" : [ {
@@ -823,10 +776,11 @@
           }
         }, {
           "from" : {
-            "key_code" : "x"
+            "key_code" : "1"
           },
           "to" : [ {
-            "consumer_key_code" : "display_brightness_increment"
+            "key_code" : "q",
+            "modifiers" : [ "fn" ]
           } ],
           "conditions" : [ {
             "name" : "mac-mode",
@@ -845,13 +799,14 @@
               "value" : 1
             }
           }, {
-            "consumer_key_code" : "display_brightness_increment"
+            "key_code" : "q",
+            "modifiers" : [ "fn" ]
           } ],
           "from" : {
             "simultaneous" : [ {
               "key_code" : "m"
             }, {
-              "key_code" : "x"
+              "key_code" : "1"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,
@@ -868,7 +823,7 @@
           }
         }, {
           "from" : {
-            "key_code" : "z"
+            "key_code" : "2"
           },
           "to" : [ {
             "consumer_key_code" : "display_brightness_decrement"
@@ -896,7 +851,52 @@
             "simultaneous" : [ {
               "key_code" : "m"
             }, {
-              "key_code" : "z"
+              "key_code" : "2"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : true,
+              "key_down_order" : "strict",
+              "key_up_order" : "strict_inverse",
+              "key_up_when" : "any",
+              "to_after_key_up" : [ {
+                "set_variable" : {
+                  "name" : "mac-mode",
+                  "value" : 0
+                }
+              } ]
+            }
+          }
+        }, {
+          "from" : {
+            "key_code" : "3"
+          },
+          "to" : [ {
+            "consumer_key_code" : "display_brightness_increment"
+          } ],
+          "conditions" : [ {
+            "name" : "mac-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "type" : "basic",
+          "parameters" : {
+            "basic.simultaneous_threshold_milliseconds" : 200
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "mac-mode",
+              "value" : 1
+            }
+          }, {
+            "consumer_key_code" : "display_brightness_increment"
+          } ],
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "m"
+            }, {
+              "key_code" : "3"
             } ],
             "simultaneous_options" : {
               "detect_key_down_uninterruptedly" : true,
