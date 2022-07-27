@@ -40,12 +40,15 @@ map {'', '<C-k>', '<C-w>k'}
 map {'', '<C-l>', '<C-w>l'}
 
 -- tabs
-map {'n', '<leader>1', '1gt'}
-map {'n', '<leader>2', '2gt'}
-map {'n', '<leader>3', '3gt'}
-map {'n', '<leader>4', '4gt'}
-map {'n', '<leader>5', '5gt'}
-map {'n', '<leader>6', '6gt'}
+map {'n', '1', '1gt'}
+map {'n', '2', '2gt'}
+map {'n', '3', '3gt'}
+map {'n', '4', '4gt'}
+map {'n', '5', '5gt'}
+map {'n', '6', '6gt'}
+
+-- toggle paste
+map {'n', '<leader>tp', ':set paste!<CR>'}
 
 noremap('n', '<leader><leader>q', ':qa!<CR>')
 
