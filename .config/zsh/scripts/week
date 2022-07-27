@@ -14,5 +14,5 @@ m=$($date +"%B")
 d1=$($date +"%d")
 d2=$($date -d "+7 days" +"%d")
 
-printf "[%s-%s] %s %s\n" $d1 $d2 $m $y
-printf "[%s-%s] %s %s\n" $d1 $d2 $m $y | pbcopy
+printf "[%s-%s %s %s]\n" $d1 $d2 $m $y
+printf "[%s-%s %s %s]\n" $d1 $d2 $m $y | pbcopy
