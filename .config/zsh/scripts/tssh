@@ -1,0 +1,22 @@
+#!/bin/bash
+# ssh via tailscale
+set -e
+
+if [ ".$1" == "." ];then
+  echo "Need a server name"
+  exit 0
+fi
+server=$1
+
+ts=tailscale
+if [ $(uname -s) == "Darwin" ];then
+  ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
+
+n_lines=$($ts status | grep $server |wc -l)
+if [ $n_lines -ne 1 ];then
+  echo "I cannot match $server to tailscale status output. n_lines=$n_lines"
+  exit 0
+fi
+ip=$($ts status | grep $server | awk '{print $1}')
+ssh $ip

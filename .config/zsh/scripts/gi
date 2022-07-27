@@ -1,0 +1,6 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+touch ./.gitignore
+git init && git add -A && git commit -m "Initial commit"
