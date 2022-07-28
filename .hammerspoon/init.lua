@@ -69,7 +69,7 @@ local hsapp_list = {
     --{key = 'l', name = 'Spotlight'},
     {key = 'm', name = 'Mail'},
     {key = 'n', name = 'Notes'},
-    --{key = 'o', name = 'Reolink Client'},
+    {key = 'o', name = 'Reolink Client'},
     {key = 'p', name = 'mpv'},
     --{key = 'q', name = 'mpv'},
     {key = 'r', name = 'Preview'},
