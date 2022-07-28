@@ -60,7 +60,7 @@
 
 		{:des "Mac Mode"
      :rules [:mac-mode
-           [:b :rewind]
+           ;;[:b :rewind]
            [:c :mission_control]
            ;;[:e [:!TOCspacebar]]
            [:p :play_or_pause]
