@@ -7,7 +7,7 @@ local capabilities = require('cmp_nvim_lsp')
 -- Setup language servers
 -- Connect lsp client to the server
 -- Use :LspInfo to confirm the lsp client is connected to server
-local servers = { 'pyright', 'tsserver', 'svelte', 'gopls'}
+local servers = { 'pyright', 'tsserver', 'svelte', 'gopls', 'sumneko_lua'}
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
 	capabilities = capabilities,
@@ -71,3 +71,6 @@ cmp.setup({
 -- Enable inline errors
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {update_in_insert = true})
+
+-- format on save
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
