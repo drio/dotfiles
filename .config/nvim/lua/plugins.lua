@@ -53,6 +53,12 @@ return require('packer').startup(function(use)
 
   use 'ThePrimeagen/vim-be-good'
 
+	-- install without yarn or npm
+	use({
+			"iamcco/markdown-preview.nvim",
+			run = function() vim.fn["mkdp#util#install"]() end,
+	})
+
 
   -- go until I get gopls work directly with neovim's lsp
   -- use 'fatih/vim-go'

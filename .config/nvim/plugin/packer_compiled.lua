@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/drio/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/Users/drio/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["material.nvim"] = {
     loaded = true,
     path = "/Users/drio/.local/share/nvim/site/pack/packer/start/material.nvim",
