@@ -36,7 +36,16 @@ set.showmatch = true
 set.number = true
 set.wildmenu = true
 set.wildignore = vim.opt.wildignore + '*.so,*.swp,*.zip,*.pyc'
-set.listchars = 'tab:>-,trail:-'
+-- set.listchars = 'tab:>-,trail:-'
+vim.opt.listchars = {
+  eol = '⤶',
+  tab = '>-',
+  trail = '⚠',
+--  space = '❤',
+  extends = '>',
+  precedes = '▶',
+}
+
 set.list = true
 set.shortmess = vim.opt.shortmess + 'c'
 set.scrolloff = 2
@@ -45,8 +54,7 @@ set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
 set.laststatus=3
--- 
-set.autoindent=smartindent
+--
 
 vim.cmd 'set nofoldenable'
 
@@ -65,8 +73,11 @@ vim.g.omni_sql_no_default_maps = 1
 -- vim.g['gruvbox_contrast_dark'] = 'low'
 vim.cmd 'colorscheme material'
 -- for material
---vim.cmd 'colorscheme rubber-enhanced'
+-- vim.cmd 'colorscheme rubber-enhanced'
 vim.g.material_style = "palenight"
+
+-- When loading the telescope window, disable paste to avoid issues
+vim.api.nvim_create_autocmd("user TelescopePreviewerLoaded", { command = "set nopaste" })
 
 -- Plugin specific configuration
 vim.cmd([[
