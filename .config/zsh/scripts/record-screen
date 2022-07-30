@@ -1,0 +1,8 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+ts=$(date +%s)
+out="$HOME/Desktop/out.$ts.mov"
+echo "Starting video recording (with audio) on $out"
+screencapture -v -g $out
