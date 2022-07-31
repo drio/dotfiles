@@ -8,6 +8,8 @@ return require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use 'marko-cerovac/material.nvim'
   use 'VonHeikemen/rubber-themes.vim'
+  use 'folke/tokyonight.nvim'
+  use "EdenEast/nightfox.nvim"
 
   use 'ryanoasis/vim-devicons'
   -- We need this for icons in telescope

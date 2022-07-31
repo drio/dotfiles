@@ -55,6 +55,11 @@ noremap('n', '<leader><leader>q', ':qa!<CR>')
 -- Switch to the directory of the open buffer
 noremap('n', '<Leader>cd', ':lcd %:p:h<CR>:pwd<CR>')
 
+noremap('n', '-', ':set et|retab<CR>')
+
+noremap('n', 'ts', ':lua require("material.functions").toggle_style()<CR>')
+
+
 -- TODO tons of other maps
 vim.cmd([[
 " ------------------------  Maps

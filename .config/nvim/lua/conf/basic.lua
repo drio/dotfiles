@@ -69,12 +69,19 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_sql_completion = 0
 vim.g.omni_sql_no_default_maps = 1
 
--- for grupbox
 -- vim.g['gruvbox_contrast_dark'] = 'low'
+--
+vim.g.material_style = "oceanic"
 vim.cmd 'colorscheme material'
--- for material
+-- vim.g.material_style = "palenight"
+-- vim.g.material_style = "oceanic"
+--
 -- vim.cmd 'colorscheme rubber-enhanced'
-vim.g.material_style = "palenight"
+-- vim.cmd[[colorscheme tokyonight]]
+--
+-- vim.cmd("colorscheme nightfox")
+
+
 
 -- When loading the telescope window, disable paste to avoid issues
 vim.api.nvim_create_autocmd("user TelescopePreviewerLoaded", { command = "set nopaste" })

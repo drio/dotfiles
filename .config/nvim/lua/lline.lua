@@ -1,6 +1,7 @@
 require('lualine').setup({
   options = {
     -- necessary for laststatus=3 to work
-    globalstatus = true
+    globalstatus = true,
+    theme = 'auto'
   }
 })
