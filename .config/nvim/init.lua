@@ -3,6 +3,7 @@
 --    * https://github.com/jose-elias-alvarez/dotfiles/tree/main/config/nvim/lua/lsp
 
 require('conf.basic')
+require('conf.autocmds')
 require('plugins')
 
 require('lsp_config')

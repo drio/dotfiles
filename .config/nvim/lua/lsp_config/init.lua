@@ -7,7 +7,8 @@ local capabilities = require('cmp_nvim_lsp')
 -- Setup language servers
 -- Connect lsp client to the server
 -- Use :LspInfo to confirm the lsp client is connected to server
-local servers = { 'pyright', 'tsserver', 'svelte', 'gopls', 'sumneko_lua'}
+local servers = { 'pyright', 'tsserver', 'svelte', 'gopls', 'sumneko_lua', 'terraformls', 'tflint'}
+
 local lspconfig = require('lspconfig')
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
@@ -23,6 +24,7 @@ for _, lsp in pairs(servers) do
         -- <cr> == enter
         -- Pressing K twice will get you inside the "window"; ctrl-o takes you out
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+        vim.keymap.set("n", "gs", vim.diagnostic.show, {buffer = 0})
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
         vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
@@ -41,7 +43,8 @@ lspconfig.sumneko_lua.setup {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
+                -- neovim and hammerspoon
+                globals = { 'vim', 'hs', 'spoon' }
             }
         }
     }

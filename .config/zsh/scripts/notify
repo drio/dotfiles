@@ -5,9 +5,9 @@ set -e
 msg=$1
 sound=$2
 
-[ ".$sound" = "." ] && sound="Hero"
+[ ".$sound" == "." ] && sound="Hero"
 
-if [ "$sound" = "list" ];then
+if [ "$sound" == "list" ];then
   ls /System/Library/Sounds/*
   return
 fi

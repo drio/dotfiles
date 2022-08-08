@@ -46,7 +46,7 @@ vim.opt.listchars = {
   precedes = '▶',
 }
 
-set.list = true
+set.list = false
 set.shortmess = vim.opt.shortmess + 'c'
 set.scrolloff = 2
 set.sidescrolloff = 2

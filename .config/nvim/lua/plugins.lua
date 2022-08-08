@@ -1,4 +1,3 @@
-
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -34,9 +33,12 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip' -- nvim-cmp does not ship with snip plugin
   use "onsails/lspkind-nvim" -- vscode-like pictograms to neovim built-in lsp
+  -- https://mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
+  -- requires terraformls (language server), terraform (dah!) and tflint
+  use 'hashivim/vim-terraform' --
 
   use 'hoob3rt/lualine.nvim'
-  use {'scrooloose/nerdtree',  on = 'NERDTreeToggle' }
+  use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
 
   -- Notice we also want the lsp client loaded. It seems necessary. Why?
   -- So, enable svelte in the lsp setup please.
@@ -55,16 +57,16 @@ return require('packer').startup(function(use)
 
   use 'ThePrimeagen/vim-be-good'
 
-	-- install without yarn or npm
-	use({
-			"iamcco/markdown-preview.nvim",
-			run = function() vim.fn["mkdp#util#install"]() end,
-	})
-
+  -- install without yarn or npm
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
 
   -- go until I get gopls work directly with neovim's lsp
   -- use 'fatih/vim-go'
   -- use 'ray-x/go.nvim'
+
 
   use 'tpope/vim-dadbod'
   use 'kristijanhusak/vim-dadbod-ui'

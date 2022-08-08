@@ -228,6 +228,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/drio/.local/share/nvim/site/pack/packer/start/vim-svelte",
     url = "https://github.com/evanleck/vim-svelte"
+  },
+  ["vim-terraform"] = {
+    loaded = true,
+    path = "/Users/drio/.local/share/nvim/site/pack/packer/start/vim-terraform",
+    url = "https://github.com/hashivim/vim-terraform"
   }
 }
 

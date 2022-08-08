@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: ft=sh:
-set -e
 
+ssh 100.76.102.59 'sudo mount -o defaults /dev/sda1 /mnt/external_drive_restic'
 cd ~/dev/github.com/drio/restic-backup
 make
 cd -
