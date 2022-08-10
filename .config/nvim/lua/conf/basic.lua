@@ -38,7 +38,7 @@ set.wildmenu = true
 set.wildignore = vim.opt.wildignore + '*.so,*.swp,*.zip,*.pyc'
 -- set.listchars = 'tab:>-,trail:-'
 vim.opt.listchars = {
-  eol = '⤶',
+  eol = 'x',
   tab = '>-',
   trail = '⚠',
 --  space = '❤',
@@ -54,7 +54,22 @@ set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
 set.laststatus=3
---
+
+--[[ 
+In insert mode, if you have typed a word which Vim thinks is miss-spelled, an
+underline is shown below. To correct this error, press <C-x> followed by s.
+
+In normal mode, to navigate between possible spell errors, use the following shortcut:
+  [s: go to previous spell error
+  ]s: go to next spell error
+
+If you think a word is not a spell error, you can use zg to add it to your spell file.
+
+To correct an error, press z=
+
+Or you may use 1z= to choose the first candidate directly
+--]]
+set.spelllang="en_us"
 
 vim.cmd 'set nofoldenable'
 
@@ -69,9 +84,11 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_sql_completion = 0
 vim.g.omni_sql_no_default_maps = 1
 
+-- vim.cmd 'colorscheme NeoSolarized'
+--
 -- vim.g['gruvbox_contrast_dark'] = 'low'
 --
-vim.g.material_style = "oceanic"
+-- vim.g.material_style = "oceanic"
 vim.cmd 'colorscheme material'
 -- vim.g.material_style = "palenight"
 -- vim.g.material_style = "oceanic"
@@ -80,7 +97,6 @@ vim.cmd 'colorscheme material'
 -- vim.cmd[[colorscheme tokyonight]]
 --
 -- vim.cmd("colorscheme nightfox")
-
 
 
 -- When loading the telescope window, disable paste to avoid issues

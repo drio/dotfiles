@@ -58,6 +58,8 @@ noremap('n', '<Leader>cd', ':lcd %:p:h<CR>:pwd<CR>')
 noremap('n', '<Leader>-', ':set et|retab<CR>')
 noremap('n', '<Leader>ts', ':lua require("material.functions").toggle_style()<CR>')
 
+noremap('n', '<Leader>1', ':set spell!<CR>')
+
 -- TODO tons of other maps
 vim.cmd([[
 " ------------------------  Maps
@@ -94,8 +96,7 @@ noremap <leader>sv :vsp<CR>
 noremap <leader>sg <c-w>f<c-w>L
 noremap <leader>so :only<CR>
 
-" SPELL (tofix)
-"nnoremap <leader>sp :set spell!<CR>
+" SPELL
 "nnoremap <leader>sf 1z=
 "map <Leader>se :setlocal spell spelllang=es_es<CR>
 "map <Leader>ss :setlocal spell spelllang=en_us<CR>
