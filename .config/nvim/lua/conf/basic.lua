@@ -54,6 +54,7 @@ set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
 set.laststatus=3
+set.paste = true
 
 --[[ 
 In insert mode, if you have typed a word which Vim thinks is miss-spelled, an
