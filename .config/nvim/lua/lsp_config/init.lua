@@ -24,6 +24,7 @@ for _, lsp in pairs(servers) do
         -- <cr> == enter
         -- Pressing K twice will get you inside the "window"; ctrl-o takes you out
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+        vim.keymap.set("n", "E",vim.diagnostic.open_float, {buffer = 0})
         vim.keymap.set("n", "gs", vim.diagnostic.show, {buffer = 0})
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
         vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
