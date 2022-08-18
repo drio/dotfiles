@@ -82,4 +82,15 @@ return require('packer').startup(function(use)
   --use 'vimwiki/vimwiki'
   --use 'sheerun/vim-polyglot'
   --use 'tpope/vim-surround'
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup() end
+  }
+
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function() require('colorizer').setup() end
+  }
+
 end)
