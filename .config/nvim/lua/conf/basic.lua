@@ -74,9 +74,7 @@ set.spelllang="en_us"
 
 vim.cmd 'set nofoldenable'
 
-if vim.fn.has('termguicolors') == 1 then
-  set.termguicolors = true
-end
+set.termguicolors = true
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
