@@ -3,12 +3,8 @@
 set -e
 
 if=$1
+r=$(openssl rand -hex 3)
 
 [ ".$if" == "." ] && echo "No input file provided" && exit 1
 
-ffmpeg -i $if -preset slower -crf 18 out.mp4
-
-ls -lacdh $if out.mp4
-mkdir -p raw
-mv $if raw/
-mv out.mp4 $if
+ffmpeg -i $if -preset slower -crf 18 out.$r.mp4

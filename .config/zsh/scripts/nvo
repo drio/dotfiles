@@ -2,18 +2,16 @@
 # vim: ft=sh:
 set -e
 
-socket=/tmp/nvim.sock
-if [ ! -S $socket ];then
-  echo "Socket not found: $socket"
+function usage() {
+  echo "Usage: `basename $0` <socket_name> <tab_name>"
   exit 0
-fi
+}
 
-tab_name=$1
-if [ ".$tab_name" == "." ];then
-  echo "Usage: `basename $0` <tab_name>"
-  exit 0
-fi
+socket=$1
+[ ".$socket" == "." ] && usage
+tab_name=$2
+[ ".$tab_name" == "." ] && usage
 
-nvim --server $socket --remote-send ":TabooOpen $tab_name<CR>"
-nvim --server $socket --remote-send ":tcd `pwd`<CR>"
-nvim --server $socket --remote .
+nvim --server /tmp/nvim.$socket --remote-send ":TabooOpen $tab_name<CR>"
+nvim --server /tmp/nvim.$socket --remote-send ":tcd `pwd`<CR>"
+nvim --server /tmp/nvim.$socket --remote .

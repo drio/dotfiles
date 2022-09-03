@@ -72,9 +72,6 @@ source $HOME/.config/zsh/promptv2.sh
 source $HOME/.config/zsh/_alias.sh
 source $HOME/.config/zsh/tmux.sh
 
-# Load aws tufts env vars
-aws-set-env
-
 _zh=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f $_zh ] && source $_zh
 _zh=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

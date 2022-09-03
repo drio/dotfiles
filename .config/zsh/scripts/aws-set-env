@@ -1,22 +1,14 @@
 #!/bin/bash
 
+profile=drio-tufts-solo
+if [ ".$1" != "." ];then
+  profile=$1
+fi
 
-cre_file=~drio/.aws/credentials
-conf_file=~drio/.aws/config
-
-[ ! -f $cre_file ] && exit
-[ ! -f $conf_file ] && exit
-
-id=$(cat $cre_file | head -3 | tail -2 | \
-  head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
-
-secret=$(cat $cre_file | head -3 | tail -1 | \
-  head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
-
-region=$(cat $conf_file | head -2 | tail -1 | \
- head -1 | awk -F= '{print $2}' | gsed -s 's/\s+//g')
-
-export AWS_ACCESS_KEY_ID=$id
-export AWS_SECRET_ACCESS_KEY=$secret
-export AWS_DEFAULT_REGION=$region
-
+(
+cat <<EOF
+export AWS_ACCESS_KEY_ID=$(aws configure get $profile.aws_access_key_id)
+export AWS_SECRET_ACCESS_KEY=$(aws configure get $profile.aws_secret_access_key)
+EOF
+) | pbcopy
+echo "✨"

@@ -11,3 +11,4 @@ tags
 .tmux
 script/tmux
 .config/iterm2
+.config/packer/plugins/github.com/hashicorp/amazon/*

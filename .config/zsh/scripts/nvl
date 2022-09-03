@@ -2,9 +2,12 @@
 # vim: ft=sh:
 set -e
 
-socket=/tmp/nvim.sock
-if [ -S $socket ];then
-  echo "Socket already there: $socket"
+function usage() {
+  echo "Usage: `basename $0` <socket_name>"
   exit 0
-fi
-nvim --listen $socket
+}
+
+socket=$1
+[ ".$socket" == "." ] && usage
+
+nvim --listen /tmp/nvim.$socket
