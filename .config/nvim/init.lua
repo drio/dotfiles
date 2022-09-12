@@ -12,3 +12,4 @@ require('completion')
 -- plugin configs
 require('comment')
 require('lline')
+require('conf.telescope')

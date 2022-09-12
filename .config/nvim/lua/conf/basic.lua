@@ -109,6 +109,7 @@ noremap <silent> <leader>nt :NERDTreeToggle<CR>
 noremap <leader>nf :NERDTreeFind<cr>
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
 
+let g:NERDTreeWinSize=50
 
 " Prettier Settings
 "let g:prettier#autoformat = 0
@@ -129,5 +130,4 @@ autocmd VimLeave * NERDTreeClose
 " to save tab names (taboo) when saving session
 set sessionoptions+=tabpages,globals
 """
-
 ]])

@@ -71,6 +71,7 @@ source $HOME/.config/zsh/promptv2.sh
 [ -f $HOME/.config/zsh/tufts.sh ] && source $HOME/.config/zsh/tufts.sh
 source $HOME/.config/zsh/_alias.sh
 source $HOME/.config/zsh/tmux.sh
+source $HOME/.config/zsh/credentials.sh
 
 _zh=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f $_zh ] && source $_zh
