@@ -10,6 +10,10 @@ Useful references:
 -- Required to use with the cli tool: /Applications/Hammerspoon.app/Contents/Frameworks/hs/hs
 require("hs.ipc")
 require("cli")
+battery = require "battery"
+drdWindows = require "windows"
+drdKeyboard = require "keyboard"
+
 
 hs.hotkey.alertDuration = 0
 hs.hints.showTitleThresh = 0
@@ -25,24 +29,64 @@ local Install = spoon.SpoonInstall
 
 local hyper = { "cmd", "alt", "ctrl" }
 
-spoon.ModalMgr.supervisor:bind(hyper, "l", "Lock Screen", function()
-  hs.caffeinate.lockScreen()
+-- CMDS modal
+spoon.ModalMgr.supervisor:bind(hyper, "m", "Enter cmd Environment", function()
+  spoon.ModalMgr:deactivateAll()
+  spoon.ModalMgr:activate({ "cmds" }, "#2244FF", false)
 end)
 
-spoon.ModalMgr.supervisor:bind(hyper, "u", "100% brightness", function()
-  hs.brightness.set(100)
-end)
+spoon.ModalMgr:new("cmds")
+local cmds_cmodal = spoon.ModalMgr.modal_list["cmds"]
+cmds_cmodal:bind('', 'escape', 'Deactivate CMDS', function() spoon.ModalMgr:deactivate({ "cmds" }) end)
+cmds_cmodal:bind('', 'Q', 'Deactivate CMDS', function() spoon.ModalMgr:deactivate({ "cmds" }) end)
+cmds_cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)
 
+
+
+local cmds_list = {
+  -- cmd for shell comands, fn for hs code
+  {key = 'b', show='', msg='🔋 battery status' , cmd = '', fn = function()   hs.alert.show(battery(), hs.screen.mainScreen(), { textSize = 40 }, 2) end},
+  {key = 'd', show='🐘 ⬇️', msg='🐘 ⬇️  tailscale down' , cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=;' },
+  {key = 'e', show='🧪', msg='test' , cmd = '', fn = function() hs.alert.show("Hello World!") end},
+  {key = 'k', show='', msg='🎹 toggle keyboard' , cmd = '', fn = function() drdKeyboard.toggleInput() end},
+  {key = 'i', show='🚪', msg='🚪 minimize all windows' , cmd = '', fn = function() drdWindows.minimizeAll() end},
+  {key = 'l', show='🔒', msg='🔒 lockscreen' , cmd = '', fn = function() hs.caffeinate.lockScreen() end},
+  {key = 'm', show='', msg='⏰ show date and time' , cmd = '', fn = function()
+    local time = os.date("%A, %d %B %Y, %H:%M")
+    hs.alert.show(time)
+    hs.pasteboard.setContents(time)
+  end},
+  {key = 'o', show='📚', msg='📚 books' , cmd = 'open "/Users/drio/Library/Mobile Documents/com~apple~CloudDocs/drio-dropbox/books"', fn = function() hs.caffeinate.lockScreen() end},
+  {key = 'p', show='✨', msg='✨ copy tufts pass' , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/tp'},
+  {key = 'r', show='🚙', msg='🚙 reload config' , cmd = '', fn = function() hs.reload() end},
+  {key = 'u', show='☀️', msg='☀️ 100% brightness', cmd = '', fn = function() hs.brightness.set(100) end},
+  --{key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.77.59.88' },
+  {key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.127.93.93' },
+}
+for _, v in ipairs(cmds_list) do
+  if v.cmd ~= '' then
+    cmds_cmodal:bind('', v.key, v.msg, function()
+      spoon.ModalMgr:deactivate({ "cmds" })
+      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.5) end
+      hs.execute(v.cmd)
+    end)
+  elseif v.fn then
+    cmds_cmodal:bind('', v.key, v.msg, function()
+      spoon.ModalMgr:deactivate({ "cmds" })
+      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.5) end
+      v.fn()
+    end)
+  end
+end
+
+--[[
 hs.hotkey.bind(hyper, "-", "Invert screen", function()
   invertScreen()
 end)
 hs.hotkey.bind(hyper, "=", "Normal screen", function()
   normalScreen()
 end)
-
-hs.hotkey.bind(hyper, "R", "Reload Configuration", function()
-  hs.reload()
-end)
+--]]
 
 -- App launcher
 spoon.ModalMgr.supervisor:bind(hyper, "space", "Enter AppM Environment", function()
@@ -204,81 +248,7 @@ if spoon.CountDown then
   end
 end
 
---spoon.ModalMgr.supervisor:bind(hyper, "Z", "Toggle Hammerspoon Console", function() hs.toggleConsole() end)
-
---require "amphetamine"
-
---local umount = require "umount"
---hs.hotkey.bind({"cmd", "shift"}, "U", umount)
-
-battery = require "battery"
-hs.hotkey.bind(hyper, "B", function()
-  hs.alert.show(battery(), hs.screen.mainScreen(), { textSize = 40 }, 2)
-end)
-
-local drdWindows = require "windows"
-hs.hotkey.bind(hyper, "I", drdWindows.minimizeAll)
--- hs.hotkey.bind(hyper, "F", drdWindows.minimizeAllButFocussedWindow)
-
-
-local drdKeyboard = require "keyboard"
-hs.hotkey.bind(hyper, "K", drdKeyboard.toggleInput)
-
--- Date Handy Dandyness
-hs.hotkey.bind(hyper, "\\", function()
-  local time = os.date("%A, %d %B %Y, %H:%M")
-  hs.alert.show(time)
-  hs.pasteboard.setContents(time)
-end)
-
 spoon.ModalMgr.supervisor:enter()
-
-
---[[
-local hammerHacking = (function()
-  local screen = 'Color LCD'
-  local topLeft = {x=0, y=0, w=.5, h=1}
-  local topRight = {x=.5, y=0, w=.5, h=1}
-  local windowLayout = {
-    {'iTerm2', nil, screen, topLeft, nil, nil},
-    {'Hammerspoon', nil, screen, topRight, nil, nil},
-    --{'KeyCastr', nil, screen, bottom, nil, nil},
-  }
-  -- hs.application.launchOrFocus('KeyCastr')
-  local hsApp = hs.appfinder.appFromName('Hammerspoon')
-  local iterm = hs.appfinder.appFromName('iTerm2')
-  hs.application.launchOrFocus('iTerm2')
-  hsApp:unhide()
-  hs.layout.apply(windowLayout)
-  if iterm ~= nil then
-    iterm:unhide()
-    log.i("--- Perucho el rey del ajo: " .. iterm == nil)
-    if iterm.mainWindow ~= nil then
-      iterm:mainWindow():focus()
-    end
-  end
-end)
---]]
-
-
-Install:andUse("Caffeine", {
-  start = false,
-  hotkeys = {
-    toggle = { hyper, "0" }
-  },
-  --   fn = BTT_caffeine_widget,
-})
-
-Install:andUse("MouseCircle",
-  {
-    disable = true,
-    config = { color = hs.drawing.color.x11.rebeccapurple },
-    hotkeys = {
-      show = { hyper, "-" }
-    }
-  }
-)
-
 
 -- https://github.com/zzamboni/dot-hammerspoon/blob/master/init.lua#L319
 Install:andUse("Seal",
@@ -299,20 +269,6 @@ Install:andUse("Seal",
   }
 )
 
-Install:andUse("ColorPicker",
-  {
-    disable = true,
-    hotkeys = {
-      show = { hyper, "4" }
-    },
-    config = {
-      show_in_menubar = false,
-    },
-    start = true,
-  }
-)
-
---hs.alert.show("🥄", hs.screen.mainScreen(), {textSize = 80}, 1)
 Install:andUse("FadeLogo", {
   config = { default_run = 1.0, },
   start = true

@@ -14,12 +14,16 @@ local set = vim.opt
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
+
 vim.cmd([[
 " file type detection for plugins and indentation
 " Do we need it?
 "filetype plugin indent on 
 ]])
 
+-- Assuming you have two mappings: gc and gcc, when you pressed gc and stopped, 
+-- vim would wait timeoutlen to see if you want to trigger gc or just in the middle of gcc.
+set.timeoutlen=500
 set.wrap = false
 set.expandtab = true
 set.encoding = 'UTF-8'
@@ -72,7 +76,6 @@ Or you may use 1z= to choose the first candidate directly
 --]]
 set.spelllang="en_us"
 
-vim.cmd 'set nofoldenable'
 
 set.termguicolors = true
 -- disable netrw

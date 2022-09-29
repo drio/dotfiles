@@ -1,12 +1,3 @@
-function tp() {
-  local f=$HOME/dev/tufts/helpers/tuff_pass.txt
-  if [ -f $f ]; then
-    local c=`awk '{print $1}' $f`
-    printf "%s" $c | pbcopy
-    echo "✨"
-  fi
-}
-
 alias kt1='ssh kt1'
 alias kt2='ssh kt2'
 alias kt3='ssh kt3'
@@ -27,5 +18,6 @@ alias vu='echo "1. pass , 2. push"; tp;sudo openconnect --user=driode01  vpn.tuf
 alias sup='sshuttle --dns -vr dvts-dev1 0/0'
 
 alias tsup='tailscale up --exit-node=100.77.59.88; echo "UP (dviz)!"'
+alias tsuphp='tailscale up --exit-node=100.127.93.93; echo "UP (hadoop)!"'
 #alias tsup='tailscale up --exit-node=100.82.156.106; echo "UP (h4)!"'
 alias tsdown='tailscale up --exit-node=; echo "down"'

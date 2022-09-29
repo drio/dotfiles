@@ -14,6 +14,7 @@ eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
 
 export PATH=$PATH:/usr/local/bin:"/Applications/Visual Studio Code.app//Contents/Resources/app/bin"
 export PATH=$PATH:/opt/homebrew/bin:/Applications/Hammerspoon.app/Contents/Frameworks/hs
+export PATH=$PATH:/opt/homebrew/Cellar/instantclient-sqlplus/19.8.0.0.0dbru/bin
 
 # load ssh key
 # eval `ssh-agent`

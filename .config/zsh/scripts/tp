@@ -1,0 +1,10 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+f=$HOME/dev/tufts/helpers/tuff_pass.txt
+if [ -f $f ]; then
+  c=`awk '{print $1}' $f`
+  printf "%s" $c | pbcopy
+  echo "✨"
+fi
