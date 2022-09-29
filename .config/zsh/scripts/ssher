@@ -1,0 +1,27 @@
+#!/bin/bash
+# vim: ft=sh:
+# https://mpharrigan.com/2016/05/17/background-ssh.html
+# ssh -M -S /tmp/sshdrio -fNT h4ts-forward
+# ssh -S /tmp/sshdrio -O check h4ts-forward
+# ssh -S /tmp/sshdrio -O exit h4ts-forward
+set -e
+
+
+SN=/tmp/__ssh_tufts__drio
+H=h4ts-forward
+
+if [ "$1" == "up" ];then
+  if [ $(ssh -S $SN -O check $H 2>&1 | grep running|wc -l) -eq 1 ];then
+    echo "Already running, skipping."
+  else 
+    ssh -M -S $SN -fNT $H
+  fi
+elif [ "$1" == "down" ];then
+  ssh -S $SN -O exit $H
+  #/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/notify "ssh down ⬇️"
+elif [ "$1" == "check" ];then
+  out=$(ssh -S $SN -O check $H)
+  #/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/notify "$out"
+else
+  echo "up, down or check only please."
+fi

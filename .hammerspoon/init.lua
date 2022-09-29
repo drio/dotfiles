@@ -42,7 +42,6 @@ cmds_cmodal:bind('', 'Q', 'Deactivate CMDS', function() spoon.ModalMgr:deactivat
 cmds_cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)
 
 
-
 local cmds_list = {
   -- cmd for shell comands, fn for hs code
   {key = 'b', show='', msg='🔋 battery status' , cmd = '', fn = function()   hs.alert.show(battery(), hs.screen.mainScreen(), { textSize = 40 }, 2) end},
@@ -59,6 +58,10 @@ local cmds_list = {
   {key = 'o', show='📚', msg='📚 books' , cmd = 'open "/Users/drio/Library/Mobile Documents/com~apple~CloudDocs/drio-dropbox/books"', fn = function() hs.caffeinate.lockScreen() end},
   {key = 'p', show='✨', msg='✨ copy tufts pass' , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/tp'},
   {key = 'r', show='🚙', msg='🚙 reload config' , cmd = '', fn = function() hs.reload() end},
+
+  {key = 's', show='🔑' , msg='🔑 ssh up'      , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/ssher up'},
+  {key = 'n', show='🔑⬇️', msg='🔑⬇️  ssh down'  , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/ssher down'},
+
   {key = 'u', show='☀️', msg='☀️ 100% brightness', cmd = '', fn = function() hs.brightness.set(100) end},
   --{key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.77.59.88' },
   {key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.127.93.93' },
@@ -67,13 +70,13 @@ for _, v in ipairs(cmds_list) do
   if v.cmd ~= '' then
     cmds_cmodal:bind('', v.key, v.msg, function()
       spoon.ModalMgr:deactivate({ "cmds" })
-      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.5) end
+      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.75) end
       hs.execute(v.cmd)
     end)
   elseif v.fn then
     cmds_cmodal:bind('', v.key, v.msg, function()
       spoon.ModalMgr:deactivate({ "cmds" })
-      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.5) end
+      if v.show ~= '' then hs.alert.show(v.show, hs.screen.mainScreen(), {textSize = 80}, 0.75) end
       v.fn()
     end)
   end
