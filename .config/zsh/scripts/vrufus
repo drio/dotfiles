@@ -1,0 +1,6 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+vnc_rufus=$(cat ~drio/.config/secrets/vnc_rufus)
+open vnc://$vnc_rufus@rufus.local

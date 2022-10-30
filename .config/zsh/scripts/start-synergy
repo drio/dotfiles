@@ -1,0 +1,5 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+/opt/homebrew/opt/synergy-core/bin/synergys --config ~drio/.config/synergy.conf --no-daemon --name 192.168.8.55  --debug ERROR

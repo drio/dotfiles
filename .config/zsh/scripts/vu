@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "First the tufts password then type push";
+tp
+sudo openconnect --user=driode01  vpn.tufts.edu/tts
