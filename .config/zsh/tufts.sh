@@ -14,7 +14,6 @@ alias jbnotebooks='ssh -L 8895:hadoop-prod-04.uit.tufts.edu:8895 driode01@hadoop
 alias jbhadoop='ssh driode01@hadoop-prod-04.uit.tufts.edu'
 alias dvts='ssh dvts-dev1'
 
-alias vu='echo "1. pass , 2. push"; tp;sudo openconnect --user=driode01  vpn.tufts.edu/tts'
 alias sup='sshuttle --dns -vr dvts-dev1 0/0'
 
 alias tsup='tailscale up --exit-node=100.77.59.88; echo "UP (dviz)!"'

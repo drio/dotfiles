@@ -4,3 +4,6 @@ borg/security
 coc/extensions
 nvim/.netrwhist
 gh
+/Users/drio/.config/secrets/*
+secrets/*
+secrets

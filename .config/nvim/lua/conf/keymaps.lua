@@ -60,6 +60,9 @@ noremap('n', '<Leader>ts', ':lua require("material.functions").toggle_style()<CR
 
 noremap('n', '<Leader>1', ':set spell!<CR>')
 
+noremap('n', '<Leader>nt', ':NvimTreeToggle<CR>')
+noremap('n', '<Leader>nf', ':NvimTreeFindFile<CR>')
+
 -- TODO tons of other maps
 vim.cmd([[
 " ------------------------  Maps

@@ -57,8 +57,12 @@ set.sidescrolloff = 2
 set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
-set.laststatus=3
+set.laststatus=1
 set.paste = true
+
+-- set.winbar="%f" -- show the name of the file on each window
+-- vim.o.ls = 0 -- no last status
+-- vim.o.ch = 0 -- command height
 
 --[[ 
 In insert mode, if you have typed a word which Vim thinks is miss-spelled, an
@@ -75,12 +79,13 @@ To correct an error, press z=
 Or you may use 1z= to choose the first candidate directly
 --]]
 set.spelllang="en_us"
+-- set.spell=true
 
 
 set.termguicolors = true
 -- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- disable sql completion (very annoying)
 vim.g.loaded_sql_completion = 0
@@ -91,7 +96,10 @@ vim.g.omni_sql_no_default_maps = 1
 -- vim.g['gruvbox_contrast_dark'] = 'low'
 --
 -- vim.g.material_style = "oceanic"
+--
 vim.cmd 'colorscheme material'
+-- vim.cmd [[colorscheme nightfly]]
+--
 -- vim.g.material_style = "palenight"
 -- vim.g.material_style = "oceanic"
 --
@@ -106,31 +114,29 @@ vim.api.nvim_create_autocmd("user TelescopePreviewerLoaded", { command = "set no
 
 -- Plugin specific configuration
 vim.cmd([[
-" NerdTREE
-noremap <silent> <leader>nt :NERDTreeToggle<CR>
-" Set the directory of the current file as current dir for NERDtree
-noremap <leader>nf :NERDTreeFind<cr>
-let NERDTreeIgnore=['\.pyc$', '__pycache__']
-
-let g:NERDTreeWinSize=50
-
-" Prettier Settings
-"let g:prettier#autoformat = 0
-"let g:prettier#quickfix_enabled = 0
-"let g:prettier#autoformat_require_pragma = 0
-"au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.js,*.json PrettierAsync
-
-" ----------------------- END Maps
-
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
-"""
-" Save sessions on exit and make it work with nerdtree
-" Close NERDTree when leaving vim so we don't have issues saving session
-autocmd VimLeave * NERDTreeClose
-" autocmd VimLeave * mksession!
 " to save tab names (taboo) when saving session
 set sessionoptions+=tabpages,globals
-"""
 ]])
+
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  sync_root_with_cwd = true,
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  remove_keymaps = false,
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})

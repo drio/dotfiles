@@ -29,7 +29,9 @@ local Install = spoon.SpoonInstall
 
 local hyper = { "cmd", "alt", "ctrl" }
 
--- CMDS modal
+----------------
+-- CMDS modal --
+----------------
 spoon.ModalMgr.supervisor:bind(hyper, "m", "Enter cmd Environment", function()
   spoon.ModalMgr:deactivateAll()
   spoon.ModalMgr:activate({ "cmds" }, "#2244FF", false)
@@ -63,6 +65,7 @@ local cmds_list = {
   {key = 'n', show='🔑⬇️', msg='🔑⬇️  ssh down'  , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/ssher down'},
 
   {key = 'u', show='☀️', msg='☀️ 100% brightness', cmd = '', fn = function() hs.brightness.set(100) end},
+  {key = 'v', show='👾', msg='👾 vnc rufus'     , cmd = '/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/vrufus'},
   --{key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.77.59.88' },
   {key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.127.93.93' },
 }
@@ -81,6 +84,9 @@ for _, v in ipairs(cmds_list) do
     end)
   end
 end
+--------------------
+-- CMDS MODAL END --
+--------------------
 
 --[[
 hs.hotkey.bind(hyper, "-", "Invert screen", function()
@@ -126,7 +132,7 @@ local hsapp_list = {
   { key = 'r', name = 'Preview' },
   { key = 's', name = 'Safari' },
   { key = 't', name = 'NetNewsWire' },
-  --{key = 'u', name = 'Music'},
+  {key = 'u', name = 'TablePlus'},
   { key = 'v', id = 'com.apple.ActivityMonitor' },
   { key = 'w', name = 'WhatsApp' },
   --{key = 'x', name = 'WhatsApp'},

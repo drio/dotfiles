@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
   use 'VonHeikemen/rubber-themes.vim'
   use 'folke/tokyonight.nvim'
   use "EdenEast/nightfox.nvim"
+  use 'bluz71/vim-nightfly-guicolors'
 
   use 'ryanoasis/vim-devicons'
   -- We need this for icons in telescope
@@ -38,7 +39,14 @@ return require('packer').startup(function(use)
   use 'hashivim/vim-terraform' --
 
   use 'hoob3rt/lualine.nvim'
-  use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
+  -- use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
+
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
 
   -- Notice we also want the lsp client loaded. It seems necessary. Why?
   -- So, enable svelte in the lsp setup please.

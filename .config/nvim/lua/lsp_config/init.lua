@@ -1,8 +1,14 @@
 -- Tell the language server what the lsp client is able to do
+--[[
 local capabilities = require('cmp_nvim_lsp')
   .update_capabilities(vim.lsp
   .protocol
   .make_client_capabilities())
+--]]
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 function org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
