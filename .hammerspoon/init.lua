@@ -282,3 +282,13 @@ Install:andUse("FadeLogo", {
   config = { default_run = 1.0, },
   start = true
 })
+
+Install:andUse("TextClipboardHistory", {
+   disable = false,
+   config = {
+     show_in_menubar = false,
+   },
+   hotkeys = {
+     toggle_clipboard = { { "cmd", "shift" }, "v" } },
+   start = true,
+})
