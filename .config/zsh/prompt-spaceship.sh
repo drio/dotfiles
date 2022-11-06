@@ -22,7 +22,7 @@ SPACESHIP_PROMPT_ORDER=(
   # docker        # Docker section
   # aws           # Amazon Web Services section
   # gcloud        # Google Cloud Platform section
-  # venv          # virtualenv section
+  venv          # virtualenv section
   # conda         # conda virtualenv section
   # pyenv         # Pyenv section
   # dotnet        # .NET section
