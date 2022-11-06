@@ -1,6 +1,7 @@
 # References:
 # - https://gist.github.com/LukeSmithxyz/e62f26e55ea8b0ed41a65912fbebbe52
 # - https://github.com/Mach-OS/Machfiles/blob/master/zsh/.config/zsh/
+# - https://github.com/adamyonk/dotfiles/blob/91f35492b8f84a33b1e545f440ffe10b982f9f37/.zshrc
 #
 # Bring bash crtl-x keybidings
 bindkey -e #bindkey '^R' history-incremental-search-backward
