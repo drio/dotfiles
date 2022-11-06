@@ -67,8 +67,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:$HOME/.config/zsh/scripts
-source $HOME/.config/zsh/promptv2.sh
+
+source $HOME/.config/zsh/zplug.sh
+
+source $HOME/.config/zsh/prompt-spaceship.sh
+#source $HOME/.config/zsh/promptv2.sh
 #source $HOME/.config/zsh/prompt.sh
+
 [ -f $HOME/.config/zsh/tufts.sh ] && source $HOME/.config/zsh/tufts.sh
 source $HOME/.config/zsh/_alias.sh
 source $HOME/.config/zsh/tmux.sh
