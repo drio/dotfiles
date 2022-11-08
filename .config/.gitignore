@@ -7,3 +7,4 @@ gh
 /Users/drio/.config/secrets/*
 secrets/*
 secrets
+nvim/plugin/packer_compiled.lua
