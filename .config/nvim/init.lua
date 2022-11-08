@@ -1,15 +1,13 @@
--- Inspiration:
--- https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
---    * https://github.com/jose-elias-alvarez/dotfiles/tree/main/config/nvim/lua/lsp
---
-require('plugins')
-require('conf.basic')
-require('conf.autocmds')
+require("drio.plugins-setup")
+require("drio.core.colorscheme")
+require("drio.core.keymaps")
+require("drio.core.options")
+require("drio.core.autocmds")
 
-require('lsp_config')
-require('conf.keymaps')
-require('completion')
--- plugin configs
-require('comment')
-require('lline')
-require('conf.telescope')
+require("drio.plugins.comment")
+require("drio.plugins.completion")
+require("drio.plugins.lline")
+require("drio.plugins.nvimtree")
+require("drio.plugins.telescope")
+
+require("drio.plugins.lsp.lspconfig")

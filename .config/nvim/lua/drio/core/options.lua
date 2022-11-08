@@ -11,10 +11,6 @@
 --local f = string.format
 local set = vim.opt
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
-
-
 vim.cmd([[
 " file type detection for plugins and indentation
 " Do we need it?
@@ -81,7 +77,6 @@ Or you may use 1z= to choose the first candidate directly
 set.spelllang="en_us"
 -- set.spell=true
 
-
 set.termguicolors = true
 -- disable netrw
 -- vim.g.loaded_netrw = 1
@@ -90,24 +85,6 @@ set.termguicolors = true
 -- disable sql completion (very annoying)
 vim.g.loaded_sql_completion = 0
 vim.g.omni_sql_no_default_maps = 1
-
--- vim.cmd 'colorscheme NeoSolarized'
---
--- vim.g['gruvbox_contrast_dark'] = 'low'
---
--- vim.g.material_style = "oceanic"
---
-vim.cmd 'colorscheme material'
--- vim.cmd [[colorscheme nightfly]]
---
--- vim.g.material_style = "palenight"
--- vim.g.material_style = "oceanic"
---
--- vim.cmd 'colorscheme rubber-enhanced'
--- vim.cmd[[colorscheme tokyonight]]
---
--- vim.cmd("colorscheme nightfox")
-
 
 -- When loading the telescope window, disable paste to avoid issues
 vim.api.nvim_create_autocmd("user TelescopePreviewerLoaded", { command = "set nopaste" })
@@ -120,23 +97,3 @@ let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext'
 " to save tab names (taboo) when saving session
 set sessionoptions+=tabpages,globals
 ]])
-
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  sync_root_with_cwd = true,
-  view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  remove_keymaps = false,
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})

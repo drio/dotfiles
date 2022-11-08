@@ -9,6 +9,9 @@ If you run into issues where a mapping is not working as expected use:
 To find out what plugin is attached to that mapping
 --]]
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 local map = function(key)
   -- get the extra options
   local opts = {noremap = true}
