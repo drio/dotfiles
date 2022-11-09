@@ -6,21 +6,10 @@
   https://learnxinyminutes.com/docs/lua/
   https://www.notonlycode.org/neovim-lua-config/
 --]]
---require('nvim_comment').setup()
-
---local cwd = vim.fn.getcwd()
---local f = string.format
 local set = vim.opt
 
-vim.cmd([[
-" file type detection for plugins and indentation
-" Do we need it?
-"filetype plugin indent on 
-]])
-
--- Assuming you have two mappings: gc and gcc, when you pressed gc and stopped, 
--- vim would wait timeoutlen to see if you want to trigger gc or just in the middle of gcc.
-set.timeoutlen=500
+set.timeoutlen=500 -- Assuming you have two mappings: gc and gcc, when you pressed gc and stopped, 
+                   -- vim would wait timeoutlen to see if you want to trigger gc or just in the middle of gcc.
 set.wrap = false
 set.expandtab = true
 set.encoding = 'UTF-8'
@@ -42,16 +31,14 @@ set.splitright = true -- split vertical window to the right
 set.splitbelow = true -- split horizontal window to the bottom
 set.wildmenu = true
 set.wildignore = vim.opt.wildignore + '*.so,*.swp,*.zip,*.pyc'
--- set.listchars = 'tab:>-,trail:-'
 vim.opt.listchars = {
   eol = 'x',
   tab = '>-',
   trail = '⚠',
---  space = '❤',
   extends = '>',
   precedes = '▶',
+--  space = '❤',
 }
-
 set.list = false
 set.shortmess = vim.opt.shortmess + 'c'
 set.scrolloff = 2
@@ -84,22 +71,4 @@ set.spelllang="en_us"
 -- set.spell=true
 
 set.termguicolors = true
--- disable netrw
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
--- disable sql completion (very annoying)
-vim.g.loaded_sql_completion = 0
-vim.g.omni_sql_no_default_maps = 1
-
--- When loading the telescope window, disable paste to avoid issues
-vim.api.nvim_create_autocmd("user TelescopePreviewerLoaded", { command = "set nopaste" })
-
--- Plugin specific configuration
-vim.cmd([[
-" VimWiki
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
-" to save tab names (taboo) when saving session
-set sessionoptions+=tabpages,globals
-]])
+set.sessionoptions:append("tabpages,globals")
