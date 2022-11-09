@@ -4,7 +4,7 @@ require("drio.core.keymaps")
 require("drio.core.options")
 require("drio.core.autocmds")
 
-require("drio.plugins.comment")
+require("drio.plugins.nvim-cmp")
 require("drio.plugins.completion")
 require("drio.plugins.lline")
 require("drio.plugins.nvimtree")
