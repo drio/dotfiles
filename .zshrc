@@ -85,3 +85,16 @@ _zh=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 _zh=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f $_zh ] && source $_zh
 
+
+# fzf
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
+fi
+
+# fzf: Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# fzf: Key bindings
+# ------------
+source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
