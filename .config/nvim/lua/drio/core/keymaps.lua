@@ -70,3 +70,10 @@ noremap("n", "<leader>E", "<C-w>=leader>E <C-w>=") -- Resize Even
 noremap("n", "<leader>sc", ":close<CR>")
 noremap("n", "<leader>sh", ":sp<CR>")
 noremap("n", "<leader>sv", ":vsp<CR>")
+
+-- After nvim 0.6.0 YP did not do what I expected
+map {'', 'YP', 'yyp'}
+
+vim.cmd([[ "nnoremap <leader>Y :let @a='- \[\[' . expand("%:t") . '\]\]' <CR>" ]])
+
+

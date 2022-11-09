@@ -73,3 +73,7 @@ set.spelllang="en_us"
 
 set.termguicolors = true
 set.sessionoptions:append("tabpages,globals")
+
+-- disable sql completion (very annoying)
+vim.g.loaded_sql_completion = 0
+vim.g.omni_sql_no_default_maps = 1
