@@ -116,7 +116,7 @@ return packer.startup(function(use)
 
   --use 'vimwiki/vimwiki'
   --use 'sheerun/vim-polyglot'
-  --use 'tpope/vim-surround'
+  use 'tpope/vim-surround'
 
   use {
     'lewis6991/gitsigns.nvim',

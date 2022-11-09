@@ -11,7 +11,7 @@ end
 -- vim.g.material_style = "oceanic"
 --
 vim.cmd 'colorscheme material'
--- vim.cmd [[colorscheme nightfly]]
+--vim.cmd [[colorscheme nightfly]]
 --
 -- vim.g.material_style = "palenight"
 -- vim.g.material_style = "oceanic"

@@ -1,4 +1,5 @@
 --[[
+  https://github.com/josean-dev/dev-environment-files/tree/main/.config/nvim
   https://github.com/nanotee/nvim-lua-guide
   https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
   https://github.com/VonHeikemen/dotfiles/tree/master/my-configs/neovim
@@ -36,6 +37,7 @@ set.showmatch = true
 set.number = true
 set.signcolumn = "yes"
 set.clipboard:append("unnamedplus") -- use system clipboard as default register
+set.iskeyword:append("-")
 set.splitright = true -- split vertical window to the right
 set.splitbelow = true -- split horizontal window to the bottom
 set.wildmenu = true
