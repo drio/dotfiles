@@ -54,13 +54,16 @@ return packer.startup(function(use)
 
   -- completion
   use 'hrsh7th/nvim-cmp'
-  -- connect the completion engine to other subsystems (like lsp)
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'    -- recommend from current buffer
+  use 'hrsh7th/cmp-path'      -- recomment from the filepath
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-nvim-lsp'
+
+  -- Snippets
   use 'L3MON4D3/LuaSnip' -- nvim-cmp does not ship with snip plugin
   use "onsails/lspkind-nvim" -- vscode-like pictograms to neovim built-in lsp
+  use 'rafamadriz/friendly-snippets'
+
   -- https://mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
   -- requires terraformls (language server), terraform (dah!) and tflint
   use 'hashivim/vim-terraform' --
