@@ -23,6 +23,7 @@ set.ignorecase = true
 set.smartcase = true
 set.hidden = true
 set.showmatch = true
+set.relativenumber = true
 set.number = true
 set.signcolumn = "yes"
 set.clipboard:append("unnamedplus") -- use system clipboard as default register

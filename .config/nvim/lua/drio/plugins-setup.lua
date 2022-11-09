@@ -111,8 +111,13 @@ return packer.startup(function(use)
 
   --use 'vim-scripts/dbext.vim' -- necssesary for sql completion
 
-  --use 'sbdchd/neoformat'
-  use 'terrortylor/nvim-comment'
+  --use ''
+  --use 'terrortylor/nvim-comment'
+  use {
+    'numToStr/Comment.nvim', config = function()
+      require('Comment').setup()
+    end
+  }
 
   --use 'vimwiki/vimwiki'
   --use 'sheerun/vim-polyglot'
