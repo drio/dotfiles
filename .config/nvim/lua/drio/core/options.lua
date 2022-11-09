@@ -34,6 +34,10 @@ set.smartcase = true
 set.hidden = true
 set.showmatch = true
 set.number = true
+set.signcolumn = "yes"
+set.clipboard:append("unnamedplus") -- use system clipboard as default register
+set.splitright = true -- split vertical window to the right
+set.splitbelow = true -- split horizontal window to the bottom
 set.wildmenu = true
 set.wildignore = vim.opt.wildignore + '*.so,*.swp,*.zip,*.pyc'
 -- set.listchars = 'tab:>-,trail:-'

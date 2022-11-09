@@ -17,8 +17,3 @@ require('nvim_comment').setup({
   hook = nil
 }
 )
-
-
-
-
-
