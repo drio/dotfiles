@@ -93,7 +93,7 @@ return packer.startup(function(use)
   -- vim-prettier
   --]]
 
-  use 'ThePrimeagen/vim-be-good'
+  --use 'ThePrimeagen/vim-be-good'
 
   -- install without yarn or npm
   use({

@@ -48,7 +48,14 @@ set.foldmethod='indent'
 set.foldlevel=1
 set.cursorline=true
 set.laststatus=1
+
 set.paste = true
+-- This is necessary for pasting properly from the clipboard
+vim.cmd([[
+filetype plugin indent on
+]])
+
+
 
 -- set.winbar="%f" -- show the name of the file on each window
 -- vim.o.ls = 0 -- no last status

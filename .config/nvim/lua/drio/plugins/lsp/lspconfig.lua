@@ -30,7 +30,7 @@ end
 -- Use :LspInfo to confirm the lsp client is connected to server
 -- yamlls: npm install -g yaml-language-server
 -- yamlls: https://github.com/pwntester/nvim-lsp/blob/master/lua/nvim_lsp/yamlls.lua
-local servers = { 'pyright', 'tsserver', 'svelte', 'gopls', 'sumneko_lua', 'terraformls', 'tflint', 'yamlls'}
+local servers = { 'pyright', 'tsserver', 'svelte', 'gopls', 'sumneko_lua', 'terraformls', 'tflint', 'yamlls' }
 
 local lspconfig = require('lspconfig')
 for _, lsp in pairs(servers) do
