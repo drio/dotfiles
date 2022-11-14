@@ -10,4 +10,7 @@ require("drio.plugins.lline")
 require("drio.plugins.nvimtree")
 require("drio.plugins.telescope")
 
+require("drio.plugins.lsp.mason")
+require("drio.plugins.lsp.lspsaga")
+require("drio.plugins.lsp.null-ls")
 require("drio.plugins.lsp.lspconfig")

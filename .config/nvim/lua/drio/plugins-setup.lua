@@ -1,13 +1,13 @@
 -- auto install packer if not installed
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
-    return true
-  end
-  return false
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
 end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
@@ -23,121 +23,110 @@ vim.cmd([[
 -- import packer safely
 local status, packer = pcall(require, "packer")
 if not status then
-  return
+	return
 end
 
 -- add list of plugins to install
 return packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
+	use("wbthomason/packer.nvim")
 
-  -- Themes
-  use 'morhetz/gruvbox'
-  use 'marko-cerovac/material.nvim'
-  use 'VonHeikemen/rubber-themes.vim'
-  use 'folke/tokyonight.nvim'
-  use "EdenEast/nightfox.nvim"
-  use 'bluz71/vim-nightfly-guicolors'
+	-- Themes
+	use("morhetz/gruvbox")
+	use("marko-cerovac/material.nvim")
+	use("VonHeikemen/rubber-themes.vim")
+	use("folke/tokyonight.nvim")
+	use("EdenEast/nightfox.nvim")
+	use("bluz71/vim-nightfly-guicolors")
 
-  use 'ryanoasis/vim-devicons'
-  -- We need this for icons in telescope
-  use 'kyazdani42/nvim-web-devicons'
+	use("ryanoasis/vim-devicons")
+	-- We need this for icons in telescope
+	use("kyazdani42/nvim-web-devicons")
 
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
-  -- NOTE on treesitter: You have to install parsers for each language.
-  -- For example, you can install JavaScript parser with:
-  -- TSInstall javascript
+	use("nvim-lua/plenary.nvim")
+	use("nvim-telescope/telescope.nvim")
+	use("nvim-treesitter/nvim-treesitter")
 
-  use 'neovim/nvim-lspconfig'
-  use 'sharkdp/fd'
+	-- Alternative to find
+	use("sharkdp/fd")
 
-  -- completion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'    -- recommend from current buffer
-  use 'hrsh7th/cmp-path'      -- recomment from the filepath
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-nvim-lsp'
+	-- completion
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-buffer") -- recommend from current buffer
+	use("hrsh7th/cmp-path") -- recomment from the filepath
+	use("hrsh7th/cmp-nvim-lua")
 
-  -- Snippets
-  use 'L3MON4D3/LuaSnip' -- nvim-cmp does not ship with snip plugin
-  use "onsails/lspkind-nvim" -- vscode-like pictograms to neovim built-in lsp
-  use 'rafamadriz/friendly-snippets'
+	-- managing & installing lsp servers, linters and formatters
+	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
+	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 
-  -- https://mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
-  -- requires terraformls (language server), terraform (dah!) and tflint
-  use 'hashivim/vim-terraform' --
+	use("neovim/nvim-lspconfig") -- configure language servers to talk to the lsp implementation in neovim
+	use("hrsh7th/cmp-nvim-lsp") -- link autocompletion and lsp
+	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+	use("onsails/lspkind-nvim") -- vscode-like pictograms to neovim built-in lsp
 
-  use 'hoob3rt/lualine.nvim'
-  -- use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
+	-- formatting & linting
+	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
 
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-  }
+	-- Snippets
+	use("L3MON4D3/LuaSnip") -- nvim-cmp does not ship with snip plugin
+	use("rafamadriz/friendly-snippets")
 
-  -- Notice we also want the lsp client loaded. It seems necessary. Why?
-  -- So, enable svelte in the lsp setup please.
-  use 'othree/html5.vim'
-  use 'pangloss/vim-javascript'
-  use 'evanleck/vim-svelte'
-  -- we need it to format other things like css etc...
-  -- not completely sure who is doing what (lsp, completion, prettier, vim-svelte)
-  -- use 'prettier/vim-prettier'
-  --[[
-  -- A few plugins play a role in having syntax highlight an conmpletion for svelte:
-  -- lsp building
-  -- vim-svelte
-  -- vim-prettier
-  --]]
+	-- https://mukeshsharma.dev/2022/02/08/neovim-workflow-for-terraform.html
+	-- requires terraformls (language server), terraform (dah!) and tflint
+	use("hashivim/vim-terraform") --
 
-  --use 'ThePrimeagen/vim-be-good'
+	use("hoob3rt/lualine.nvim")
+	-- use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
 
-  -- install without yarn or npm
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+		},
+	})
 
-  -- go until I get gopls work directly with neovim's lsp
-  -- use 'fatih/vim-go'
-  -- use 'ray-x/go.nvim'
+	-- install without yarn or npm
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
 
+	use("tpope/vim-dadbod")
+	use("kristijanhusak/vim-dadbod-ui")
+	use("tpope/vim-dotenv")
 
-  use 'tpope/vim-dadbod'
-  use 'kristijanhusak/vim-dadbod-ui'
-  use 'tpope/vim-dotenv'
+	use("gcmt/taboo.vim") -- change tab names
 
-  use 'gcmt/taboo.vim' -- change tab names
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 
-  --use 'vim-scripts/dbext.vim' -- necssesary for sql completion
+	--use 'vimwiki/vimwiki'
+	--use 'sheerun/vim-polyglot'
+	use("tpope/vim-surround")
 
-  --use ''
-  --use 'terrortylor/nvim-comment'
-  use {
-    'numToStr/Comment.nvim', config = function()
-      require('Comment').setup()
-    end
-  }
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
-  --use 'vimwiki/vimwiki'
-  --use 'sheerun/vim-polyglot'
-  use 'tpope/vim-surround'
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end
-  }
-
-  use {
-    'norcalli/nvim-colorizer.lua',
-    config = function() require('colorizer').setup() end
-  }
-
-
-  if packer_bootstrap then
-    require("packer").sync()
-  end
+	if packer_bootstrap then
+		require("packer").sync()
+	end
 end)
