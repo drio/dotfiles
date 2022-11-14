@@ -34,6 +34,15 @@ local bind = vim.api.nvim_set_keymap
 --local remap = function(m, lhs, rhs) bind(m, lhs, rhs, {noremap = false}) end
 local noremap = function(m, lhs, rhs) bind(m, lhs, rhs, {noremap = true}) end
 
+map {'n', '1', '1gt'}
+map {'n', '2', '2gt'}
+map {'n', '3', '3gt'}
+map {'n', '4', '4gt'}
+map {'n', '5', '5gt'}
+map {'n', '6', '6gt'}
+
+-- toogle relative numbers
+map {'n', '<leader>r', ':set norelativenumber!<CR>'}
 
 -- mode, key, action, extra
 map {'n', '<SPACE>', '<Nop>'}

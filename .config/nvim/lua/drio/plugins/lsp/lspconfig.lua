@@ -50,7 +50,7 @@ for _, lsp in pairs(servers) do
         vim.keymap.set("n", "E",  vim.diagnostic.open_float, {buffer = 0})
         vim.keymap.set("n", "gs", vim.diagnostic.show, {buffer = 0})
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
+        --vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
         vim.keymap.set("n", "gR", vim.lsp.buf.references, {buffer = 0})
         vim.keymap.set("n", "gr", vim.lsp.buf.rename, {buffer = 0})
