@@ -9,65 +9,69 @@ If you run into issues where a mapping is not working as expected use:
 To find out what plugin is attached to that mapping
 --]]
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-local map = function(key)
-  -- get the extra options
-  local opts = {noremap = true}
-  for i, v in pairs(key) do
-    if type(i) == 'string' then opts[i] = v end
-  end
+local function map(key)
+	-- get the extra options
+	local opts = { noremap = true }
+	for i, v in pairs(key) do
+		if type(i) == "string" then
+			opts[i] = v
+		end
+	end
 
-  -- basic support for buffer-scoped keybindings
-  local buffer = opts.buffer
-  opts.buffer = nil
+	-- basic support for buffer-scoped keybindings
+	local buffer = opts.buffer
+	opts.buffer = nil
 
-  if buffer then
-    vim.api.nvim_buf_set_keymap(0, key[1], key[2], key[3], opts)
-  else
-    vim.api.nvim_set_keymap(key[1], key[2], key[3], opts)
-  end
+	if buffer then
+		vim.api.nvim_buf_set_keymap(0, key[1], key[2], key[3], opts)
+	else
+		vim.api.nvim_set_keymap(key[1], key[2], key[3], opts)
+	end
 end
 
 local bind = vim.api.nvim_set_keymap
 --local remap = function(m, lhs, rhs) bind(m, lhs, rhs, {noremap = false}) end
-local noremap = function(m, lhs, rhs) bind(m, lhs, rhs, {noremap = true}) end
+local noremap = function(m, lhs, rhs)
+	bind(m, lhs, rhs, { noremap = true })
+end
 
-map {'n', '1', '1gt'}
-map {'n', '2', '2gt'}
-map {'n', '3', '3gt'}
-map {'n', '4', '4gt'}
-map {'n', '5', '5gt'}
-map {'n', '6', '6gt'}
+map({ "n", "1", "1gt" })
+map({ "n", "2", "2gt" })
+map({ "n", "3", "3gt" })
+map({ "n", "4", "4gt" })
+map({ "n", "5", "5gt" })
+map({ "n", "6", "6gt" })
 
 -- toogle relative numbers
-map {'n', '<leader>r', ':set norelativenumber!<CR>'}
+map({ "n", "<leader>r", ":set norelativenumber!<CR>" })
 
 -- mode, key, action, extra
-map {'n', '<SPACE>', '<Nop>'}
-map {'', '<C-h>', '<C-w>h'}
-map {'', '<C-j>', '<C-w>j'}
-map {'', '<C-k>', '<C-w>k'}
-map {'', '<C-l>', '<C-w>l'}
+map({ "n", "<SPACE>", "<Nop>" })
+map({ "", "<C-h>", "<C-w>h" })
+map({ "", "<C-j>", "<C-w>j" })
+map({ "", "<C-k>", "<C-w>k" })
+map({ "", "<C-l>", "<C-w>l" })
 
-noremap('n', '<leader><leader>q', ':qa!<CR>')
+noremap("n", "<leader><leader>q", ":qa!<CR>")
 
 -- Switch to the directory of the open buffer
-noremap('n', '<Leader>cd', ':lcd %:p:h<CR>:pwd<CR>')
+noremap("n", "<Leader>cd", ":lcd %:p:h<CR>:pwd<CR>")
 
-noremap('n', '<Leader>1', ':set spell!<CR>')
+noremap("n", "<Leader>1", ":set spell!<CR>")
 
-noremap('n', '<Leader>nt', ':NvimTreeToggle<CR>')
-noremap('n', '<Leader>nf', ':NvimTreeFindFile<CR>')
+noremap("n", "<Leader>nt", ":NvimTreeToggle<CR>")
+noremap("n", "<Leader>nf", ":NvimTreeFindFile<CR>")
 
-noremap('n', '<Leader>e', ':w<CR>')
+noremap("n", "<Leader>e", ":w<CR>")
 
-noremap('n', '<Leader>q', ':nohlsearch<CR>')
-noremap('n', '<Leader>l', ':set list!<CR>')
+noremap("n", "<Leader>q", ":nohlsearch<CR>")
+noremap("n", "<Leader>l", ":set list!<CR>")
 
-noremap('n', '<Leader>v', '<c-^>') -- cycle to previous buffer
-noremap('n', '<Leader>V', ':e $MYVIMRC<CR>')
+noremap("n", "<Leader>v", "<c-^>") -- cycle to previous buffer
+noremap("n", "<Leader>V", ":e $MYVIMRC<CR>")
 
 noremap("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 noremap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
@@ -81,7 +85,7 @@ noremap("n", "<leader>sh", ":sp<CR>")
 noremap("n", "<leader>sv", ":vsp<CR>")
 
 -- After nvim 0.6.0 YP did not do what I expected
-map {'', 'YP', 'yyp'}
+map({ "", "YP", "yyp" })
 
 vim.cmd([[ "nnoremap <leader>Y :let @a='- \[\[' . expand("%:t") . '\]\]' <CR>" ]])
 

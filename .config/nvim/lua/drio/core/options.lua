@@ -8,11 +8,11 @@
 --]]
 local set = vim.opt
 
-set.timeoutlen=500 -- Assuming you have two mappings: gc and gcc, when you pressed gc and stopped, 
-                   -- vim would wait timeoutlen to see if you want to trigger gc or just in the middle of gcc.
+set.timeoutlen = 500 -- Assuming you have two mappings: gc and gcc, when you pressed gc and stopped,
+-- vim would wait timeoutlen to see if you want to trigger gc or just in the middle of gcc.
 set.wrap = false
 set.expandtab = true
-set.encoding = 'UTF-8'
+set.encoding = "UTF-8"
 set.showcmd = true
 set.modelines = 3
 set.tabstop = 2
@@ -31,31 +31,26 @@ set.iskeyword:append("-")
 set.splitright = true -- split vertical window to the right
 set.splitbelow = true -- split horizontal window to the bottom
 set.wildmenu = true
-set.wildignore = vim.opt.wildignore + '*.so,*.swp,*.zip,*.pyc'
+set.wildignore = vim.opt.wildignore + "*.so,*.swp,*.zip,*.pyc"
 vim.opt.listchars = {
-  eol = 'x',
-  tab = '>-',
-  trail = '⚠',
-  extends = '>',
-  precedes = '▶',
---  space = '❤',
+	eol = "x",
+	tab = ">-",
+	trail = "⚠",
+	extends = ">",
+	precedes = "▶",
+	--  space = '❤',
 }
 set.list = false
-set.shortmess = vim.opt.shortmess + 'c'
+set.shortmess = vim.opt.shortmess + "c"
 set.scrolloff = 2
 set.sidescrolloff = 2
-set.foldmethod='indent'
-set.foldlevel=1
-set.cursorline=true
-set.laststatus=1
+set.foldmethod = "syntax"
+set.foldlevel = 0
+set.cursorline = true
+set.laststatus = 1
 
-set.paste = true
 -- This is necessary for pasting properly from the clipboard
-vim.cmd([[
-filetype plugin indent on
-]])
-
-
+vim.cmd([[ filetype plugin indent on ]])
 
 -- set.winbar="%f" -- show the name of the file on each window
 -- vim.o.ls = 0 -- no last status
@@ -75,7 +70,7 @@ To correct an error, press z=
 
 Or you may use 1z= to choose the first candidate directly
 --]]
-set.spelllang="en_us"
+set.spelllang = "en_us"
 -- set.spell=true
 
 set.termguicolors = true

@@ -44,7 +44,13 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-	use("nvim-treesitter/nvim-treesitter")
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
+		end,
+	})
 
 	-- Alternative to find
 	use("sharkdp/fd")
@@ -78,7 +84,6 @@ return packer.startup(function(use)
 	use("hashivim/vim-terraform") --
 
 	use("hoob3rt/lualine.nvim")
-	-- use { 'scrooloose/nerdtree', on = 'NERDTreeToggle' }
 
 	use({
 		"nvim-tree/nvim-tree.lua",
@@ -86,6 +91,10 @@ return packer.startup(function(use)
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
 	})
+
+	-- auto closing
+	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
+	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- install without yarn or npm
 	use({

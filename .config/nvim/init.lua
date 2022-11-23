@@ -14,3 +14,6 @@ require("drio.plugins.lsp.mason")
 require("drio.plugins.lsp.lspsaga")
 require("drio.plugins.lsp.null-ls")
 require("drio.plugins.lsp.lspconfig")
+
+require("drio.plugins.autopairs")
+require("drio.plugins.treesitter")
