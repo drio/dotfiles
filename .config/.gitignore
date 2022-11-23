@@ -9,3 +9,4 @@ secrets/*
 secrets
 nvim/plugin/packer_compiled.lua
 fish
+configstore
