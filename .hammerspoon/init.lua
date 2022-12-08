@@ -172,6 +172,12 @@ local cmds_list = {
 		msg = "🐘 🚀 tailscale up",
 		cmd = "/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.127.93.93",
 	},
+	{
+		key = "y",
+		show = "synergy up",
+		msg = "synergy up",
+		cmd = "/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/start-synergy up",
+	},
 }
 for _, v in ipairs(cmds_list) do
 	if v.cmd ~= "" then
@@ -234,13 +240,13 @@ local hsapp_list = {
 	{ key = "f", name = "Finder" },
 	{ key = "g", name = "Telegram" },
 	{ key = "h", name = "Google Chrome" },
-	-- { key = "i", name = "iTerm" },
-	--{key = 'j', name = 'Slack'},
+	--{ key = "i", name = "iTerm" },
+	--{ key = "j", name = "Joplin" },
 	{ key = "k", name = "Slack" },
 	--{key = 'l', name = 'Spotlight'},
 	{ key = "m", name = "Mail" },
 	{ key = "n", name = "Notes" },
-	--{ key = "o", name = "Reolink Client" },
+	--{ key = "o", name = "Obsidian" },
 	{ key = "p", name = "mpv" },
 	--{key = 'q', name = 'mpv'},
 	{ key = "r", name = "Preview" },
