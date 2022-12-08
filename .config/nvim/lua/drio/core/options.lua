@@ -74,7 +74,9 @@ set.spelllang = "en_us"
 -- set.spell=true
 
 set.termguicolors = true
-set.sessionoptions:append("tabpages,globals")
+
+-- sesions
+set.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,tabpages,globals"
 
 -- disable sql completion (very annoying)
 vim.g.loaded_sql_completion = 0

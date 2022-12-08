@@ -1,3 +1,5 @@
+require("utils")
+
 require("drio.plugins-setup")
 require("drio.core.colorscheme")
 require("drio.core.keymaps")
