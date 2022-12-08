@@ -1,4 +1,4 @@
-# Common recent settings file for Wireshark 3.6.6.
+# Common recent settings file for Wireshark 4.0.1.
 #
 # This file is regenerated each time Wireshark is quit
 # and when changing configuration profile.
@@ -13,14 +13,15 @@ recent.capture_file: /Users/drio/Desktop/dump.out
 
 ######## Recent display filters (latest last), cannot be altered through command line ########
 
+recent.display_filter: http
 recent.display_filter: ftp
 
 # Main window geometry.
 # Decimal numbers.
 gui.geometry_main_x: 0
-gui.geometry_main_y: 0
-gui.geometry_main_width: 1280
-gui.geometry_main_height: 772
+gui.geometry_main_y: 3
+gui.geometry_main_width: 1920
+gui.geometry_main_height: 1052
 
 # Main window maximized.
 # TRUE or FALSE (case-insensitive).

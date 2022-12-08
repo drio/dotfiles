@@ -1,4 +1,4 @@
-# Recent settings file for Wireshark 3.6.6.
+# Recent settings file for Wireshark 4.0.1.
 #
 # This file is regenerated each time Wireshark is quit
 # and when changing configuration profile.
@@ -75,11 +75,11 @@ gui.allow_hover_selection: TRUE
 
 # Main window upper (or leftmost) pane size.
 # Decimal number.
-gui.geometry_main_upper_pane: 266
+gui.geometry_main_upper_pane: 399
 
 # Main window middle pane size.
 # Decimal number.
-gui.geometry_main_lower_pane: 180
+gui.geometry_main_lower_pane: 710
 
 # Packet list column pixel widths.
 # Each pair of strings consists of a column format and its pixel width.
@@ -90,15 +90,23 @@ column.width:
         %d, -1,
         %p, 83,
         %L, -1,
-        %i, 641
+        %i, 1281
 
 # Open conversation dialog tabs.
 # List of conversation names, e.g. "TCP", "IPv6".
 gui.conversation_tabs: 
 
+# Conversation dialog tabs columns.
+# List of conversation columns numbers.
+gui.conversation_tabs_columns: 
+
 # Open endpoint dialog tabs.
 # List of endpoint names, e.g. "TCP", "IPv6".
 gui.endpoint_tabs: 
+
+# Endpoint dialog tabs columns.
+# List of endpoint columns numbers.
+gui.endpoint_tabs_columns: 
 
 # For RLC stats, whether to use RLC PDUs found inside MAC frames.
 # TRUE or FALSE (case-insensitive).
