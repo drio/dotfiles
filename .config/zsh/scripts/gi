@@ -2,5 +2,7 @@
 # vim: ft=sh:
 set -e
 
-touch ./.gitignore
+echo 'node_modules' >> .gitignore
+echo '*.vim' >> .gitignore
+echo '.env*' >> .gitignore
 git init && git add -A && git commit -m "Initial commit"

@@ -1,6 +1,21 @@
 #!/bin/bash
+#
 # vim: ft=sh:
+#
 set -e
 
-echo "Client cmd should be: /usr/local/bin/synergyc --no-daemon 192.168.8.38"
-/opt/homebrew/opt/synergy-core/bin/synergys --config ~drio/.config/synergy.conf --no-daemon --name 192.168.8.55  --debug ERROR
+if [ "$1" == "up" ];then
+  if [ $(ps -fe | grep synergys | grep -v grep |wc -l) -eq 1 ];then
+    echo "already running, skipping."
+  else 
+    echo "starting"
+    /opt/homebrew/opt/synergy-core/bin/synergys --config ~drio/.config/synergy.conf --no-daemon --name 192.168.8.55  --debug ERROR &> /tmp/synergy.log &
+  fi
+elif [ "$1" == "down" ];then
+  echo "killing it"
+  killall synergys
+elif [ "$1" == "check" ];then
+  [ $(ps -fe | grep synergys | grep -v grep |wc -l) -eq 1 ] && echo "Running" || echo "NOT running"
+else
+  echo "up, down or check only please."
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+sudo lsof -i -n | egrep '\<ssh\>'

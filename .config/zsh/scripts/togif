@@ -1,0 +1,11 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+if [ ".$1" == "." ];then
+  echo "Need an input file"
+  exit 0
+fi
+
+output_file="$1.gif"
+ffmpeg -i $1 -pix_fmt rgb8 -r 10 $output_file && gifsicle -O3 $output_file -o $output_file

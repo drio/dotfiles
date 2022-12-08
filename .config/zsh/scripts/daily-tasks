@@ -1,11 +1,11 @@
 #!/bin/bash
 # vim: ft=sh:
 
-echo "Nvim update ..."
-echo ""
-nvim-update
+#echo "Nvim update ..."
+#echo ""
+#nvim-update
 
-echo "Nvim update ..."
+echo "homebrew ..."
 echo ""
 bubu
 
