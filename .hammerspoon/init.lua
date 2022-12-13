@@ -154,10 +154,11 @@ local cmds_list = {
 		key = "u",
 		show = "☀️",
 		msg = "☀️ 100% brightness",
-		cmd = "",
-		fn = function()
-			hs.brightness.set(100)
-		end,
+		-- fn = function()
+		-- 	hs.brightness.set(100)
+		-- end,
+		--
+		cmd = "/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/bright up",
 	},
 	{
 		key = "v",
