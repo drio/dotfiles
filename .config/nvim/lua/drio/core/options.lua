@@ -44,7 +44,7 @@ set.list = false
 set.shortmess = vim.opt.shortmess + "c"
 set.scrolloff = 2
 set.sidescrolloff = 2
-set.foldmethod = "syntax"
+set.foldmethod = "indent"
 set.foldlevel = 0
 set.cursorline = true
 set.laststatus = 1
@@ -76,7 +76,7 @@ set.spelllang = "en_us"
 set.termguicolors = true
 
 -- sesions
-set.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,tabpages,globals"
+set.sessionoptions = "buffers,curdir,help,tabpages,winsize,winpos,terminal,tabpages,globals"
 
 -- disable sql completion (very annoying)
 vim.g.loaded_sql_completion = 0
