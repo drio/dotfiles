@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# vim: ft=sh:
+#
+set -e
+
+function press() {
+  local cmd=$1
+  local times=$2
+  for i in `seq 1 $times`
+  do 
+    if [ $cmd == "up" ];then
+      osascript -e 'tell application "System Events"' -e 'key code 144' -e ' end tell'
+    else
+      osascript -e 'tell application "System Events"' -e 'key code 145' -e ' end tell'
+    fi 
+  done
+}
+
+function help() {
+  me=`basename "$0"`
+  cat <<EOF
+$me         : turn the brightness all the way up
+$me [middle]: turn the brightness to the middle
+EOF
+}
+
+if [ "$1" == "middle" ];then
+  press down 15
+  press up 7
+elif [ "$1" == "up" ];then
+  press up 15
+else
+  help
+fi
