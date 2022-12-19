@@ -45,7 +45,7 @@ set.shortmess = vim.opt.shortmess + "c"
 set.scrolloff = 2
 set.sidescrolloff = 2
 set.foldmethod = "indent"
-set.foldlevel = 0
+set.foldlevel = 99
 set.cursorline = true
 set.laststatus = 1
 
