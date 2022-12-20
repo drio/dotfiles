@@ -1,5 +1,13 @@
+# https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 # Window Customization
+
+draw_bold_text_with_bright_colors: true
+debug:
+  persistent_logging: false
+
 window:
+  opacity: .95
+  dynamic_title: true
   dimensions:
     columns: 120
     lines: 50
@@ -7,11 +15,9 @@ window:
     x: 5
     y: 5
   decorations: none
-scrolling:
-  history: 10000
-  multiplier: 3
-window.opacity: .5
-window.dynamic_title: true
+  scrolling:
+    history: 10000
+    multiplier: 3
 
 # Font Customization
 font:
@@ -35,9 +41,6 @@ font:
     x: 0
     y: 0
   AppleFontSmoothing: false
-  debug:
-    persistent_logging: false
-draw_bold_text_with_bright_colors: true
 
 # https://github.com/alacritty/alacritty/wiki/Color-schemes
 colors:
