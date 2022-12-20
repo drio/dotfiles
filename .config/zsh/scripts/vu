@@ -1,5 +1,10 @@
 #!/bin/bash
+#
+
+dir=$( dirname -- "$0"; )
+source $dir/_scripts-env
 
 echo "First the tufts password then type push";
 tp
-sudo openconnect --user=driode01  vpn.tufts.edu/tts
+sudo openconnect --user=$vpn_tufts_user  $vpn_tufts_url
+

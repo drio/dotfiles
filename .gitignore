@@ -13,3 +13,4 @@ script/tmux
 .config/iterm2
 .config/packer/plugins/github.com/hashicorp/amazon/*
 .config/zsh/credentials.sh
+.config/zsh/scripts/_scripts-env

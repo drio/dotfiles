@@ -1,7 +1,10 @@
 #!/bin/bash
 # vim: ft=sh:
+#
+dir=$( dirname -- "$0"; )
+source $dir/_scripts-env
 
-ssh 100.76.102.59 'sudo mount -o defaults /dev/sda1 /mnt/external_drive_restic'
+ssh $backup_piip 'sudo mount -o defaults /dev/sda1 /mnt/external_drive_restic'
 cd ~/dev/github.com/drio/restic-backup
 make
 cd -
