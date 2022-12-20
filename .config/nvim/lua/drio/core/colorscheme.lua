@@ -22,3 +22,6 @@ vim.cmd("colorscheme material")
 -- vim.cmd[[colorscheme tokyonight]]
 --
 -- vim.cmd("colorscheme nightfox")
+
+-- Ensure we respect transparent background
+vim.cmd("highlight Normal guibg=none")
