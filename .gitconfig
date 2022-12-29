@@ -97,6 +97,7 @@
 [user]
   email             = driodeiros@gmail.com
   name              = David Rio Deiros
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDCb+O+VnktYDjYiXLYVqffFMJMo54BReOar4SP9IhF6le6DlCP5o+XQHglsFL4yi+xqdS4rdeoWJzdJhZsNJlPvd511YyEx4MF/1hXm/ItizyaBmyTuiXp/OEdZ+GSoWpuzhxFqgIKjrN2fJaoRqm94VoqIgVBvS3feSLfZQBJ+uKzaME5qVDc5aqwTo+6QVPmHIY5ysRFk4u3E6i5D330Kd5/Gxu0bDTbe3Xmh8PuLokIvFVUYRgCIRaDLab69Scg6HHNXXKdSpDkTMykOJue0G0Uhz6je8sjO/4vmAOuPjF0YuuP/J7bC70YVuSlb0+M6zkD0WS7iMw0GhiwvD4DFKG/OF5gL/Nn6CIrrcgHJkx9IXdf5IerQPfLp5Tu2xRhsCXF4B8wT9JyQ/rt3bWm5+uma2E0WHdbzWDX4HptmgbmwBLMp3N5JDHh77dZ5vJFVu7UROHYgxLdgvzOSIlYSpwf8BDsc8GtSTdzQ4CvVIt9Hf2AzpGIafJfhg5RrHsOBdqC14lphX2ZZwurC3f4Joz8x+o+NvtyU74V6PTnmKVj1BKRr05NkWRXUEvrXD3PtbqdfN73ORgFVpb8Q1/mXxq1ghZOM2BLHIK1Cjzm3ZT3CNUEISPS9F3OjGnuO8r+uri6Egp6LyOnKF1kuqcLLuCCQcayPY8RbfThHfVMzw== drio@air
 [push]
 	default = current
 [init]
@@ -112,3 +113,7 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
