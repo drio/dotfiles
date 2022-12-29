@@ -24,7 +24,8 @@ which keychain > /dev/null 2>&1
 have_keychain=$?
 if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
   eval `keychain --eval --agents ssh --inherit any id_rsa`
-  eval `keychain --eval --agents ssh --inherit any id_dsa`
+  eval `keychain --eval --agents ssh --inherit any id_rsa_git`
+  #eval `keychain --eval --agents ssh --inherit any id_dsa`
 fi
 
 # History
