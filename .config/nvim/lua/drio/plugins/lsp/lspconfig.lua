@@ -152,6 +152,11 @@ lspconfig["terraformls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig["svelte"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -------------------------------
 -- OLD lspconfig starts here
 --------------------------------
