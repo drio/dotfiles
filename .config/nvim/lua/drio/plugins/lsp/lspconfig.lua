@@ -52,6 +52,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>D", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+	keymap.set("n", "F", "<cmd> lua vim.lsp.buf.format()<CR>", opts) -- format
 	keymap.set("n", "K", "<cmd> lua vim.lsp.diagnostics.open_float()<CR>", opts) -- show documentation for what is under cursor
 	--keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	--keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -78,6 +79,10 @@ local on_attach = function(client, bufnr)
 	if client.name == "gopls" then
 		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		vim.cmd("au BufWritePre *.go lua org_imports(3000)")
+	end
+
+	if client.name == "svelte" then
+		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 	end
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
