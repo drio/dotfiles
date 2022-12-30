@@ -1,0 +1,5 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+/Applications/Wine\ Devel.app/Contents/MacOS/wine /Applications/winbox64.exe &

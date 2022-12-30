@@ -14,3 +14,4 @@ script/tmux
 .config/packer/plugins/github.com/hashicorp/amazon/*
 .config/zsh/credentials.sh
 .config/zsh/scripts/_scripts-env
+.config/jellyfin
