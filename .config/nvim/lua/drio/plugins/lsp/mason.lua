@@ -30,6 +30,7 @@ mason_lspconfig.setup({
 		"gopls",
 		"terraformls",
 		"yamlls",
+		"svelte-language-server",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
