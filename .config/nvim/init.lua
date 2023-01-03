@@ -21,3 +21,4 @@ require("drio.plugins.autopairs")
 require("drio.plugins.treesitter")
 
 require("drio.plugins.whichkey")
+require("drio.plugins.zen-mode")

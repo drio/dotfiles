@@ -18,6 +18,7 @@ wk.register({
 	["l"] = { ":set list!<cr>", "toggle special characters" },
 	["v"] = { "<c-^>", "previous buffer" },
 	["V"] = { ":e $MYVIMRC<CR>", "edit vimrc" },
+	["z"] = { ":ZenMode<CR>", "Toogle Zen Mode" },
 
 	["<leader>"] = {
 		q = { ":qa!<CR>", "Quit" },
@@ -31,12 +32,10 @@ wk.register({
 		k = { "<cmd>Telescope help_tags<cr>", "list in help tags" },
 	},
 
-	-- noremap("n", "<Leader>nt", ":NvimTreeToggle<CR>")
-	-- noremap("n", "<Leader>nf", ":NvimTreeFindFile<CR>")
 	n = {
 		name = "NvimTree",
-		t = { "", "toogle" },
-		f = { "", "find file" },
+		t = { ":NvimTreeToggle<CR>", "toogle" },
+		f = { ":NvimTreeFindFile<CR>", "find file" },
 	},
 }, {
 	mode = "n", -- Normal mode
