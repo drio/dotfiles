@@ -19,3 +19,5 @@ require("drio.plugins.lsp.lspconfig")
 
 require("drio.plugins.autopairs")
 require("drio.plugins.treesitter")
+
+require("drio.plugins.whichkey")
