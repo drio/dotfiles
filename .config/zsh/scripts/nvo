@@ -3,7 +3,7 @@
 set -e
 
 function usage() {
-  echo "Usage: `basename $0` <socket_name> <tab_name>"
+  echo "Usage: `basename $0` <socket_name> <tab_name> <file_to_open>"
   exit 0
 }
 
@@ -11,7 +11,9 @@ socket=$1
 [ ".$socket" == "." ] && usage
 tab_name=$2
 [ ".$tab_name" == "." ] && usage
+file=$3
+[ ".$file" == "." ] && usage
 
 nvim --server /tmp/nvim.$socket --remote-send ":TabooOpen $tab_name<CR>"
 nvim --server /tmp/nvim.$socket --remote-send ":tcd `pwd`<CR>"
-nvim --server /tmp/nvim.$socket --remote .
+nvim --server /tmp/nvim.$socket --remote "$file"

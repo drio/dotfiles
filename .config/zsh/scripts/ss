@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+set -eou pipefail
+
+FZF_DEFAULT_OPTS=""
+host=$(cat ~drio/.ssh/config ~drio/.ssh/config.d/tufts  \
+    | grep "Host\s" \
+    | grep -v "*"  | grep -v 18 | grep -v 10 \
+    | awk '{print $2}' \
+    | sort \
+    | fzf --height 50% --reverse --no-multi --header "ssh jump")
+
+ssh "$host"

@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+set -eou pipefail
+
+socket=${1:-}
+socket_arg=""
+[ ".$socket" != "." ] && socket_arg="/tmp/nvim.$socket"
+
+PREFIX="$HOME/dev/github.com/drio/dotfiles/.config/nvim/sessions"
+FZF_DEFAULT_OPTS=""
+name="$(find "$PREFIX" -type f | xargs basename | fzf --height 40% --reverse --no-multi)"
+nvim --listen "$socket_arg" -S "$PREFIX/$name"
