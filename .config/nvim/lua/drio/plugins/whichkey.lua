@@ -12,9 +12,9 @@ wk.setup({
 })
 
 wk.register({
+	["c"] = { ":set list!<cr>", "toggle special [c]haracters" },
 	["e"] = { ":w<CR>", "sav[E]" },
-	["q"] = { ">nohlsearch<CR>", "clear search" },
-	["l"] = { ":set list!<cr>", "toggle special characters" },
+	["q"] = { ">nohlsearch<CR>", "[Q]uit search" },
 	["v"] = { "<c-^>", "previous buffer" },
 	["V"] = { ":e $MYVIMRC<CR>", "edit vimrc" },
 	["z"] = { ":ZenMode<CR>", "Toogle Zen Mode" },
@@ -42,9 +42,14 @@ wk.register({
 	},
 
 	s = {
+		name = "Sessions and Split",
 		t = { ":lua require('utils.session').toggle_session()<cr>", "[S]ession [T]oggle" },
 		l = { ":lua require('utils.session').list_session()<cr>", "[S]ession [L]ist" },
 		d = { ":lua require('utils.session').delete_session()<cr>", "[S]ession [D]elete" },
+		--
+		h = { ":sp<CR>", "[S]plit [H]orizontally" },
+		v = { ":vsp<CR>", "[S]plit [V]ertically" },
+		c = { ":close<cr>", "[S]plit [C]lose" },
 	},
 
 	t = {
@@ -52,11 +57,6 @@ wk.register({
 		l = { ":tablast<cr>", "[T]ab [L]ast" },
 		p = { ":tabprevious<cr>", "[T]ab [P]rev" },
 		n = { ":tabnext<cr>", "[T]ab [N]ext" },
-	},
-
-	w = {
-		h = { ":sp<CR>", "split [W]indow [H]orizontally" },
-		v = { ":vsp<CR>", "split [W]indow [V]ertically" },
 	},
 }, {
 	mode = "n", -- Normal mode
