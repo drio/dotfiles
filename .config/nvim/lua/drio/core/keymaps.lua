@@ -38,12 +38,12 @@ local noremap = function(m, lhs, rhs)
 end
 
 -- TODO ; dry please
---map({ "n", "1", "1gt" })
-map({ "n", "2", "2gt" })
-map({ "n", "3", "3gt" })
-map({ "n", "4", "4gt" })
-map({ "n", "5", "5gt" })
-map({ "n", "6", "6gt" })
+-- map({ "n", "1", "1gt" })
+-- map({ "n", "2", "2gt" })
+-- map({ "n", "3", "3gt" })
+-- map({ "n", "4", "4gt" })
+-- map({ "n", "5", "5gt" })
+-- map({ "n", "6", "6gt" })
 
 -- mode, key, action, extra
 map({ "n", "<SPACE>", "<Nop>" })
@@ -76,16 +76,16 @@ noremap("n", "<Leader>cd", ":lcd %:p:h<CR>:pwd<CR>")
 -- noremap("n", "<Leader>nt", ":NvimTreeToggle<CR>")
 -- noremap("n", "<Leader>nf", ":NvimTreeFindFile<CR>")
 
-noremap("n", "<leader>sc", ":close<CR>")
-noremap("n", "<leader>sh", ":sp<CR>")
-noremap("n", "<leader>sv", ":vsp<CR>")
+--noremap("n", "<leader>sc", ":close<CR>")
+--noremap("n", "<leader>sh", ":sp<CR>")
+--noremap("n", "<leader>sv", ":vsp<CR>")
 
 -- noremap("n", "<Leader>v", "<c-^>") -- cycle to previous buffer
 -- noremap("n", "<Leader>V", ":e $MYVIMRC<CR>")
 
 -- session management
-noremap("n", "<leader>St", ":lua require('utils.session').toggle_session()<cr>")
-noremap("n", "<leader>Sl", ":lua require('utils.session').list_session()<cr>")
-noremap("n", "<leader>Sd", ":lua require('utils.session').delete_session()<cr>")
+-- noremap("n", "<leader>St", ":lua require('utils.session').toggle_session()<cr>")
+-- noremap("n", "<leader>Sl", ":lua require('utils.session').list_session()<cr>")
+-- noremap("n", "<leader>Sd", ":lua require('utils.session').delete_session()<cr>")
 
 vim.cmd([[ "nnoremap <leader>Y :let @a='- \[\[' . expand("%:t") . '\]\]' <CR>" ]])

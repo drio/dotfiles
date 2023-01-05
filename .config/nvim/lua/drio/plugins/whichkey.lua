@@ -12,7 +12,6 @@ wk.setup({
 })
 
 wk.register({
-	["1"] = { ":set spell!<cr>", "toogle spell" },
 	["e"] = { ":w<CR>", "sav[E]" },
 	["q"] = { ">nohlsearch<CR>", "clear search" },
 	["l"] = { ":set list!<cr>", "toggle special characters" },
@@ -32,10 +31,32 @@ wk.register({
 		k = { "<cmd>Telescope help_tags<cr>", "list in help tags" },
 	},
 
+	m = {
+		t = { ":set spell!<cr>", "[M]isc toggle [S]pell" },
+	},
+
 	n = {
 		name = "NvimTree",
-		t = { ":NvimTreeToggle<CR>", "toogle" },
+		t = { ":NvimTreeToggle<CR>", "toggle" },
 		f = { ":NvimTreeFindFile<CR>", "find file" },
+	},
+
+	s = {
+		t = { ":lua require('utils.session').toggle_session()<cr>", "[S]ession [T]oggle" },
+		l = { ":lua require('utils.session').list_session()<cr>", "[S]ession [L]ist" },
+		d = { ":lua require('utils.session').delete_session()<cr>", "[S]ession [D]elete" },
+	},
+
+	t = {
+		f = { ":tabfirst<cr>", "[T]ab [F]irst" },
+		l = { ":tablast<cr>", "[T]ab [L]ast" },
+		p = { ":tabprevious<cr>", "[T]ab [P]rev" },
+		n = { ":tabnext<cr>", "[T]ab [N]ext" },
+	},
+
+	w = {
+		h = { ":sp<CR>", "split [W]indow [H]orizontally" },
+		v = { ":vsp<CR>", "split [W]indow [V]ertically" },
 	},
 }, {
 	mode = "n", -- Normal mode
