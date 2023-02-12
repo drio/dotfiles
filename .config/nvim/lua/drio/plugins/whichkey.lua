@@ -14,7 +14,7 @@ wk.setup({
 wk.register({
 	["c"] = { ":set list!<cr>", "toggle special [c]haracters" },
 	["e"] = { ":w<CR>", "sav[E]" },
-	["q"] = { ">nohlsearch<CR>", "[Q]uit search" },
+	["q"] = { ":nohlsearch<CR>", "[Q]uit search" },
 	["v"] = { "<c-^>", "previous buffer" },
 	["V"] = { ":e $MYVIMRC<CR>", "edit vimrc" },
 	["z"] = { ":ZenMode<CR>", "Toogle Zen Mode" },
@@ -37,8 +37,8 @@ wk.register({
 
 	n = {
 		name = "NvimTree",
-		t = { ":NvimTreeToggle<CR>", "toggle" },
-		f = { ":NvimTreeFindFile<CR>", "find file" },
+		t = { ":NvimTreeToggle<CR>", "[N]vim [T] oggle" },
+		f = { ":NvimTreeFindFile<CR>", "[N]vim [F]ind file" },
 	},
 
 	s = {
@@ -47,12 +47,19 @@ wk.register({
 		l = { ":lua require('utils.session').list_session()<cr>", "[S]ession [L]ist" },
 		d = { ":lua require('utils.session').delete_session()<cr>", "[S]ession [D]elete" },
 		--
+		f = { "<C-w>||<c-w>_", "[S]plit [F]ocus" },
+		u = { "<C-w>=", "[S]plit [U]nfocus" },
 		h = { ":sp<CR>", "[S]plit [H]orizontally" },
 		v = { ":vsp<CR>", "[S]plit [V]ertically" },
 		c = { ":close<cr>", "[S]plit [C]lose" },
 	},
 
 	t = {
+		["1"] = { "1gt", "go to [T]ab [1]" },
+		["2"] = { "2gt", "go to [T]ab [2]" },
+		["3"] = { "3gt", "go to [T]ab [3]" },
+		["4"] = { "4gt", "go to [T]ab [4]" },
+		["5"] = { "5gt", "go to [T]ab [5]" },
 		f = { ":tabfirst<cr>", "[T]ab [F]irst" },
 		l = { ":tablast<cr>", "[T]ab [L]ast" },
 		p = { ":tabprevious<cr>", "[T]ab [P]rev" },

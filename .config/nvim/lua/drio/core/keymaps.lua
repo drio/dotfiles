@@ -62,6 +62,8 @@ map({ "", "YP", "yyp" })
 
 -- Switch to the directory of the open buffer
 noremap("n", "<Leader>cd", ":lcd %:p:h<CR>:pwd<CR>")
+noremap("n", "<Leader>7", "<C-w>|")
+noremap("n", "<Leader>8", "<C-w>=")
 --[[ noremap("n", "<Leader>1", ":set spell!<CR>") ]]
 --[[ noremap("n", "<Leader>e", ":w<CR>") ]]
 -- noremap("n", "<leader>E", "<C-w>=leader>E <C-w>=") -- Resize Even
