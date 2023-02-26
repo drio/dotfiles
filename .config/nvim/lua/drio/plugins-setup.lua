@@ -159,6 +159,8 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use("folke/tokyonight.nvim")
+
 	use("folke/which-key.nvim")
 
 	use("folke/zen-mode.nvim")

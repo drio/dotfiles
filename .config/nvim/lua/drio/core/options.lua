@@ -47,6 +47,7 @@ set.sidescrolloff = 2
 set.foldmethod = "indent"
 set.foldlevel = 99
 set.cursorline = true
+set.cursorcolumn = false
 set.laststatus = 1
 
 -- This is necessary for pasting properly from the clipboard
