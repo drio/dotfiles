@@ -29,7 +29,7 @@ if [ "$1" == "middle" ];then
   press down 15
   press up 7
 elif [ "$1" == "up" ];then
-  press up 15
+  press up 15 &
 else
   help
 fi

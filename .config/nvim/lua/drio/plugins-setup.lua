@@ -99,6 +99,8 @@ return packer.startup(function(use)
 	-- requires terraformls (language server), terraform (dah!) and tflint
 	use("hashivim/vim-terraform") --
 
+	use("isobit/vim-caddyfile")
+
 	use("hoob3rt/lualine.nvim")
 
 	use({
@@ -159,11 +161,17 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use("folke/tokyonight.nvim")
-
 	use("folke/which-key.nvim")
 
 	use("folke/zen-mode.nvim")
+
+	use({
+		"voldikss/vim-floaterm",
+		config = function()
+			vim.g.floaterm_width = 0.95
+			vim.g.floaterm_height = 0.95
+		end,
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()

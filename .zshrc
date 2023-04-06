@@ -13,9 +13,11 @@ bindkey -e #bindkey '^R' history-incremental-search-backward
 eval "$(fasd --init auto)"
 eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
 
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/usr/local/bin:"/Applications/Visual Studio Code.app//Contents/Resources/app/bin"
-export PATH=$PATH:/opt/homebrew/bin:/Applications/Hammerspoon.app/Contents/Frameworks/hs
-export PATH=$PATH:/opt/homebrew/Cellar/instantclient-sqlplus/19.8.0.0.0dbru/bin
+export PATH=$PATH:/Applications/Hammerspoon.app/Contents/Frameworks/hs
+#export PATH=$PATH:/opt/homebrew/Cellar/instantclient-sqlplus/19.8.0.0.0dbru/bin
+export PATH=$PATH:/Applications/YubiKey\ Manager.app/Contents/MacOS
 
 # load ssh key
 # eval `ssh-agent`
@@ -25,7 +27,7 @@ have_keychain=$?
 if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
   eval `keychain --eval --agents ssh --inherit any id_rsa`
   eval `keychain --eval --agents ssh --inherit any id_rsa_git`
-  #eval `keychain --eval --agents ssh --inherit any id_dsa`
+  #eval `keychain --eval --agents ssh --inherit any id_dsae
 fi
 
 # History

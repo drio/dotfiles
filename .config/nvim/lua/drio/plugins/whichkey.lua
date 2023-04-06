@@ -41,6 +41,12 @@ wk.register({
 		f = { ":NvimTreeFindFile<CR>", "[N]vim [F]ind file" },
 	},
 
+	o = {
+		name = "Floaterm",
+		g = { ":FloatermNew lazygit<CR>", "fl[O]at lazy[G]it" },
+		t = { ":FloatermNew /bin/zsh<CR>", "fl[O]at [T]erminal" },
+	},
+
 	s = {
 		name = "Sessions and Split",
 		t = { ":lua require('utils.session').toggle_session()<cr>", "[S]ession [T]oggle" },

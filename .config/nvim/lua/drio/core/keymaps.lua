@@ -65,6 +65,8 @@ noremap("n", "<Leader>cd", ":lcd %:p:h<CR>:pwd<CR>")
 noremap("n", "<Leader>7", "<C-w>|")
 noremap("n", "<Leader>8", "<C-w>=")
 noremap("n", "<Leader>r", ":LspRestart<CR>")
+vim.g.floaterm_width = 0.95
+vim.g.floaterm_height = 0.95
 --[[ noremap("n", "<Leader>1", ":set spell!<CR>") ]]
 --[[ noremap("n", "<Leader>e", ":w<CR>") ]]
 -- noremap("n", "<leader>E", "<C-w>=leader>E <C-w>=") -- Resize Even
