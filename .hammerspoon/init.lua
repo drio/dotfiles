@@ -10,9 +10,9 @@ Useful references:
 -- Required to use with the cli tool: /Applications/Hammerspoon.app/Contents/Frameworks/hs/hs
 require("hs.ipc")
 require("cli")
-battery = require("battery")
-drdWindows = require("windows")
-drdKeyboard = require("keyboard")
+local battery = require("battery")
+local drdWindows = require("windows")
+local drdKeyboard = require("keyboard")
 
 hs.hotkey.alertDuration = 0
 hs.hints.showTitleThresh = 0
@@ -27,9 +27,96 @@ spoon.SpoonInstall.use_syncinstall = true
 local Install = spoon.SpoonInstall
 
 local hyper = { "cmd", "alt", "ctrl" }
+local tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale "
+----------------
+-- CMDS modal (T) --
+----------------
+local modalTS = "cmds ts"
+spoon.ModalMgr.supervisor:bind(hyper, "i", "Enter ts Environment", function()
+	spoon.ModalMgr:deactivateAll()
+	spoon.ModalMgr:activate({ modalTS }, "#FF1493", false)
+end)
+
+spoon.ModalMgr:new(modalTS)
+local cmds_cmodal = spoon.ModalMgr.modal_list[modalTS]
+cmds_cmodal:bind("", "escape", "Deactivate modal TS", function()
+	spoon.ModalMgr:deactivate({ "cmds" })
+end)
+cmds_cmodal:bind("", "Q", "Deactivate modal TS", function()
+	spoon.ModalMgr:deactivate({ "cmds" })
+end)
+cmds_cmodal:bind("", "tab", "Toggle Cheatsheet TS", function()
+	spoon.ModalMgr:toggleCheatsheet()
+end)
+
+local cmds_list = {
+	{
+		key = "b",
+		show = "🚀 🫧",
+		msg = "🚀 🫧 tailscale up (bubbles)",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=bubbles --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "d",
+		show = "TS ⬇️",
+		msg = "TS ⬇️  tailscale down",
+		cmd = tsb .. " down",
+	},
+
+	{
+		key = "h",
+		show = "🚀 home",
+		msg = "🚀 home tailscale up (teton)",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=teton --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "n",
+		show = "none (do not use any exit-node)",
+		msg = "no exit node",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=none --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "t",
+		show = "🚀🐘",
+		msg = "🚀 🐘 tailscale up (tufts)",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=hadoop-prod-04 --exit-node-allow-lan-access",
+	},
+}
+
+local function SetKeys(clist)
+	for _, v in ipairs(clist) do
+		if v.cmd ~= "" then
+			cmds_cmodal:bind("", v.key, v.msg, function()
+				spoon.ModalMgr:deactivate({ modalTS })
+				if v.show ~= "" then
+					hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
+				end
+				hs.execute(v.cmd)
+			end)
+		elseif v.fn then
+			cmds_cmodal:bind("", v.key, v.msg, function()
+				spoon.ModalMgr:deactivate({ modalTS })
+				if v.show ~= "" then
+					hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
+				end
+				v.fn()
+			end)
+		end
+	end
+end
+
+-- TODO: use this function for all the other places where we set keys
+SetKeys(cmds_list)
 
 ----------------
--- CMDS modal --
+-- CMDS modal (M) --
 ----------------
 spoon.ModalMgr.supervisor:bind(hyper, "m", "Enter cmd Environment", function()
 	spoon.ModalMgr:deactivateAll()
@@ -63,7 +150,8 @@ local cmds_list = {
 		key = "d",
 		show = "🐘 ⬇️",
 		msg = "🐘 ⬇️  tailscale down",
-		cmd = "/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=;",
+		--cmd = tsb .. " up --exit-node=;",
+		cmd = tsb .. " down",
 	},
 	{
 		key = "e",
@@ -169,9 +257,10 @@ local cmds_list = {
 	--{key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.77.59.88' },
 	{
 		key = "t",
-		show = "🐘 🚀",
-		msg = "🐘 🚀 tailscale up",
-		cmd = "/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.127.93.93",
+		show = "🐘 🚀 🫧",
+		msg = "🐘 🚀 🫧 tailscale up (bubbles)",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=100.89.191.30",
 	},
 	{
 		key = "y",
@@ -237,11 +326,11 @@ local hsapp_list = {
 	{ key = "b", name = "Brave Browser" },
 	{ key = "c", name = "Calendar" },
 	{ key = "d", name = "Bitwarden" },
-	{ key = "e", name = "Firefox" },
+	{ key = "e", name = "Firefox Developer Edition" },
 	{ key = "f", name = "Finder" },
-	{ key = "g", name = "Telegram" },
+	--{ key = "g", name = "Telegram" },
 	{ key = "h", name = "Google Chrome" },
-	--{ key = "i", name = "iTerm" },
+	{ key = "i", name = "Signal" },
 	--{ key = "j", name = "Joplin" },
 	{ key = "k", name = "Slack" },
 	--{key = 'l', name = 'Spotlight'},
@@ -252,11 +341,9 @@ local hsapp_list = {
 	--{key = 'q', name = 'mpv'},
 	{ key = "r", name = "Preview" },
 	{ key = "s", name = "Safari" },
-	{ key = "t", name = "NetNewsWire" },
 	--{ key = "u", name = "TablePlus" },
 	{ key = "v", id = "com.apple.ActivityMonitor" },
-	{ key = "w", name = "WhatsApp" },
-	--{key = 'x', name = 'WhatsApp'},
+	{ key = "w", name = "NetNewsWire" },
 	{ key = "y", id = "com.apple.systempreferences" },
 	{ key = "z", id = "com.apple.reminders" },
 	{ key = "7", name = "Discord" },
