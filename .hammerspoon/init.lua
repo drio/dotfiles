@@ -82,6 +82,25 @@ local cmds_list = {
 	},
 
 	{
+		key = "s",
+		show = "🔎",
+		msg = "TS status",
+		cmd = "",
+		fn = function()
+			delay = 0.75
+			local output, status = hs.execute(tsb .. " status | grep '; exit node;' | awk '{print $2}'")
+			if not status then
+				output = "Error running tailscale status"
+			end
+			if output == "" then
+				output = "none"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 50 }, delay)
+		end,
+	},
+
+	{
 		key = "t",
 		show = "🚀🐘",
 		msg = "🚀 🐘 tailscale up (tufts)",
