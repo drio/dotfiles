@@ -18,7 +18,7 @@ treesitter.setup({
 		"javascript",
 		"typescript",
 		"go",
-		"help",
+		"vimdoc",
 		"lua",
 		"tsx",
 		"yaml",

@@ -75,14 +75,15 @@ local on_attach = function(client, bufnr)
         vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
         vim.cmd("au BufWritePre *.go lua org_imports(3000)")
   --]]
-
 	if client.name == "gopls" then
-		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		--vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.format()")
 		vim.cmd("au BufWritePre *.go lua org_imports(3000)")
 	end
 
 	if client.name == "svelte" then
-		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		--vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("au BufWritePre <buffer> lua vim.lsp.buf.format()")
 	end
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
@@ -119,7 +120,8 @@ lspconfig["cssls"].setup({
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	settings = { -- custom settings for lua
+	settings = {
+		-- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
 			diagnostics = {
