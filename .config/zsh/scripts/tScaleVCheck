@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+ts=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+using=$($ts version | head -1)
+latest=$(
+  curl -s https://pkgs.tailscale.com/stable/#macos | \
+  grep "macos.zip" | \
+  awk -F\> '{print $3}' | \
+  awk -F\< '{print $1}' | \
+  awk -F\- '{print $2}'
+)
+
+if [ $latest == $using ];then
+  echo "Using : $using"
+  echo "Latest: $latest"
+fi
+url="https://pkgs.tailscale.com/stable/Tailscale-$latest-macos.zip"

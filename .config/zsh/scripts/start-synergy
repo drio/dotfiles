@@ -9,7 +9,7 @@ if [ "$1" == "up" ];then
     echo "already running, skipping."
   else 
     echo "starting"
-    /opt/homebrew/opt/synergy-core/bin/synergys --config ~drio/.config/synergy.conf --no-daemon --name 192.168.8.55  --debug ERROR &> /tmp/synergy.log &
+    /opt/homebrew/opt/synergy-core/bin/synergys --config ~drio/.config/synergy.conf --no-daemon --name air.local  --debug ERROR &> /tmp/synergy.log &
   fi
 elif [ "$1" == "down" ];then
   echo "killing it"

@@ -1,0 +1,13 @@
+#!/bin/bash
+# switch ts accounts
+set -e
+
+ts=tailscale
+if [ $(uname -s) == "Darwin" ];then
+  ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
+
+switchTo=$($ts switch --list  | grep -v "*")
+$ts switch $switchTo &>/dev/null
+echo $switchTo
+

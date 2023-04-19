@@ -11,3 +11,5 @@ nvim/plugin/packer_compiled.lua
 fish
 configstore
 sessions
+gcloude
+gcloud

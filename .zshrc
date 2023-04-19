@@ -13,6 +13,7 @@ bindkey -e #bindkey '^R' history-incremental-search-backward
 eval "$(fasd --init auto)"
 eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
 
+# export PATH=/Users/drio/local/nvim-macos/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/usr/local/bin:"/Applications/Visual Studio Code.app//Contents/Resources/app/bin"
 export PATH=$PATH:/Applications/Hammerspoon.app/Contents/Frameworks/hs

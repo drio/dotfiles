@@ -27,7 +27,8 @@ spoon.SpoonInstall.use_syncinstall = true
 local Install = spoon.SpoonInstall
 
 local hyper = { "cmd", "alt", "ctrl" }
-local tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale "
+local tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
 ----------------
 -- CMDS modal (T) --
 ----------------
@@ -66,10 +67,16 @@ local cmds_list = {
 	},
 
 	{
+		key = "g",
+		show = "🚀 gabi",
+		msg = "🚀 tailscale up (gabi)",
+		cmd = tsb .. " up --exit-node=gabi --exit-node-allow-lan-access",
+	},
+
+	{
 		key = "h",
 		show = "🚀 home",
 		msg = "🚀 home tailscale up (teton)",
-		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
 		cmd = tsb .. " up --exit-node=teton --exit-node-allow-lan-access",
 	},
 
@@ -77,20 +84,30 @@ local cmds_list = {
 		key = "n",
 		show = "none (do not use any exit-node)",
 		msg = "no exit node",
-		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
 		cmd = tsb .. " up --exit-node=none --exit-node-allow-lan-access",
 	},
 
 	{
 		key = "s",
-		show = "🔎",
+		show = "",
 		msg = "TS status",
 		cmd = "",
 		fn = function()
-			delay = 0.75
-			local output, status = hs.execute(tsb .. " status | grep '; exit node;' | awk '{print $2}'")
+			local delay = 1.3
+			local output, status
+			output, status = hs.execute(tsb .. " status | grep '; exit node;' | awk '{print $2}'")
 			if not status then
 				output = "Error running tailscale status"
+			end
+			if output == "" then
+				output = "none"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 50 }, delay)
+
+			output, status = hs.execute(tsb .. " switch --list  | grep '*' | awk '{print $1}'")
+			if not status then
+				output = "Error running tailscale switch"
 			end
 			if output == "" then
 				output = "none"
@@ -104,8 +121,39 @@ local cmds_list = {
 		key = "t",
 		show = "🚀🐘",
 		msg = "🚀 🐘 tailscale up (tufts)",
-		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
 		cmd = tsb .. " up --exit-node=hadoop-prod-04 --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "w",
+		show = "",
+		msg = "switch",
+		cmd = "",
+		fn = function()
+			local delay = 1
+			local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tsswitch")
+			if not status then
+				output = "Error running script"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+		end,
+	},
+
+	{
+		key = "v",
+		show = "",
+		msg = "version",
+		cmd = "",
+		fn = function()
+			local delay = 1
+			local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tScaleVCheck")
+			if not status then
+				output = "Error getting latest versions"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+		end,
 	},
 }
 
