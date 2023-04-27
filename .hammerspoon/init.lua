@@ -202,8 +202,9 @@ cmds_cmodal:bind("", "tab", "Toggle Cheatsheet", function()
 	spoon.ModalMgr:toggleCheatsheet()
 end)
 
-local cmds_list = {
+local cmds_list_two = {
 	-- cmd for shell comands, fn for hs code
+
 	{
 		key = "b",
 		show = "",
@@ -213,6 +214,7 @@ local cmds_list = {
 			hs.alert.show(battery(), hs.screen.mainScreen(), { textSize = 40 }, 2)
 		end,
 	},
+
 	{
 		key = "d",
 		show = "🐘 ⬇️",
@@ -229,6 +231,7 @@ local cmds_list = {
 			hs.alert.show("Hello World!")
 		end,
 	},
+
 	{
 		key = "k",
 		show = "",
@@ -335,8 +338,66 @@ local cmds_list = {
 		msg = "synergy up",
 		cmd = "/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/start-synergy up",
 	},
+
+	{
+		key = "1",
+		show = "load cams feeds",
+		msg = "load cam feeds",
+		cmd = "",
+		fn = function()
+			local output, status = os.execute("/Users/drio/dev/iot/reolink/general/viewall.sh")
+			local delay = 0.5
+			hs.alert.show("--> " + output + status, hs.screen.mainScreen(), { textSize = 50 }, delay)
+		end,
+	},
+
+	{
+		key = "2",
+		show = "load cams feeds (screen 2)",
+		msg = "load cam feeds (screen 2)",
+		cmd = "",
+		fn = function()
+			local output, status = os.execute("/Users/drio/dev/iot/reolink/general/viewall.sh 1200 890 2")
+			local delay = 0.5
+			hs.alert.show("--> " + output + status, hs.screen.mainScreen(), { textSize = 50 }, delay)
+		end,
+	},
+
+	{
+		key = "6",
+		show = "cams",
+		msg = "bring cams to front",
+		cmd = "",
+		fn = function()
+			local wins = hs.window.allWindows()
+			drdWindows.minimizeAll()
+			for _, w in pairs(wins) do
+				local name = w:application():name()
+				if name == "mpv" then
+					w:focus()
+				end
+			end
+		end,
+	},
+
+	{
+		key = "0",
+		show = "close all cams",
+		msg = "close all cams",
+		cmd = "",
+		fn = function()
+			local wins = hs.window.allWindows()
+			for _, w in pairs(wins) do
+				local app = w:application()
+				local name = app:name()
+				if name == "mpv" then
+					hs.eventtap.keyStroke({}, "q", 200, app)
+				end
+			end
+		end,
+	},
 }
-for _, v in ipairs(cmds_list) do
+for _, v in ipairs(cmds_list_two) do
 	if v.cmd ~= "" then
 		cmds_cmodal:bind("", v.key, v.msg, function()
 			spoon.ModalMgr:deactivate({ "cmds" })

@@ -32,7 +32,7 @@ wk.register({
 	},
 
 	m = {
-		t = { ":set spell!<cr>", "[M]isc toggle [S]pell" },
+		s = { ":set spell!<cr>", "[M]isc toggle [S]pell" },
 	},
 
 	n = {
