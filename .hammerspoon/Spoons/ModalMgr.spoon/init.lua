@@ -143,14 +143,11 @@ function obj:activate(idList, trayColor, showKeys)
     if trayColor then
         local cscreen = hs.screen.mainScreen()
         local cres = cscreen:fullFrame()
-        local lcres = cscreen:absoluteToLocal(cres)
-        obj.modal_tray:frame(cscreen:localToAbsolute{
-            -- x = cres.w - 40,
-            -- y = cres.h - 40,
-            x = cres.w - 80,
-            y = 30,
-            w = 50,
-            h = 50
+        obj.modal_tray:frame({
+            x = cres.w - math.ceil(cres.w / 32),
+            y = cres.h - math.ceil(cres.w / 32),
+            w = math.ceil(cres.w / 32 / 2),
+            h = math.ceil(cres.w / 32 / 2)
         })
         obj.modal_tray[1].fillColor = {hex = trayColor, alpha = 0.7}
         obj.modal_tray:show()
@@ -185,7 +182,13 @@ end
 ---
 
 function obj:deactivateAll()
-    obj:deactivate(obj.active_list)
+    local i = 1
+    local tab = {}
+    for k, _ in pairs(obj.active_list) do
+      tab[i] = k
+      i = i + 1
+    end
+    obj:deactivate(tab)
 end
 
 return obj

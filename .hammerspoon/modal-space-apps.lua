@@ -1,10 +1,6 @@
 local module = {}
 
-local battery = require("battery")
-local drdWindows = require("windows")
-local drdKeyboard = require("keyboard")
 local common = require("common")
-local tsb = common.tsb
 
 -- Use: osascript -e 'id of app "SQLDeveloper"' to get app ID
 local keys = {
@@ -36,23 +32,6 @@ local keys = {
 	{ key = "7", name = "Discord" },
 }
 
--- for _, v in ipairs(hsapp_list) do
--- 	if v.id then
--- 		local located_name = hs.application.nameForBundleID(v.id)
--- 		if located_name then
--- 			modal:bind("", v.key, located_name, function()
--- 				hs.application.launchOrFocusByBundleID(v.id)
--- 				spoon.ModalMgr:deactivate({ "appM" })
--- 			end)
--- 		end
--- 	elseif v.name then
--- 		modal:bind("", v.key, v.name, function()
--- 			hs.application.launchOrFocus(v.name)
--- 			spoon.ModalMgr:deactivate({ "appM" })
--- 		end)
--- 	end
--- end
-
 module.Load = function(hyper)
 	-- App launcher
 	spoon.ModalMgr.supervisor:bind(hyper, "space", "Enter AppM Environment", function()
@@ -72,7 +51,22 @@ module.Load = function(hyper)
 		spoon.ModalMgr:toggleCheatsheet()
 	end)
 
-	common.setKeys(keys, modal)
+	for _, v in ipairs(keys) do
+		if v.id then
+			local located_name = hs.application.nameForBundleID(v.id)
+			if located_name then
+				modal:bind("", v.key, located_name, function()
+					hs.application.launchOrFocusByBundleID(v.id)
+					spoon.ModalMgr:deactivate({ "appM" })
+				end)
+			end
+		elseif v.name then
+			modal:bind("", v.key, v.name, function()
+				hs.application.launchOrFocus(v.name)
+				spoon.ModalMgr:deactivate({ "appM" })
+			end)
+		end
+	end
 end
 
 return module

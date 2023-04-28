@@ -1,4 +1,4 @@
-local module = {}
+local M = {}
 
 local battery = require("battery")
 local drdWindows = require("windows")
@@ -6,7 +6,7 @@ local drdKeyboard = require("keyboard")
 local common = require("common")
 local tsb = common.tsb
 
-local keys = {
+local keysI = {
 	{
 		key = "b",
 		show = "",
@@ -126,14 +126,6 @@ local keys = {
 		msg = "👾 vnc rufus",
 		cmd = "/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/vrufus",
 	},
-	--{key = 't', show='🐘 🚀', msg='🐘 🚀 tailscale up', cmd = '/Applications/Tailscale.app/Contents/MacOS/Tailscale up --exit-node=100.77.59.88' },
-	{
-		key = "t",
-		show = "🐘 🚀 🫧",
-		msg = "🐘 🚀 🫧 tailscale up (bubbles)",
-		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
-		cmd = tsb .. " up --exit-node=100.89.191.30",
-	},
 	{
 		key = "y",
 		show = "synergy up",
@@ -217,26 +209,172 @@ local keys = {
 		end,
 	},
 }
+local keysTailscale = {
+	{
+		key = "b",
+		show = "🚀 🫧",
+		msg = "🚀 🫧 tailscale up (bubbles)",
+		--cmd = tsb .. "switch tufts;" .. tsb .. "up --exit-node=100.104.24.6",
+		cmd = tsb .. " up --exit-node=bubbles --exit-node-allow-lan-access",
+	},
 
-module.Load = function(hyper)
-	spoon.ModalMgr.supervisor:bind(hyper, "m", "Enter cmd Environment", function()
-		spoon.ModalMgr:deactivateAll()
-		spoon.ModalMgr:activate({ "cmds" }, "#2244FF", false)
-	end)
+	{
+		key = "d",
+		show = "TS ⬇️",
+		msg = "TS ⬇️  tailscale down",
+		cmd = tsb .. " down",
+	},
 
-	spoon.ModalMgr:new("cmds")
-	local modal = spoon.ModalMgr.modal_list["cmds"]
-	modal:bind("", "escape", "Deactivate CMDS", function()
-		spoon.ModalMgr:deactivate({ "cmds" })
-	end)
-	modal:bind("", "Q", "Deactivate CMDS", function()
-		spoon.ModalMgr:deactivate({ "cmds" })
-	end)
-	modal:bind("", "tab", "Toggle Cheatsheet", function()
-		spoon.ModalMgr:toggleCheatsheet()
-	end)
+	{
+		key = "g",
+		show = "🚀 gabi",
+		msg = "🚀 tailscale up (gabi)",
+		cmd = tsb .. " up --exit-node=gabi --exit-node-allow-lan-access",
+	},
 
-	common.setKeys(keys, modal)
+	{
+		key = "h",
+		show = "🚀 home",
+		msg = "🚀 home tailscale up (teton)",
+		cmd = tsb .. " up --exit-node=teton --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "n",
+		show = "none (do not use any exit-node)",
+		msg = "no exit node",
+		cmd = tsb .. " up --exit-node=none --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "s",
+		show = "",
+		msg = "TS status",
+		cmd = "",
+		fn = function()
+			local delay = 1.3
+			local output, status
+			output, status = hs.execute(tsb .. " status | grep '; exit node;' | awk '{print $2}'")
+			if not status then
+				output = "Error running tailscale status"
+			end
+			if output == "" then
+				output = "none"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 50 }, delay)
+
+			output, status = hs.execute(tsb .. " switch --list  | grep '*' | awk '{print $1}'")
+			if not status then
+				output = "Error running tailscale switch"
+			end
+			if output == "" then
+				output = "none"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 50 }, delay)
+		end,
+	},
+
+	{
+		key = "t",
+		show = "🚀🐘",
+		msg = "🚀 🐘 tailscale up (tufts)",
+		cmd = tsb .. " up --exit-node=hadoop-prod-04 --exit-node-allow-lan-access",
+	},
+
+	{
+		key = "w",
+		show = "",
+		msg = "switch",
+		cmd = "",
+		fn = function()
+			local delay = 1
+			local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tsswitch")
+			if not status then
+				output = "Error running script"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+		end,
+	},
+
+	{
+		key = "v",
+		show = "",
+		msg = "version",
+		cmd = "",
+		fn = function()
+			local delay = 1
+			local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tScaleVCheck")
+			if not status then
+				output = "Error getting latest versions"
+			end
+
+			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+		end,
+	},
+}
+
+local keysToModal = {
+	{
+		key = "m",
+		mid = "cams",
+		color = "#2244FF",
+		msg = "Fooo",
+		keys = keysI,
+	},
+	{
+		key = "i",
+		mid = "tailscale",
+		color = "#FF1493",
+		msg = "tailscale",
+		keys = keysTailscale,
+	},
+}
+
+M.Load = function(hyper)
+	for _, e in pairs(keysToModal) do
+		spoon.ModalMgr.supervisor:bind(hyper, e.key, e.msg, function()
+			spoon.ModalMgr:deactivateAll()
+			spoon.ModalMgr:activate({ e.mid }, e.color, false)
+		end)
+
+		spoon.ModalMgr:new(e.mid)
+		local modal = spoon.ModalMgr.modal_list[e.mid]
+
+		modal:bind("", "escape", "Deactivate", function()
+			spoon.ModalMgr:deactivate({ e.mid })
+		end)
+
+		modal:bind("", "Q", "Deactivate", function()
+			spoon.ModalMgr:deactivate({ e.mid })
+		end)
+
+		modal:bind("", "tab", "Toggle Cheatsheet", function()
+			spoon.ModalMgr:toggleCheatsheet()
+		end)
+
+		for _, v in ipairs(e.keys) do
+			if v.cmd ~= "" then
+				modal:bind("", v.key, v.msg, function()
+					spoon.ModalMgr:deactivate({ e.mid })
+					if v.show ~= "" then
+						hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
+					end
+					hs.execute(v.cmd)
+				end)
+			elseif v.fn then
+				modal:bind("", v.key, v.msg, function()
+					spoon.ModalMgr:deactivate({ e.mid })
+					if v.show ~= "" then
+						hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
+					end
+					v.fn()
+				end)
+			end
+		end
+	end
 end
 
-return module
+return M

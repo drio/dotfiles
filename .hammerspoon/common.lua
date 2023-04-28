@@ -18,31 +18,8 @@ local function exists(file)
 	return ok, err
 end
 
-local function setKeys(clist, modal)
-	for _, v in ipairs(clist) do
-		if v.cmd ~= "" then
-			modal:bind("", v.key, v.msg, function()
-				spoon.ModalMgr:deactivate({ modal })
-				if v.show ~= "" then
-					hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
-				end
-				hs.execute(v.cmd)
-			end)
-		elseif v.fn then
-			modal:bind("", v.key, v.msg, function()
-				spoon.ModalMgr:deactivate({ modal })
-				if v.show ~= "" then
-					hs.alert.show(v.show, hs.screen.mainScreen(), { textSize = 80 }, 0.75)
-				end
-				v.fn()
-			end)
-		end
-	end
-end
-
 module.show = show
 module.exists = exists
 module.tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-module.setKeys = setKeys
 
 return module

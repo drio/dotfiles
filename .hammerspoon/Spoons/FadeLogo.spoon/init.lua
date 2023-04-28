@@ -10,7 +10,7 @@
 ---
 --- Download: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/FadeLogo.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/FadeLogo.spoon.zip)
 
-local obj={}
+local obj = {}
 obj.__index = obj
 
 -- Metadata
@@ -23,7 +23,7 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- FadeLogo.logger
 --- Variable
 --- Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.
-obj.logger = hs.logger.new('FadeLogo')
+obj.logger = hs.logger.new("FadeLogo")
 
 --- FadeLogo.image
 --- Variable
@@ -78,71 +78,69 @@ obj.canvas = nil
 --- FadeLogo:delete()
 --- Method
 --- Hide and delete the canvas
-function obj:delete()
-   if self.canvas then
-      self.canvas = self.canvas:delete()
-   end
-end
+function obj:delete() end
 
 --- FadeLogo:show()
 --- Method
 --- Display the image, fading it in over `fade_in_time` seconds
 function obj:show()
-   if self.canvas then self:delete() end
-   local frame = hs.screen.mainScreen():frame()
-   local imgsz = self.image_size
-   self.canvas = hs.canvas.new(frame)
-   self.canvas[1] = {
-      type = 'image',
-      image = self.image,
-      frame = {
-         x = (frame.w - imgsz.w) / 2,
-         y = (frame.h - imgsz.h) / 2,
-         w = imgsz.w,
-         h = imgsz.h,
-      },
-      imageAlpha = self.image_alpha,
-   }
-   self.canvas:show(self.fade_in_time)
+	if self.canvas then
+		self:delete()
+	end
+	local frame = hs.screen.mainScreen():frame()
+	local imgsz = self.image_size
+	self.canvas = hs.canvas.new(frame)
+	self.canvas[1] = {
+		type = "image",
+		image = self.image,
+		frame = {
+			x = (frame.w - imgsz.w) / 2,
+			y = (frame.h - imgsz.h) / 2,
+			w = imgsz.w,
+			h = imgsz.h,
+		},
+		imageAlpha = self.image_alpha,
+	}
+	self.canvas:show(self.fade_in_time)
 end
 
 --- FadeLogo:hide()
 --- Method
 --- Hide the image without zoom, fading it out over `fade_out_time` seconds
 function obj:hide()
-   self.canvas:hide(self.fade_out_time)
+	self.canvas:hide(self.fade_out_time)
 end
 
 --- FadeLogo:zoom_and_fade()
 --- Method
 --- Zoom-and-fade the image over `fade_out_time` seconds
 function obj:zoom_and_fade()
-   local canvas=self.canvas
-   local size=hs.geometry.new(canvas[1].frame)
-   -- This timer will zoom the image while it is fading
-   local timer
-   timer=hs.timer.doEvery(
-      self.zoom_scale_timer,
-      function()
-         if canvas:isShowing() then
-            size:scale(self.zoom_scale_factor)
-            canvas[1].frame = {x = size.x, y = size.y, w = size.w, h = size.h }
-         else
-            timer:stop()
-            timer = nil
-            self:delete()
-         end
-   end)
-   canvas:hide(self.fade_out_time)
+	local canvas = self.canvas
+	local size = hs.geometry.new(canvas[1].frame)
+	-- This timer will zoom the image while it is fading
+	local timer
+	timer = hs.timer.doEvery(self.zoom_scale_timer, function()
+		if canvas:isShowing() then
+			size:scale(self.zoom_scale_factor)
+			canvas[1].frame = { x = size.x, y = size.y, w = size.w, h = size.h }
+		else
+			timer:stop()
+			timer = nil
+			self:delete()
+		end
+	end)
+	canvas:hide(self.fade_out_time)
 end
 
 --- FadeLogo:start()
 --- Method
 --- Show the image, wait `run_time` seconds, and then zoom-and-fade it out.
 function obj:start(howlong)
-   if not howlong then howlong = self.run_time end
-   self:show()
-   obj._timer = hs.timer.doAfter(howlong, hs.fnutils.partial(self.zoom and self.zoom_and_fade or self.hide, self))
+	if not howlong then
+		howlong = self.run_time
+	end
+	self:show()
+	obj._timer = hs.timer.doAfter(howlong, hs.fnutils.partial(self.zoom and self.zoom_and_fade or self.hide, self))
 end
 
 return obj
