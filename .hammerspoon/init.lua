@@ -381,15 +381,32 @@ local cmds_list_two = {
 	},
 
 	{
-		key = "0",
-		show = "close all cams",
-		msg = "close all cams",
+		key = "7",
+		show = "hide all cams",
+		msg = "hide all cams",
 		cmd = "",
 		fn = function()
 			local wins = hs.window.allWindows()
 			for _, w in pairs(wins) do
 				local app = w:application()
 				local name = app:name()
+				if name == "mpv" then
+					hs.eventtap.keyStroke({ "cmd" }, "h", 200, app)
+				end
+			end
+		end,
+	},
+
+	{
+		key = "0",
+		show = "close cams",
+		msg = "close all cams",
+		cmd = "",
+		fn = function()
+			local wins = hs.window.allWindows()
+			drdWindows.minimizeAll()
+			for _, w in pairs(wins) do
+				local name = w:application():name()
 				if name == "mpv" then
 					hs.eventtap.keyStroke({}, "q", 200, app)
 				end
