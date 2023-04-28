@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+if [ ".$1" == "." ];then 
+  echo "need a version"
+  exit
+fi
+version=$1
+wget https://pkgs.tailscale.com/stable/Tailscale-$version-macos.zip
+mv Tailscale*.zip /tmp/t.zip
+cd /tmp
+unzip t.zip
+echo "at this point you should exit Tailscale. Press <enter> ..."
+read foo
+echo "removing old version"
+sudo rm -rf /Applications/Tailscale.app
+echo "installing new version"
+sudo mv ./Tailscale.app /Applications
+open /Applications/Tailscale.app
+echo "cleaning up"
+rm -f t.zip
+echo "done"

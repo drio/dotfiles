@@ -14,5 +14,7 @@ latest=$(
 if [ $latest == $using ];then
   echo "Using : $using"
   echo "Latest: $latest"
+else
+  echo "Need to update to $latest"
 fi
 url="https://pkgs.tailscale.com/stable/Tailscale-$latest-macos.zip"
