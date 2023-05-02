@@ -16,6 +16,15 @@ local keysI = {
 			hs.alert.show(battery(), hs.screen.mainScreen(), { textSize = 40 }, 2)
 		end,
 	},
+	{
+		key = "c",
+		show = "",
+		msg = "toogle console",
+		cmd = "",
+		fn = function()
+			hs.toggleConsole()
+		end,
+	},
 
 	{
 		key = "d",
