@@ -39,7 +39,7 @@ module.tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 module.dump = dump
 module.screens = {
 	retina = "Built-in Retina Display",
-	LG = "LG",
+	LG = "LG HDR 4K",
 }
 
 return module

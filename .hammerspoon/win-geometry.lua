@@ -12,10 +12,10 @@ local layoutFullAB = {
 	{ "Alacritty", nil, display_monitor, hs.geometry.unitrect(0, 0, 1, 1), nil, nil },
 }
 
-local setCorrectAMLayout = function()
+local setCorrectAMLayout = function(screen)
 	local wins = hs.window.allWindows()
 	local l = {
-		{ "Activity Monitor", nil, common.screens.retina, hs.geometry.unitrect(0, 0, 0.5, 0.5), nil, nil },
+		{ "Activity Monitor", nil, screen, nil, nil, nil },
 	}
 	for _, w in pairs(wins) do
 		local app = w:application()
@@ -35,6 +35,9 @@ local setCorrectAMLayout = function()
 				l[1][4] = hs.geometry.unitrect(0.58, 0.80, 0.4, 0.25)
 			end
 			hs.layout.apply(l)
+			w:application():activate(true)
+			w:application():unhide()
+			w:focus()
 		end
 	end
 end
@@ -43,12 +46,25 @@ M.Load = function(hyper)
 	local hyperfns = {}
 	hyperfns["h"] = function()
 		hs.layout.apply(layoutMiddleAB)
+		local wins = hs.window.allWindows()
+		for _, w in pairs(wins) do
+			local app = w:application()
+			local name = app:name()
+			if name == "Brave Browser" or name == "Alacritty" then
+				w:application():activate(true)
+				w:application():unhide()
+				w:focus()
+			end
+		end
 	end
 	hyperfns["return"] = function()
 		hs.layout.apply(layoutFullAB)
 	end
 	hyperfns["7"] = function()
-		setCorrectAMLayout()
+		setCorrectAMLayout(common.screens.retina)
+	end
+	hyperfns["8"] = function()
+		setCorrectAMLayout(common.screens.LG)
 	end
 
 	for _hotkey, _fn in pairs(hyperfns) do

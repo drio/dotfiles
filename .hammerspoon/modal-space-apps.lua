@@ -1,6 +1,7 @@
 local module = {}
 
 local common = require("common")
+local winGeometry = require("win-geometry")
 
 -- Use: osascript -e 'id of app "SQLDeveloper"' to get app ID
 local keys = {
