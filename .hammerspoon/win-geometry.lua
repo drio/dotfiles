@@ -37,7 +37,7 @@ local layoutAlaSideBySide = function(screen)
 	end
 end
 
-local setCorrectAMLayout = function()
+local setCorrectAMLayout = function(screen)
 	local wins = hs.window.allWindows()
 	local l = {
 		{ "Activity Monitor", nil, screen, nil, nil, nil },
