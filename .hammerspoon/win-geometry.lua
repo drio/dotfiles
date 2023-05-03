@@ -12,7 +12,32 @@ local layoutFullAB = {
 	{ "Alacritty", nil, display_monitor, hs.geometry.unitrect(0, 0, 1, 1), nil, nil },
 }
 
-local setCorrectAMLayout = function(screen)
+local layoutAlaSideBySide = function(screen)
+	local wins = hs.window.allWindows()
+	local l = {
+		{ "Alacritty", nil, screen, nil, nil, nil },
+	}
+	local i = 1
+	for _, w in pairs(wins) do
+		local app = w:application()
+		local name = app:name()
+		if name == "Alacritty" then
+			l[1][2] = w
+			if i == 1 then
+				l[1][4] = hs.geometry.unitrect(0, 0, 0.5, 1)
+				i = i + 1
+			else
+				l[1][4] = hs.geometry.unitrect(0.5, 0, 0.5, 1)
+			end
+			hs.layout.apply(l)
+			w:application():activate(true)
+			w:application():unhide()
+			w:focus()
+		end
+	end
+end
+
+local setCorrectAMLayout = function()
 	local wins = hs.window.allWindows()
 	local l = {
 		{ "Activity Monitor", nil, screen, nil, nil, nil },
@@ -65,6 +90,9 @@ M.Load = function(hyper)
 	end
 	hyperfns["8"] = function()
 		setCorrectAMLayout(common.screens.LG)
+	end
+	hyperfns["i"] = function() -- terminal one
+		layoutAlaSideBySide(hs.screen.mainScreen())
 	end
 
 	for _hotkey, _fn in pairs(hyperfns) do
