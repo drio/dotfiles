@@ -91,8 +91,11 @@ M.Load = function(hyper)
 	hyperfns["8"] = function()
 		setCorrectAMLayout(common.screens.LG)
 	end
-	hyperfns["i"] = function() -- terminal one
+	hyperfns["9"] = function() -- terminal one
 		layoutAlaSideBySide(hs.screen.mainScreen())
+	end
+	hyperfns["n"] = function()
+		layoutAlaSideBySide(common.screens.LG)
 	end
 
 	for _hotkey, _fn in pairs(hyperfns) do

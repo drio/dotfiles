@@ -39,10 +39,10 @@ M.Load = function(hyper)
 		--spoon.ModalMgr:deactivateAll()
 	end)
 
-	_cmodal:bind("", "a", "left50", function()
+	_cmodal:bind("", "h", "left50", function()
 		hs.window.focusedWindow():moveToUnit(hs.layout.left50)
 	end)
-	_cmodal:bind("", "s", "right50", function()
+	_cmodal:bind("", "l", "right50", function()
 		hs.window.focusedWindow():moveToUnit(hs.layout.right50)
 	end)
 
