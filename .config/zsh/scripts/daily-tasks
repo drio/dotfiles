@@ -1,22 +1,5 @@
 #!/bin/bash
 # vim: ft=sh:
-#
-#
-#
-
-start=`date`
-if [ ! -d /Volumes/drio-volume/restic-repo ];then
-  echo "ds720 dirs not there. Bailing out"
-  exit 0
-fi
-echo "ds720 dirs there. Good."
-
-echo "Sudo just in case..."
-sudo ls &> /dev/null
-
-echo "Cleaning up reolink dirs in ds720..."
-ssh ds720 'find /volume1/ftp-reolink -empty -type d -delete'
-ssh ds720 'find /volume1/ftp-reolink -mindepth 3 -mtime 15 -exec rm -rv {} +;'
 
 echo "Nvim update ..."
 echo ""
@@ -26,13 +9,6 @@ echo "homebrew ..."
 echo ""
 bubu
 
-echo "homebrew (clean cache)..."
-brew cleanup --prune=all
-
 echo "Backup ..."
 echo ""
 backup
-
-echo
-echo "$start"
-date

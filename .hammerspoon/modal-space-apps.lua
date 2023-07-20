@@ -1,7 +1,6 @@
 local module = {}
 
 local common = require("common")
-local winGeometry = require("win-geometry")
 
 -- Use: osascript -e 'id of app "SQLDeveloper"' to get app ID
 local keys = {
@@ -20,7 +19,7 @@ local keys = {
 	--{key = 'l', name = 'Spotlight'},
 	{ key = "m", name = "Mail" },
 	{ key = "n", name = "Notes" },
-	{ key = "o", name = "Reolink Client" },
+	--{ key = "o", name = "Obsidian" },
 	{ key = "p", name = "mpv" },
 	--{key = 'q', name = 'mpv'},
 	{ key = "r", name = "Preview" },
