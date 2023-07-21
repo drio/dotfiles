@@ -18,8 +18,28 @@ local function exists(file)
 	return ok, err
 end
 
+local dump = function(o)
+	if type(o) == "table" then
+		local s = "{ "
+		for k, v in pairs(o) do
+			if type(k) ~= "number" then
+				k = '"' .. k .. '"'
+			end
+			s = s .. "[" .. k .. "] = " .. dump(v) .. ","
+		end
+		return s .. "} "
+	else
+		return tostring(o)
+	end
+end
+
 module.show = show
 module.exists = exists
 module.tsb = "/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+module.dump = dump
+module.screens = {
+	retina = "Built-in Retina Display",
+	LG = "LG HDR 4K",
+}
 
 return module
