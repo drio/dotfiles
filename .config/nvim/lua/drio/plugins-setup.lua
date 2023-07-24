@@ -70,12 +70,6 @@ return packer.startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind-nvim") -- vscode-like pictograms to neovim built-in lsp
-	use({
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup({})
-		end,
-	})
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
