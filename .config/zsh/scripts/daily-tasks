@@ -16,7 +16,7 @@ sudo ls &> /dev/null
 
 echo "Cleaning up reolink dirs in ds720..."
 ssh ds720 'find /volume1/ftp-reolink -empty -type d -delete'
-ssh ds720 'find /volume1/ftp-reolink -mindepth 3 -mtime 15 -exec rm -rv {} +;'
+ssh ds720 'find /volume1/ftp-reolink -mindepth 3 -mtime 30 -exec rm -rv {} +;'
 
 echo "Nvim update ..."
 echo ""
