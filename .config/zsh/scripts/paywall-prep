@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+cd /tmp
+rm -rf bypass-paywalls-chrome-master
+wget https://github.com/iamadamdev/bypass-paywalls-chrome/archive/master.zip
+unzip master.zip
+rm -f master.zip 
+open /tmp
+bypass-paywalls-chrome-master
+cat << EOF
+1. Open hrome://extensions
+2. Drag and drop /tmp/bypass-paywalls-chrome-master into the window
+EOF

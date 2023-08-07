@@ -293,6 +293,13 @@ local keysTailscale = {
 	},
 
 	{
+		key = "u",
+		show = "🚀plain up",
+		msg = "🚀 🐘 tailscale up",
+		cmd = tsb .. " up ",
+	},
+
+	{
 		key = "w",
 		show = "",
 		msg = "switch",

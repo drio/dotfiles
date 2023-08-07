@@ -7,7 +7,7 @@ if [ $(uname -s) == "Darwin" ];then
   ts="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
-switchTo=$($ts switch --list  | grep -v "*" | grep -v passkey)
+switchTo=$($ts switch --list  | grep -v "*" | grep -v passkey | grep -v driode01)
 $ts switch $switchTo &>/dev/null
 echo $switchTo
 
