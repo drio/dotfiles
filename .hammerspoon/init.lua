@@ -29,6 +29,12 @@ hs.loadSpoon("WinWin")
 spoon.SpoonInstall.use_syncinstall = true
 local Install = spoon.SpoonInstall
 
+-- chooser
+local emoChooser = require("emo-chooser")
+hs.hotkey.bind(hyper, "J", function()
+	emoChooser:show()
+end)
+
 -- This draws a bright red circle around the pointer for a few seconds
 Install:andUse("MouseCircle", { hotkeys = { show = { hyper, "0" } } })
 

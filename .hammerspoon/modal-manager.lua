@@ -6,6 +6,10 @@ local drdKeyboard = require("keyboard")
 local common = require("common")
 local tsb = common.tsb
 
+-- chooser
+local emoChooser = require("emo-chooser")
+local tailChooser = require("tail-chooser")
+
 local keysI = {
 	{
 		key = "b",
@@ -305,14 +309,18 @@ local keysTailscale = {
 		msg = "switch",
 		cmd = "",
 		fn = function()
-			local delay = 1
-			local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tsswitch")
-			if not status then
-				output = "Error running script"
-			end
-
-			hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+			tailChooser:show()
 		end,
+
+		-- function()
+		-- 	local delay = 1
+		-- 	local output, status = hs.execute("/Users/drio/.config/zsh/scripts/tsswitch")
+		-- 	if not status then
+		-- 		output = "Error running script"
+		-- 	end
+		--
+		-- 	hs.alert.show(output, hs.screen.mainScreen(), { textSize = 75 }, delay)
+		-- end,
 	},
 
 	{
