@@ -5,8 +5,11 @@ dir=$( dirname -- "$0"; )
 source $dir/_scripts-env
 
 echo "backup up hass"
-find /Users/drio/dev/iot/hass-backups/backups -mindepth 3 -mtime 30 -exec rm -rv {} +;
-rsync --delete -avz -e ssh gopher.local:/home/drio/dc/hass-config/backups /Users/drio/dev/iot/hass-backups/
+b_dir=/Users/drio/dev/iot/hass-backups/backups
+find $b_dir -mindepth 3 -mtime 30 -exec rm -rv {} +;
+rsync --delete -avz -e ssh gopher.local:/home/drio/dc/hass-config/backups $b_dir/
+n_backups=`find $b_dir -name "*.tar" | wc -l`
+echo "# backup tar files: $n_backups"
 
 #ssh $backup_piip 'sudo mount -o defaults /dev/sda1 /mnt/external_drive_restic'
 cd ~/dev/github.com/drio/restic-backup
