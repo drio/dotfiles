@@ -38,7 +38,6 @@
  	:simlayers {
 		:f-mode {:key :f}
     :mac-mode {:key :m}
-		;;:h-mode {:key :h}
 	}
 
   :simlayer-threshold 200
@@ -56,7 +55,6 @@
 						 [:j :down_arrow]
 						 [:k :up_arrow]
 						 [:l :right_arrow]]}
-
 
 		{:des "Mac Mode"
      :rules [:mac-mode

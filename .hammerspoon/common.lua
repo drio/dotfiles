@@ -42,4 +42,15 @@ module.screens = {
 	LG = "LG HDR 4K",
 }
 
+-- Focus the last used window.
+local function focusLastFocused()
+	local wf = hs.window.filter
+	local lastFocused = wf.defaultCurrentSpace:getWindows(wf.sortByFocusedLast)
+	if #lastFocused > 0 then
+		lastFocused[1]:focus()
+	end
+end
+
+module.focusLastFocused = focusLastFocused
+
 return module

@@ -17,7 +17,7 @@ local keys = {
 	{ key = "i", name = "Signal" },
 	--{ key = "j", name = "Joplin" },
 	{ key = "k", name = "Slack" },
-	--{key = 'l', name = 'Spotlight'},
+	{ key = "l", name = "Min" },
 	{ key = "m", name = "Mail" },
 	{ key = "n", name = "Notes" },
 	{ key = "o", name = "Reolink Client" },

@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+if [ "$1" == "h4" ];then
+  /opt/homebrew/bin/alacritty -e ssh -A -J driode01@hadoop-prod-01 driode01@hadoop-prod-04 -t tmux a &
+fi
+exit 0

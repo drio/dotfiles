@@ -91,7 +91,6 @@ require("nvim-tree").setup({
 	view = {
 		adaptive_size = true,
 	},
-	remove_keymaps = false,
 	renderer = {
 		group_empty = true,
 	},

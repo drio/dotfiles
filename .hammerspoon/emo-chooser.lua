@@ -12,24 +12,15 @@ for _, emoji in ipairs(hs.json.decode(io.open("emojis/emojis.json"):read())) do
 	})
 end
 
--- Focus the last used window.
-local function focusLastFocused()
-	local wf = hs.window.filter
-	local lastFocused = wf.defaultCurrentSpace:getWindows(wf.sortByFocusedLast)
-	if #lastFocused > 0 then
-		lastFocused[1]:focus()
-	end
-end
-
 -- Create the chooser.
 -- On selection, copy the emoji and type it into the focused application.
 local chooser = hs.chooser.new(function(choice)
 	if not choice then
-		focusLastFocused()
+		common.focusLastFocused()
 		return
 	end
 	hs.pasteboard.setContents(choice["chars"])
-	focusLastFocused()
+	common.focusLastFocused()
 	hs.eventtap.keyStrokes(hs.pasteboard.getContents())
 end)
 
