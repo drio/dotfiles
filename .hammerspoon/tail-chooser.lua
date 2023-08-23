@@ -17,7 +17,7 @@ local choices = {
 		text = "tufts github",
 		--subText = "main",
 		image = tsImg,
-		cmd = tss .. " 'drio(TuftsDST)'",
+		cmd = tss .. " drio@github",
 	},
 	{
 		text = "tufts microsoft",
@@ -47,7 +47,7 @@ local chooser = hs.chooser.new(function(choice)
 		return
 	end
 
-	hs.alert.show("running", hs.screen.mainScreen(), { textSize = 50 }, 2)
+	hs.alert.show("running: " .. choice["cmd"], hs.screen.mainScreen(), { textSize = 50 }, 2)
 	local output, status = hs.execute(choice["cmd"])
 	local msg = "ok"
 	if not status then

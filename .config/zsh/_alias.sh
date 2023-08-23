@@ -3,7 +3,7 @@ alias vim=nvim
 alias j='fasd_cd -d'
 
 alias dsa='/opt/homebrew/bin/alacritty -e ssh ds720 -t ./tmux/d/exec &'
-alias ds='ssh ds720 -t ./tmux/d/exec'
+alias ds='ssh ds720 -t /volume1/drio-volume/tmux/d/exec'
  
 # git helpers
 alias gb="git branch"
