@@ -1,0 +1,21 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+dsite_dir=/Users/drio/dev/github.com/drio/caddy-driosite
+db_dir=${dsite_dir}/dropbox
+
+prj_name=$1
+if [ ".$1" == "." ];then
+  echo "need project name: \$ golive 3js/athing"
+  exit 0
+fi
+wdir=$db_dir/$prj_name
+
+rm -rf dist
+npm run build
+mkdir -p $wdir
+cp -r dist/* $wdir/
+cd $dsite_dir
+make rsync/dropbox/fast
+echo "🚀https://driohq.net/dropbox/$prj_name"

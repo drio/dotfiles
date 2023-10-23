@@ -133,6 +133,7 @@ local keysI = {
 		--
 		cmd = "/Users/drio/dev/github.com/drio/dotfiles/.config/zsh/scripts/bright up",
 	},
+
 	{
 		key = "v",
 		show = "👾",

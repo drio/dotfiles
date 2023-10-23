@@ -6,8 +6,8 @@ source $dir/_scripts-env
 
 echo "backup up hass"
 b_dir=/Users/drio/dev/iot/hass-backups/backups
-find $b_dir -mindepth 3 -mtime 30 -exec rm -rv {} +;
-rsync --delete -avz -e ssh gopher.local:/home/drio/dc/hass-config/backups $b_dir/
+ssh gopher 'find /home/drio/dc/hass-config/backups -name "*.tar"  -mtime +7 -exec rm -f {} +;'
+rsync --delete -avz -e ssh gopher:/home/drio/dc/hass-config/backups $b_dir/
 n_backups=`find $b_dir -name "*.tar" | wc -l`
 echo "# backup tar files: $n_backups"
 

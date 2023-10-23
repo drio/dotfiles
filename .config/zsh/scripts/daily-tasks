@@ -1,18 +1,39 @@
 #!/bin/bash
 # vim: ft=sh:
-#
-#
-#
+set -e
 
 start=`date`
-if [ ! -d /Volumes/drio-volume/restic-repo ];then
-  echo "ds720 dirs not there. Bailing out"
-  exit 0
-fi
-echo "ds720 dirs there. Good."
+ts=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+
+function checkDir() {
+  local dir=$1
+  if [ ! -d "$dir" ];then
+    echo "directory $dir not there. Bailing out"
+    exit 0
+  fi
+  echo "directory $dir found. good."
+}
 
 echo "Sudo just in case..."
 sudo ls &> /dev/null
+
+echo "switching tailnet"
+currTailnet=$($ts switch --list | grep "*" | awk '{print $1}')
+if [ currTailnet != "driodeiros@gmail.com" ];then
+  $ts switch driodeiros@gmail.com
+fi
+
+checkDir "/Volumes/drio-volume/restic-repo"
+
+echo "syncing grafana backups"
+grafDir="/Users/drio/dev/backups/grafana"
+checkDir $grafDir
+rsync -az -e ssh teton:grafana-dashboards-backups/ $grafDir
+
+echo "syncing prometheus backups"
+promDir="/Users/drio/dev/backups/prometheus"
+checkDir $promDir
+rsync -az -e ssh --progress teton:prometheus-snapshots/ $promDir
 
 echo "Cleaning up reolink dirs in ds720..."
 ssh ds720 'find /volume1/ftp-reolink -empty -type d -delete'

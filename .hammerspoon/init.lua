@@ -21,7 +21,7 @@ hs.hints.showTitleThresh = 0
 hs.window.animationDuration = 0
 
 local hyper = { "cmd", "alt", "ctrl" }
-local superhyper = { "shift", "cmd", "alt", "ctrl" }
+local superhyper = { "f20" }
 
 hs.loadSpoon("SpoonInstall")
 hs.loadSpoon("ModalMgr")

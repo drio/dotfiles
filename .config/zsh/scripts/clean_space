@@ -1,0 +1,7 @@
+#!/bin/bash
+# vim: ft=sh:
+set -e
+
+find ~/Library/Caches/restic -atime +14 -delete
+docker  system prune -a
+go clean -modcache

@@ -1,10 +1,13 @@
 alias vim=nvim
 
-alias j='fasd_cd -d'
+alias j='z'
 
 alias dsa='/opt/homebrew/bin/alacritty -e ssh ds720 -t ./tmux/d/exec &'
 alias ds='ssh ds720 -t /volume1/drio-volume/tmux/d/exec'
- 
+alias rf='ssh rufus -t /usr/local/bin/tmux a'
+alias tt='ssh teton -t /usr/local/bin/tmux a'
+
+alias sizeblame='du -sh * | sort -h'
 # git helpers
 alias gb="git branch"
 alias gba="git branch -a"

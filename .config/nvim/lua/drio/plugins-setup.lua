@@ -67,19 +67,11 @@ return packer.startup(function(use)
 
 	use("neovim/nvim-lspconfig") -- configure language servers to talk to the lsp implementation in neovim
 	use("hrsh7th/cmp-nvim-lsp") -- link autocompletion and lsp
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+	-- use({ "glepnir/lspsaga.nvim" }) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind-nvim") -- vscode-like pictograms to neovim built-in lsp
 
-	use({
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("indent_blankline").setup({
-				char = "┊",
-				show_trailing_blankline_indent = false,
-			})
-		end,
-	})
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
@@ -166,6 +158,8 @@ return packer.startup(function(use)
 			vim.g.floaterm_height = 0.95
 		end,
 	})
+
+	use("David-Kunz/gen.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()

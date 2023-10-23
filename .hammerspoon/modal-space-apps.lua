@@ -20,7 +20,7 @@ local keys = {
 	{ key = "l", name = "Min" },
 	{ key = "m", name = "Mail" },
 	{ key = "n", name = "Notes" },
-	{ key = "o", name = "Reolink Client" },
+	{ key = "o", name = "Reolink" },
 	{ key = "p", name = "mpv" },
 	--{key = 'q', name = 'mpv'},
 	{ key = "r", name = "Preview" },

@@ -10,8 +10,8 @@ bindkey -e #bindkey '^R' history-incremental-search-backward
 #[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 #[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # autojump deplace fasd for autocompletion: https://github.com/clvv/fasd
-eval "$(fasd --init auto)"
-eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
+# eval "$(fasd --init auto)"
+# eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
 
 # export PATH=/Users/drio/local/nvim-macos/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
@@ -23,13 +23,12 @@ export PATH=$PATH:/Applications/YubiKey\ Manager.app/Contents/MacOS
 # load ssh key
 # eval `ssh-agent`
 # ssh-add ~/.ssh/id_rsa
-which keychain > /dev/null 2>&1
-have_keychain=$?
-if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
-  eval `keychain --eval --agents ssh --inherit any id_rsa`
-  eval `keychain --eval --agents ssh --inherit any id_rsa_git`
+#which keychain > /dev/null 2>&1
+#if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
+  #eval `keychain --eval --agents ssh --inherit any id_rsa`
+  #eval `keychain --eval --agents ssh --inherit any id_rsa_git`
   #eval `keychain --eval --agents ssh --inherit any id_dsae
-fi
+#fi
 
 # History
 #
@@ -102,3 +101,5 @@ fi
 # fzf: Key bindings
 # ------------
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+
+eval "$(zoxide init zsh)"

@@ -6,6 +6,7 @@ alias h4='/opt/homebrew/bin/alacritty -e ssh h4'
 alias h4a='/opt/homebrew/bin/alacritty -e ssh -A -J driode01@hadoop-prod-01 driode01@hadoop-prod-04'
 alias h4at='/opt/homebrew/bin/alacritty -e ssh -A -J driode01@hadoop-prod-01 driode01@hadoop-prod-04 -t tmux a &'
 alias jh4='ssh -A -J driode01@hadoop-prod-01 driode01@hadoop-prod-04 -t tmux a'
+alias jpg='ssh -A -J driode01@hadoop-prod-07 ubuntu@prom-graf'
 
 alias v1='ssh v1'
 alias v2='ssh v2'
