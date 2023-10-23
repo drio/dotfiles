@@ -21,7 +21,8 @@ pkgs.mkShell {
 
   # Before starting the shell
   shellHook = ''
-    source ~/.bashrc
+    export PS1="\n \[\033[00;32m\] nix\[\033[0;36m\]@\h \[\033[00;34m\][\w] \n \[\033[0;31m\] \[\033[00;35m\]$\[\033[00m\] "
+    alias v="nvim"
     [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   '';
 }
