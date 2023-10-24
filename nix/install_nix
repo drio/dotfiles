@@ -61,15 +61,22 @@ cd $tmpDir
 . ~/.nix-profile/etc/profile.d/nix.sh
 
 cd
+[ -d dotfiles ] && rm -rf dotfiles
 git clone https://github.com/drio/dotfiles.git
 
 [ ! -d dotfiles/.config ] && ln -s dotfiles/.config 
-[ ! -d dotfiles/.tmux.config ] && ln -s dotfiles/.tmux.conf
+ls .tmux.conf 2>/dev/null
+[ $? -gt 0 ] && ln -s dotfiles/.tmux.conf
 rm -rf .local/share/nvim
 
 [ ! -f ~/.bashrc ] && touch ~/.bashrc
 if [ $(grep IN_NIX_SHELL ~/.bashrc | wc -l ) -eq 0 ];then
+  echo "NIX drio BEGIN" >> ~/.bashrc
   cat dotfiles/nix/ps1.txt >> ~/.bashrc
+  echo "NIX drio END" >> ~/.bashrc
 fi
+
+cd dotfiles/nix
+nix-shell --run "neofetch"
 
 }
