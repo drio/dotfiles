@@ -1,0 +1,33 @@
+#!/bin/sh
+# vim: ft=sh:
+
+vmName="nix-test"
+running=0
+if [ $(limactl list 2>/dev/null | grep $vmName | wc -l ) -eq 1 ]
+then
+  running=1
+fi
+
+case "$1" in
+  start)
+    if [ $running -eq 1 ];then
+      echo "already running. Bailing out."
+      exit 0
+    fi
+    limactl start template://default --tty=false --cpus=2 --memory=2 --name=$vmName
+    ;;
+  stop)
+    if [ $running -eq 0 ];then
+      echo "Not running. Bailing out."
+      exit 0
+    fi
+    limactl stop $vmName
+    limactl delete $vmName
+    limactl prune
+    ;;
+  ssh)
+    ssh -F $(limactl ls --format='{{.SSHConfigFile}}') lima-$vmName
+    ;;
+  *)
+    echo "$0 [opt]; start,stop,ssh"
+esac
