@@ -1,2 +1,3 @@
 
+The tmux.conf has a harcoded path to the tmux binary
 Add an option to start tailscale (pass key)

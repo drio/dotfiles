@@ -58,7 +58,11 @@ git clone https://github.com/drio/dotfiles.git
 
 [ ! -d dotfiles/.config ] && ln -s dotfiles/.config 
 ls .tmux.conf 2>/dev/null
-[ $? -gt 0 ] && ln -s dotfiles/.tmux.conf
+if [ $? -gt 0 ]
+then
+  TMUX=`nix-shell --run 'which tmux' dotfiles/nix/shell.nix`
+  cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf
+fi
 rm -rf .local/share/nvim
 
 [ ! -f ~/.bashrc ] && touch ~/.bashrc
