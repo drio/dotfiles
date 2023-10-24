@@ -67,7 +67,7 @@ ls .tmux.conf 2>/dev/null
 rm -rf .local/share/nvim
 
 [ ! -f ~/.bashrc ] && touch ~/.bashrc
-if [ $(grep IN_NIX_SHELL ~/.bashrc | wc -l ) -eq 0 ];then
+if [ $(grep "NIX drio" ~/.bashrc | wc -l ) -eq 0 ];then
   echo "# NIX drio BEGIN" >> ~/.bashrc
   cat dotfiles/nix/ps1.txt >> ~/.bashrc
   echo "# NIX drio END" >> ~/.bashrc
