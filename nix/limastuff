@@ -23,8 +23,11 @@ case "$1" in
     fi
     limactl stop $vmName
     limactl delete $vmName
+    ;;
+  prune)
     limactl prune
     ;;
+
   ssh)
     ssh -F $(limactl ls --format='{{.SSHConfigFile}}') lima-$vmName
     ;;

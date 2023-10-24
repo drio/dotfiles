@@ -60,7 +60,8 @@ git clone https://github.com/drio/dotfiles.git
 ls .tmux.conf 2>/dev/null
 if [ $? -gt 0 ]
 then
-  TMUX=`nix-shell --run 'which tmux' dotfiles/nix/shell.nix`
+  NIX_SHELL=`find /nix -name nix-shell`
+  TMUX=`$NIX_SHELL --run 'which tmux' dotfiles/nix/shell.nix`
   cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf
 fi
 rm -rf .local/share/nvim
