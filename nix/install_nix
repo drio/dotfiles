@@ -1,11 +1,6 @@
 #!/bin/sh
 #
-# 1. Install nix
-# 2. Clone dotfiles
-# 3. Add .bashrc PS1
-# 4. Create the nix dir and drop the shell config
-#
-# Run with:
+# To run:
 # -L: allow redirect
 # -s: silent
 # sh <(curl -sL https://driohq.net/dropbox/install_nix)
