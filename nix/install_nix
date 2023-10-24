@@ -73,6 +73,6 @@ if [ $(grep "NIX drio" ~/.bashrc | wc -l ) -eq 0 ];then
 fi
 
 cd dotfiles/nix
-NIX_SHELL --run "neofetch"
+$NIX_SHELL --run "neofetch"
 
 }
