@@ -3,7 +3,7 @@
 pkgs.mkShell {
   packages = with pkgs; [
     tmux
-    go
+    go_1_21
     git
     neovim
     nodejs

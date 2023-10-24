@@ -1,0 +1,75 @@
+#!/bin/sh
+# vim: ft=sh:
+# Setup nix in your machine
+# 1. Install nix
+# 2. Clone dotfiles
+# 3. Add .bashrc PS1
+# 4. Create the nix dir and drop the shell config
+#
+# Run with:
+# -L: allow redirect
+# -s: silent
+# sh <(curl -sL https://driohq.net/dropbox/install_nix)
+# sh <(curl -sL http://192.168.8.35:8080/install_nix)
+
+{ # Prevent execution if this script was only partially downloaded
+
+oops() {
+  echo "$0:" "$@" >&2
+  exit 1
+}
+
+# 666 - 022 = 644
+umask 0022
+
+tmpDir="$(mktemp -d -t nix-drio-install.XXXXXXXXXX || 
+  oops "Can't create temporary directory")"
+
+cleanup() {
+    rm -rf "$tmpDir"
+}
+trap cleanup EXIT INT QUIT TERM
+
+require_util() {
+  command -v "$1" > /dev/null 2>&1 || 
+    oops "you do not have '$1' installed, which I need to $2"
+}
+
+require_util tar "unpack the binary tarball"
+echo "tar found"
+if [ "$(uname -s)" != "Darwin" ]; then
+    require_util xz "unpack the binary tarball"
+    echo "xz found"
+fi
+
+require_util git "git not found"
+echo "git found"
+
+if command -v curl > /dev/null 2>&1; then
+    fetch() { curl --fail -L "$1" -o "$2"; }
+elif command -v wget > /dev/null 2>&1; then
+    fetch() { wget "$1" -O "$2"; }
+else
+    oops "you don't have wget or curl installed"
+fi
+
+curl -L https://nixos.org/nix/install > $tmpDir/install
+chmod 755 /$tmpDir/install
+cd $tmpDir
+./install
+
+. ~/.nix-profile/etc/profile.d/nix.sh
+
+cd
+git clone https://github.com/drio/dotfiles.git
+
+[ ! -d dotfiles/.config ] && ln -s dotfiles/.config 
+[ ! -d dotfiles/.tmux.config ] && ln -s dotfiles/.tmux.conf
+rm -rf .local/share/nvim
+
+[ ! -f ~/.bashrc ] && touch ~/.bashrc
+if [ $(grep IN_NIX_SHELL ~/.bashrc | wc -l ) -eq 0 ];then
+  cat dotfiles/nix/ps1.txt >> ~/.bashrc
+fi
+
+}
