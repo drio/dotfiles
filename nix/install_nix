@@ -57,8 +57,6 @@ chmod 755 /$tmpDir/install
 cd $tmpDir
 ./install
 
-. ~/.nix-profile/etc/profile.d/nix.sh
-
 cd
 [ -d dotfiles ] && rm -rf dotfiles
 git clone https://github.com/drio/dotfiles.git

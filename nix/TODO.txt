@@ -1,0 +1,2 @@
+
+Add an option to start tailscale (pass key)
