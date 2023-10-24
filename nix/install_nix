@@ -1,5 +1,5 @@
 #!/bin/sh
-# vim: ft=sh: Setup nix in your machine
+#
 # 1. Install nix
 # 2. Clone dotfiles
 # 3. Add .bashrc PS1
