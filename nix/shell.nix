@@ -14,6 +14,7 @@ pkgs.mkShell {
     fzf
     neofetch
     openjdk
+    tailscale
   ];
 
   EDITOR = "${pkgs.neovim}/bin/nvim";
