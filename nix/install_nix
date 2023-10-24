@@ -62,7 +62,8 @@ ls .tmux.conf 2>/dev/null
 if [ $? -gt 0 ]
 then
   TMUX=`$NIX_SHELL --run 'which tmux' dotfiles/nix/shell.nix`
-  cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf fi
+  cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf 
+fi
 rm -rf .local/share/nvim
 
 [ ! -f ~/.bashrc ] && touch ~/.bashrc
