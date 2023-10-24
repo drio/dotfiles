@@ -1,4 +1,6 @@
 #!/bin/sh
 # vim: ft=sh:
 
-
+cp ./install_nix ~/dev/github.com/drio/caddy-driosite/dropbox
+cd ~/dev/github.com/drio/caddy-driosite
+make rsync/dropbox/fast
