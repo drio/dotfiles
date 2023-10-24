@@ -51,6 +51,7 @@ curl -L https://nixos.org/nix/install > $tmpDir/install
 chmod 755 /$tmpDir/install
 cd $tmpDir
 ./install
+NIX_SHELL=`find /nix -name nix-shell`
 
 cd
 [ -d dotfiles ] && rm -rf dotfiles
@@ -60,10 +61,8 @@ git clone https://github.com/drio/dotfiles.git
 ls .tmux.conf 2>/dev/null
 if [ $? -gt 0 ]
 then
-  NIX_SHELL=`find /nix -name nix-shell`
   TMUX=`$NIX_SHELL --run 'which tmux' dotfiles/nix/shell.nix`
-  cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf
-fi
+  cat dotfiles/.tmux.conf | sed -s "s|\/usr\/local\/bin\/tmux|$TMUX|" > ./.tmux.conf fi
 rm -rf .local/share/nvim
 
 [ ! -f ~/.bashrc ] && touch ~/.bashrc
@@ -74,6 +73,6 @@ if [ $(grep "NIX drio" ~/.bashrc | wc -l ) -eq 0 ];then
 fi
 
 cd dotfiles/nix
-nix-shell --run "neofetch"
+NIX_SHELL --run "neofetch"
 
 }
