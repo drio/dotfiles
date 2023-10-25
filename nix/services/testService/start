@@ -1,4 +1,4 @@
-#!/usr/bin/env nix-shell
+#!/bin/sh
 
 while :; do
   date
