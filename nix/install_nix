@@ -106,4 +106,6 @@ if [ ".$startServices" != "." ];then
   $NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
 fi
 
+echo "Enjoy ✨"
+
 }
