@@ -1,6 +1,5 @@
 #!/bin/sh
 
-export AWS_DEFAULT_PROFILE=tufts
 aws ec2 run-instances \
   --image-id ami-0fc5d935ebf8bc3bc \
   --count 1 \
