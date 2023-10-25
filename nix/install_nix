@@ -97,7 +97,7 @@ $NIX_SHELL --run "neofetch"
 if [ ".$withts" != "." ];then
   curl -fsSL https://tailscale.com/install.sh | sh
   echo "starting tailscale with: $withts"
-  sudo tailscale up "$withts"
+  sudo tailscale up $withts
 fi
 
 # Start services
