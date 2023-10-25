@@ -46,6 +46,12 @@ if [ "${1:-}" = "--startServices" ]; then
   startServices="yes"  
 fi
 
+onlyts=""  
+if [ "${1:-}" = "--onlyts" ]; then
+  onlyts="yes"  
+fi
+
+
 require_util tar "unpack the binary tarball"
 echo "tar found"
 if [ "$(uname -s)" != "Darwin" ]; then
@@ -105,6 +111,21 @@ if [ ".$startServices" != "." ];then
   find ./services -type f -name "start" -exec chmod 755 {} \;
   find ./services -type f -name "stop" -exec chmod 755 {} \;
   $NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
+fi
+
+# Only allow traffic on the tailscale interface
+if [ ".$onlyts" != "." ];then 
+  ifexists=$(ip address | grep tailscale0 | wc -l)
+  if [ ".$ifexists" -gt 0 ];then
+    sudo ufw allow in on tailscale0
+    sudo ufw enable
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw reload
+    sudo service ssh restart
+  else
+    echo "No tailscale network interface found so I won't do --onlyts"
+  fi
 fi
 
 echo "Done ✨"
