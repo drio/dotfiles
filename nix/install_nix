@@ -41,7 +41,7 @@ if [ "${1:-}" = "--withts" ]; then
     shift 2
 fi
 
-startServices="no"  
+startServices=""  
 if [ "${1:-}" = "--startServices" ]; then
   startServices="yes"  
 fi
