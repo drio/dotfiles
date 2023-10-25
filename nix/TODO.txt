@@ -1,3 +1,22 @@
 
-The tmux.conf has a harcoded path to the tmux binary
-Add an option to start tailscale (pass key)
+- [x] 1. The tmux.conf has a harcoded path to the tmux binary
+- [ ] 2. Lock in machine to only TS interfaces
+- [ ] 3. Add an option to start tailscale (pass key)
+  When we boot the machine we may want it to join a tailnet (via pre-auth key).
+  We have to:
+    - Install TS (we do that already via nix)
+      PROBLEM: it won't run as a service
+      S1: If ubuntu: install TS via package?
+      S2: If ubuntu: install TS a tmux service
+      I think we should do it via tmux to warranty that it will always run. 
+      The problem is it won't restart at boot
+
+    - We want to pass something like this to the install scripts:  
+      $ sh < (curl -sL http://192.168.8.35:8080/install_nix) --withts "opts".
+      Where opts are something like:
+        --advertise-tags=tag:greattag --auth-key=tskey-auth-XXX --accept-routes --accept-dns --ssh
+
+    - Other script options:
+        --hostname rufus
+
+  echo '@reboot cd ~/services/ && ./start' | crontab
