@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export AWS_DEFAULT_PROFILE=tufts
+aws ec2 run-instances \
+  --image-id ami-0fc5d935ebf8bc3bc \
+  --count 1 \
+  --instance-type t3.small \
+  --key-name drio \
+  --security-group-ids sg-0990a7cfbb0f912f9 \
+  --user-data file://user_data.ec2.txt \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=drio-nix-box}]'
