@@ -6,6 +6,15 @@
 # -s: silent
 # Notice you can pass options to the script to configure different things
 #
+# NOTES on Only allowing traffic on the tailscale interface
+# Important! Make sure you are sshing via the tailscale interface
+# sudo ufw allow in on tailscale0
+# echo "y" | sudo ufw enable
+# sudo ufw default deny incoming
+# sudo ufw default allow outgoing
+# sudo ufw reload
+# sudo service ssh restart
+
 
 { # Prevent execution if this script was only partially downloaded
 
@@ -47,13 +56,6 @@ if [ "${1:-}" = "--startServices" ]; then
   startServices="yes"  
   shift 1
 fi
-
-onlyts=""  
-if [ "${1:-}" = "--onlyts" ]; then
-  onlyts="yes"  
-  shift 1
-fi
-
 
 require_util tar "unpack the binary tarball"
 echo "tar found"
@@ -114,23 +116,6 @@ if [ ".$startServices" != "." ];then
   find ./services -type f -name "start" -exec chmod 755 {} \;
   find ./services -type f -name "stop" -exec chmod 755 {} \;
   $NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
-fi
-
-# Only allow traffic on the tailscale interface
-if [ ".$onlyts" != "." ];then 
-  require_util ufw "setup the firewall"
-  ifexists=$(ip address | grep tailscale0 | wc -l)
-  if [ $ifexists -gt 0 ];then
-    echo "setting up only access on tailscale0"
-    sudo ufw allow in on tailscale0
-    echo "y" | sudo ufw enable
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
-    sudo ufw reload
-    sudo service ssh restart
-  else
-    echo "No tailscale network interface found so I won't do --onlyts"
-  fi
 fi
 
 echo "Done ✨"
