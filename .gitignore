@@ -16,3 +16,4 @@ script/tmux
 .config/zsh/scripts/_scripts-env
 .config/jellyfin
 nix/user_data.ec2.txt
+nix/ec2/user_data.ec2.txt
