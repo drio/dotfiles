@@ -29,6 +29,16 @@ require_util() {
     oops "you do not have '$1' installed, which I need to $2"
 }
 
+if [ "${1:-}" = "--withts" ]; then
+    if [ -z "${2:-}" ]; then
+        oops "missing argument for --tarball-url-prefix"
+    fi
+    withts=${2}
+    shift 2
+else
+    withts=""
+fi
+
 require_util tar "unpack the binary tarball"
 echo "tar found"
 if [ "$(uname -s)" != "Darwin" ]; then
@@ -76,9 +86,15 @@ fi
 cd dotfiles/nix
 $NIX_SHELL --run "neofetch"
 
+# Install Tailscale
+if [ ".$withts" != "." ];then
+  curl -fsSL https://tailscale.com/install.sh | sh
+  sudo touch /tmp/foo.sudo.txt
+fi
+
 # Start services
-find ./services -type f -name "start" -exec chmod 755 {} \;
-find ./services -type f -name "stop" -exec chmod 755 {} \;
-$NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
+#find ./services -type f -name "start" -exec chmod 755 {} \;
+#find ./services -type f -name "stop" -exec chmod 755 {} \;
+#$NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
 
 }
