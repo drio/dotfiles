@@ -116,7 +116,7 @@ fi
 # Only allow traffic on the tailscale interface
 if [ ".$onlyts" != "." ];then 
   ifexists=$(ip address | grep tailscale0 | wc -l)
-  if [ ".$ifexists" -gt 0 ];then
+  if [ $ifexists -gt 0 ];then
     echo "setting up only access on tailscale0"
     sudo ufw allow in on tailscale0
     sudo ufw enable
