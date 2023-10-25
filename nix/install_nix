@@ -45,11 +45,13 @@ fi
 startServices=""  
 if [ "${1:-}" = "--startServices" ]; then
   startServices="yes"  
+  shift 1
 fi
 
 onlyts=""  
 if [ "${1:-}" = "--onlyts" ]; then
   onlyts="yes"  
+  shift 1
 fi
 
 
