@@ -15,3 +15,4 @@ script/tmux
 .config/zsh/credentials.sh
 .config/zsh/scripts/_scripts-env
 .config/jellyfin
+nix/user_data.ec2.txt
