@@ -117,6 +117,7 @@ fi
 if [ ".$onlyts" != "." ];then 
   ifexists=$(ip address | grep tailscale0 | wc -l)
   if [ ".$ifexists" -gt 0 ];then
+    echo "setting up only access on tailscale0"
     sudo ufw allow in on tailscale0
     sudo ufw enable
     sudo ufw default deny incoming
