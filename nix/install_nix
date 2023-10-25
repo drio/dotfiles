@@ -76,4 +76,9 @@ fi
 cd dotfiles/nix
 $NIX_SHELL --run "neofetch"
 
+# Start services
+find ./services -type f -name "start" -exec chmod 755 {} \;
+find ./services -type f -name "stop" -exec chmod 755 {} \;
+$NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
+
 }

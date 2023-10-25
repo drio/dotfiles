@@ -1,6 +1,9 @@
-#!/usr/bin/env nix-shell
+#!/bin/sh
 
-for s in `find . -type d -maxdepth 1`
+for s in `find . -maxdepth 1 -type d`
 do
-  tmux send-keys -t $s C-c
+  [ "$s" = "." ] && continue
+  name=$(echo $s | sed 's/\.\///')
+  echo "$name"
+  tmux send-keys -t $name C-c
 done

@@ -1,7 +1,10 @@
-#!/usr/bin/env nix-shell
+#!/bin/sh
 
-for s in `find . -type d -maxdepth 1`
+for s in `find . -maxdepth 1 -type d`
 do
-  tmux attach-session -t $s || tmux new-session -s $s -d
-  tmux send-keys -t $s 'cd; cd services/$s; ./start' C-m
+  [ "$s" = "." ] && continue
+  name=$(echo $s | sed 's/\.\///')
+  echo "$name"
+  tmux attach-session -t $name || tmux new-session -s $name -d
+  tmux send-keys -t $name "cd; cd dotfiles/nix/services/$name; ./start" C-m
 done
