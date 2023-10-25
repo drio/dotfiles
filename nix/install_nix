@@ -29,14 +29,21 @@ require_util() {
     oops "you do not have '$1' installed, which I need to $2"
 }
 
+# Process args
+# WARNING: order matters
+#
+withts=""
 if [ "${1:-}" = "--withts" ]; then
     if [ -z "${2:-}" ]; then
         oops "missing argument for --withts"
     fi
     withts=${2}
     shift 2
-else
-    withts=""
+fi
+
+startServices="no"  
+if [ "${1:-}" = "--startServices" ]; then
+  startServices="yes"  
 fi
 
 require_util tar "unpack the binary tarball"
@@ -93,8 +100,10 @@ if [ ".$withts" != "." ];then
 fi
 
 # Start services
-#find ./services -type f -name "start" -exec chmod 755 {} \;
-#find ./services -type f -name "stop" -exec chmod 755 {} \;
-#$NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
+if [ ".$startServices" != "." ];then 
+  find ./services -type f -name "start" -exec chmod 755 {} \;
+  find ./services -type f -name "stop" -exec chmod 755 {} \;
+  $NIX_SHELL --run "cd; cd dotfiles/nix/services; ./start"
+fi
 
 }
