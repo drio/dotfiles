@@ -1,10 +1,11 @@
 #!/bin/sh
 #
 # To run:
+# sh <(curl -sL https://driohq.net/dropbox/install_nix)
 # -L: allow redirect
 # -s: silent
-# sh <(curl -sL https://driohq.net/dropbox/install_nix)
-# sh <(curl -sL http://192.168.8.35:8080/install_nix)
+# Notice you can pass options to the script to configure different things
+#
 
 { # Prevent execution if this script was only partially downloaded
 
