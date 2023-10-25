@@ -31,7 +31,7 @@ require_util() {
 
 if [ "${1:-}" = "--withts" ]; then
     if [ -z "${2:-}" ]; then
-        oops "missing argument for --tarball-url-prefix"
+        oops "missing argument for --withts"
     fi
     withts=${2}
     shift 2
