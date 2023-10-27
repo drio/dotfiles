@@ -103,3 +103,14 @@ fi
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 
 eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/Users/drio/.bun/_bun" ] && source "/Users/drio/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

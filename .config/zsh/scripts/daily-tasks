@@ -26,12 +26,12 @@ fi
 checkDir "/Volumes/drio-volume/restic-repo"
 
 echo "syncing grafana backups"
-grafDir="/Users/drio/dev/backups/grafana"
+grafDir="/Volumes/drio-volume/backups/grafana"
 checkDir $grafDir
 rsync -az -e ssh teton:grafana-dashboards-backups/ $grafDir
 
 echo "syncing prometheus backups"
-promDir="/Users/drio/dev/backups/prometheus"
+promDir="/Volumes/drio-volume/backups/prometheus"
 checkDir $promDir
 rsync -az -e ssh --progress teton:prometheus-snapshots/ $promDir
 

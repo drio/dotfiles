@@ -1,4 +1,6 @@
 #!/bin/sh
+#
+# http://169.254.169.254/latest/user-data
 
 aws ec2 run-instances \
   --image-id ami-0fc5d935ebf8bc3bc \
@@ -7,4 +9,4 @@ aws ec2 run-instances \
   --key-name drio \
   --security-group-ids sg-0990a7cfbb0f912f9 \
   --user-data file://user_data.ec2.txt \
-  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=drio-nix-box}]'
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=drio-nix-box}]' | tail
