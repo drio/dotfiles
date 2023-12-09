@@ -21,14 +21,20 @@ export PATH=$PATH:/Applications/Hammerspoon.app/Contents/Frameworks/hs
 export PATH=$PATH:/Applications/YubiKey\ Manager.app/Contents/MacOS
 
 # load ssh key
-# eval `ssh-agent`
-# ssh-add ~/.ssh/id_rsa
-#which keychain > /dev/null 2>&1
-#if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
-  #eval `keychain --eval --agents ssh --inherit any id_rsa`
-  #eval `keychain --eval --agents ssh --inherit any id_rsa_git`
-  #eval `keychain --eval --agents ssh --inherit any id_dsae
-#fi
+#eval `ssh-agent -s`
+which keychain > /dev/null 2>&1
+if [[ ".$SSH_TTY" = "." && ($KEYCHAIN -eq 0)]];then
+  eval `keychain --eval --agents ssh --inherit any id_rsa`
+  eval `keychain --eval --agents ssh --inherit any id_rsa_git`
+fi
+#
+# if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
+#     eval $(ssh-agent -s) > /dev/null
+#     if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
+#       ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+#       ssh-add ~/.ssh/id_rsa_git > /dev/null 2>&1
+#     fi
+# fi
 
 # History
 #

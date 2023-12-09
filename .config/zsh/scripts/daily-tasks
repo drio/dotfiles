@@ -2,25 +2,25 @@
 # vim: ft=sh:
 set -e
 
-start=`date`
+start=$(date)
 ts=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 
 function checkDir() {
-  local dir=$1
-  if [ ! -d "$dir" ];then
-    echo "directory $dir not there. Bailing out"
-    exit 0
-  fi
-  echo "directory $dir found. good."
+	local dir=$1
+	if [ ! -d "$dir" ]; then
+		echo "directory $dir not there. Bailing out"
+		exit 0
+	fi
+	echo "directory $dir found. good."
 }
 
 echo "Sudo just in case..."
-sudo ls &> /dev/null
+sudo ls &>/dev/null
 
 echo "switching tailnet"
 currTailnet=$($ts switch --list | grep "*" | awk '{print $1}')
-if [ currTailnet != "driodeiros@gmail.com" ];then
-  $ts switch driodeiros@gmail.com
+if [ currTailnet != "driodeiros@gmail.com" ]; then
+	$ts switch driodeiros@gmail.com
 fi
 
 checkDir "/Volumes/drio-volume/restic-repo"
@@ -39,9 +39,9 @@ echo "Cleaning up reolink dirs in ds720..."
 ssh ds720 'find /volume1/ftp-reolink -empty -type d -delete'
 ssh ds720 'find /volume1/ftp-reolink -mindepth 3 -mtime 30 -exec rm -rv {} +;'
 
-echo "Nvim update ..."
-echo ""
-nvim-update
+#echo "Nvim update ..."
+#echo ""
+#nvim-update
 
 echo "homebrew ..."
 echo ""

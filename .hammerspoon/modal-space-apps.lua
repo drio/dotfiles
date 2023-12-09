@@ -15,7 +15,7 @@ local keys = {
 	--{ key = "g", name = "Telegram" },
 	{ key = "h", name = "Google Chrome" },
 	{ key = "i", name = "Signal" },
-	--{ key = "j", name = "Joplin" },
+	{ key = "j", name = "Activity Monitor" },
 	{ key = "k", name = "Slack" },
 	{ key = "l", name = "Min" },
 	{ key = "m", name = "Mail" },
